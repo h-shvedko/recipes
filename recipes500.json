@@ -1,0 +1,298 @@
+{
+  "dishes": [
+    {
+      "name": "Gefüllte Tomaten mit Hack und Käse überbacken",
+      "calories": 490,
+      "weight": 120,
+      "relative calories": 408,
+      "process": "<dl class=\"list list--preparation\">\n    <dt>1.</dt>\n    <dd>\n        Zwiebel und Knoblauch schälen. Zwiebel in feine Würfel schneiden. Knoblauch durch eine Knoblauchpresse drücken. Öl erhitzen, Zwiebel und Hack darin unter Wenden ca. 3 Minuten bei starker Hitze anbraten. Knoblauch hinzufügen. Mit Salz, Pfeffer, Paprika und Oregano würzen. Weitere 5 Minuten braten. Tomaten putzen, waschen, eine Deckel abschneiden und die Tomaten aushöhlen. In eine ofenfeste Form setzen. 1/2 Liter Wasser aufkochen, Gemüsebrühe, Tomateninneres und Tomatenmark einrühren. Tomaten mit Hack füllen und Brühe zugießen. Käse über die gefüllten Tomaten reiben. Im vorgeheizten Backofen (E-Herd 200 ° C/ Gas: Stufe 3) ca. 20 Minuten backen. Nach Belieben mit etwas Petersilie garniert\n        <span class=\"vm-hook-outer vm-hook-default\"><span class=\"vm-hook\" style=\"color: rgb(0, 153, 0); border-color: transparent transparent rgb(0, 153, 0); cursor: pointer;\">servieren</span><span class=\"vm-hook-icon\" style=\"display: inline-block;\"></span></span></dd>\n</dl>",
+      "photoId": 4,
+      "time": 50,
+      "indredients": [
+        {
+          "name": "Zwiebel",
+          "quantity": 0.5,
+          "measure": "Stück"
+        },
+        {
+          "name": "Knoblauchzehe",
+          "quantity": 0.25,
+          "measure": "Stück"
+        },
+        {
+          "name": "Sonnenblumenöl",
+          "quantity": 0.5,
+          "measure": "EL"
+        },
+        {
+          "name": "gemischtes Hackfleisch",
+          "quantity": 125,
+          "measure": "g"
+        },
+        {
+          "name": "Salz",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Pfeffer",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Edelsüß-Paprika",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Oregano",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "etwas glatte Petersilie",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Tomaten",
+          "quantity": 130,
+          "measure": "g"
+        },
+        {
+          "name": "Gemüsebrühe",
+          "quantity": 0.25,
+          "measure": "TL"
+        },
+        {
+          "name": "Tomatenmark",
+          "quantity": 0.25,
+          "measure": "EL"
+        },
+        {
+          "name": "mittelalter Gouda",
+          "quantity": 25,
+          "measure": "g"
+        }
+      ]
+    },
+    {
+      "name": "Spaghetti mit Tomatensoße",
+      "calories": 500,
+      "weight": 415,
+      "relative calories": 120,
+      "process": "<dl class=\"list list--preparation\">\n    <dt>1.</dt>\n    <dd>\n        Zwiebel schälen und fein würfeln. Öl in einem Topf erhitzen, Zwiebel darin glasig dünsten, Lorbeer und Oregano zufügen, kurz mit andünsten. Tomatenmark unterrühren, kurz anschwitzen. Mit Salz, Pfeffer und Paprika würzen.\n    </dd>\n    <dt>2.</dt>\n    <dd>\n        Mit Tomaten und Brühe ablöschen. Tomaten im Topf etwas zerdrücken, aufkochen und bei mittlerer Hitze ca. 15 Minuten köcheln lassen. Anschließend nochmals mit Salz, Pfeffer, Paprika und Zucker abschmecken.\n    </dd>\n    <dt>3.</dt>\n    <dd>\n        Inzwischen Nudeln in kochendem Salzwasser nach Packungsanweisung zubereiten. In ein Sieb gießen, kurz abschrecken und abtropfen lassen. Nudeln und Soße auf Tellern mit Oregano garniert und Parmesan bestreut <span class=\"vm-hook-outer vm-hook-default\"><span class=\"vm-hook\" style=\"color: rgb(0, 153, 0); border-color: transparent transparent rgb(0, 153, 0); cursor: pointer;\">anrichten</span><span class=\"vm-hook-icon\" style=\"display: inline-block;\"></span></span>.\n    </dd>\n</dl>\n",
+      "photoId": 5,
+      "time": 50,
+      "indredients": [
+        {
+          "name": "Zwiebel",
+          "quantity": 0.25,
+          "measure": "Stück"
+        },
+        {
+          "name": "Olivenöl ",
+          "quantity": 0.75,
+          "measure": "EL"
+        },
+        {
+          "name": "Lorbeerblätter",
+          "quantity": 0.5,
+          "measure": "Stück"
+        },
+        {
+          "name": "getrockneter Oregano",
+          "quantity": 0.25,
+          "measure": "EL"
+        },
+        {
+          "name": "Salz",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Zucker",
+          "quantity": 0.25,
+          "measure": "Prise"
+        },
+        {
+          "name": "Pfeffer",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Edelsüß-Paprika",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Oregano",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Tomaten",
+          "quantity": 220,
+          "measure": "ml (Dose)"
+        },
+        {
+          "name": "Gemüsebrühe",
+          "quantity": 37.5,
+          "measure": "ml"
+        },
+        {
+          "name": "Tomatenmark",
+          "quantity": 0.25,
+          "measure": "EL"
+        },
+        {
+          "name": "geriebener Parmesankäse",
+          "quantity": 12.5,
+          "measure": "g"
+        },
+        {
+          "name": "Spaghetti",
+          "quantity": 100,
+          "measure": "g"
+        }
+      ]
+    },
+    {
+      "name": "Hummuspasta mit Gemüse Booster",
+      "calories": 500,
+      "weight": 274,
+      "relative calories": 182,
+      "process": "<dl class=\"list list--preparation\">\n    <dt>1.</dt>\n    <dd>\n        Nüsse hacken und in einer Pfanne ohne Fett rösten. Mit Ahornsirup &shy;beträufeln und leicht karamellisieren. Mit 1⁄2–1 TL Chiliflocken würzen. Nussmix abkühlen lassen.\n    </dd>\n    <dt>2.</dt>\n    <dd>\n        2–3 l Salzwasser (1 TL Salz pro Liter) aufkochen. Inzwischen Kohlrabi und Möhren schälen, waschen und mit einem Spiralschneider zu „Spaghetti“ (oder in dünne Stifte) schneiden. Nudeln im kochenden Salzwasser nach Packungsanweisung garen. Gemüsespaghetti die letzten ca. 2&nbsp;Minuten mitgaren.\n    </dd>\n    <dt>3.</dt>\n    <dd>\n        Inzwischen Spinat verlesen, waschen und abtropfen lassen. Knoblauch schälen und fein hacken. Öl in einer großen Pfanne erhitzen. Knoblauch darin anbraten. Nudeln abgießen, Garwasser dabei auffangen.\n    </dd>\n    <dt>4.</dt>\n    <dd>\n        Hummus und ca. 200 ml Nudelgarwasser zum Knoblauch geben, bei schwacher Hitze unter gelegentlichem Rühren erhitzen. Nudeln und Spinat zur Soße geben und mischen. Mit Salz und Pfeffer würzen. Mit dem Nuss-Chili-Mix bestreuen.\n    </dd>\n</dl>",
+      "photoId": 9,
+      "time": 30,
+      "indredients": [
+        {
+          "name": "Walnusskerne",
+          "quantity": 19,
+          "measure": "g"
+        },
+        {
+          "name": "Ahornsirup",
+          "quantity": 0.25,
+          "measure": "EL"
+        },
+        {
+          "name": "Chiliflocken",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Salz",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Pfeffer",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Kohlrabi",
+          "quantity": 0.5,
+          "measure": "Stück"
+        },
+        {
+          "name": "Möhren",
+          "quantity": 75,
+          "measure": "g"
+        },
+        {
+          "name": "lange Nudeln (z. B. Bavette)",
+          "quantity": 50,
+          "measure": "g"
+        },
+        {
+          "name": "junger Blattspinat",
+          "quantity": 25,
+          "measure": "g"
+        },
+        {
+          "name": "Knoblauchzehe",
+          "quantity": 0.25,
+          "measure": "Stück"
+        },
+        {
+          "name": "Öl",
+          "quantity": 0.25,
+          "measure": "EL"
+        },
+        {
+          "name": "Hummus (Kühlregal)",
+          "quantity": 45,
+          "measure": "g"
+        }
+      ]
+    },
+    {
+      "name": "\"Leicht & Locker\"-Saltimbocca",
+      "calories": 500,
+      "weight": 648,
+      "relative calories": 78,
+      "process": "<dl class=\"list list--preparation\">\n    <dt>1.</dt>\n    <dd>\n        Nüsse hacken und in einer Pfanne ohne Fett rösten. Mit Ahornsirup &shy;beträufeln und leicht karamellisieren. Mit 1⁄2–1 TL Chiliflocken würzen. Nussmix abkühlen lassen.\n    </dd>\n    <dt>2.</dt>\n    <dd>\n        2–3 l Salzwasser (1 TL Salz pro Liter) aufkochen. Inzwischen Kohlrabi und Möhren schälen, waschen und mit einem Spiralschneider zu „Spaghetti“ (oder in dünne Stifte) schneiden. Nudeln im kochenden Salzwasser nach Packungsanweisung garen. Gemüsespaghetti die letzten ca. 2&nbsp;Minuten mitgaren.\n    </dd>\n    <dt>3.</dt>\n    <dd>\n        Inzwischen Spinat verlesen, waschen und abtropfen lassen. Knoblauch schälen und fein hacken. Öl in einer großen Pfanne erhitzen. Knoblauch darin anbraten. Nudeln abgießen, Garwasser dabei auffangen.\n    </dd>\n    <dt>4.</dt>\n    <dd>\n        Hummus und ca. 200 ml Nudelgarwasser zum Knoblauch geben, bei schwacher Hitze unter gelegentlichem Rühren erhitzen. Nudeln und Spinat zur Soße geben und mischen. Mit Salz und Pfeffer würzen. Mit dem Nuss-Chili-Mix bestreuen.\n    </dd>\n</dl>",
+      "photoId": 10,
+      "time": 25,
+      "indredients": [
+        {
+          "name": "Gemüsebrühe (instant)",
+          "quantity": 0.25,
+          "measure": "TL"
+        },
+        {
+          "name": "Reis",
+          "quantity": 62.5,
+          "measure": "g"
+        },
+        {
+          "name": "TK-Erbsen-und-Möhrchen",
+          "quantity": 62.5,
+          "measure": "g"
+        },
+        {
+          "name": "Salz",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Pfeffer",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Schweineschnitzel",
+          "quantity": 160,
+          "measure": "g"
+        },
+        {
+          "name": "Parmaschinken",
+          "quantity": 2,
+          "measure": "Stück"
+        },
+        {
+          "name": "Öl",
+          "quantity": 0.5,
+          "measure": "EL"
+        },
+        {
+          "name": "Petersilie",
+          "quantity": "n/a",
+          "measure": ""
+        },
+        {
+          "name": "Butter",
+          "quantity": 5,
+          "measure": "g"
+        },
+        {
+          "name": "Holzspießchen",
+          "quantity": 2,
+          "measure": "Stück"
+        }
+      ]
+    }
+  ]
+}

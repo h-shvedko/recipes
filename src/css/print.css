@@ -1,0 +1,9 @@
+form,
+.top-headline,
+.speiseplan-anfrage,
+#menu-calculate,
+#list-generation,
+.print-result,
+#show-menu{
+    display: none!important;
+}
