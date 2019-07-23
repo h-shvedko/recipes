@@ -20290,8 +20290,8 @@ header .header-search > span {
 
 @font-face {
     font-family: lecker_iconfont;
-    src: url(../fonts/lecker_iconfont.eot?37);
-    src: url(../fonts/lecker_iconfont.eot?37#iefix) format("eot"), url(../fonts/lecker_iconfont.woff?37) format("woff"), url(../fonts/lecker_iconfont.ttf?37) format("truetype"), url(../fonts/lecker_iconfont.svg?37#lecker_iconfont) format("svg")
+    src: url(/css/lecker/lecker_iconfont.eot?37);
+    src: url(/css/lecker/lecker_iconfont.eot?37#iefix) format("eot"), url(/css/lecker/lecker_iconfont.woff?37) format("woff"), url(/css/lecker/lecker_iconfont.ttf?37) format("truetype"), url(/css/lecker/lecker_iconfont.svg?37#lecker_iconfont) format("svg")
 }
 
 .btnArrow, .btnArrowDown:before, .btnPager, .icon:before, .pager ul.pager__list.pager-angular li:first-child a:before, .pager ul.pager__list.pager-angular li:last-child a:before {
