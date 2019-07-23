@@ -11,6 +11,14 @@ header .header-logo-icon img{
 .article .article-form{
     min-width: 100%!important;
 }
+.col-firstname{
+    padding-right: 2%;
+}
+
+.min-height-checkboxes{
+    min-height: 140px!important;
+}
+
 .w-10{
     width: 10%!important;
 }
@@ -48,6 +56,30 @@ header .header-logo-icon img{
 
 .ml-3{
     margin-left: 1rem;
+}
+
+.mb-5{
+    margin-bottom: 2rem!important;
+}
+
+
+.mt-2{
+    margin-top: 0.5rem!important;
+}
+.mb-2{
+    margin-bottom: 0.5rem!important;
+}
+
+.text-right{
+    text-align: right!important;
+}
+
+.text-center{
+    text-align: center!important;
+}
+
+.text-left{
+    text-align: left!important;
 }
 
 .lightbox {
