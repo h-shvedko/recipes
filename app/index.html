@@ -1169,48 +1169,37 @@
         </div>
     </form>
 </article>
-<div class="ergebnis-container shadow" style="display: none;">
+<div class="ergebnis-container gridContainer mt-2 mb-5" style="display: none;">
     <div class="row">
-        <div class="col-12">
-            <div class="alert alert-primary m-0">
-                <h2>Kalorien Ergebniss</h2>
-                <p class="result-text"></p>
-            </div>
+        <div class="col col-12 main">
+            <h2 class="headline headline--dotted"><span>Kalorien Ergebniss</span></h2>
+            <p class="result-text"></p>
         </div>
     </div>
 </div>
-<div class="speiseplan-anfrage shadow mt-5" style="display: none;">
-    <div class="row">
-        <div class="col-12">
-            <div class="alert alert-primary m-0">
-                <h2>Möchten Sie ein Speiseplan</h2>
-                <div class="row">
-                    <div class="col-3">
-                        <div class="form-check">
-                            <input class="form-check-input tage" type="radio" name="menu-tage" id="menu-drei-tage" value="3">
-                            <label class="form-check-label" for="menu-drei-tage">für 3 Tage</label>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="form-check">
-                            <input class="form-check-input tage" type="radio" name="menu-tage" id="menu-fuenf-tage" value="5">
-                            <label class="form-check-label" for="menu-fuenf-tage">für 5 Tage</label>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="form-check">
-                            <input class="form-check-input tage" type="radio" name="menu-tage" id="menu-siben-tage" value="7">
-                            <label class="form-check-label" for="menu-siben-tage">für 7 Tage</label>
-                        </div>
-                    </div>
-                    <div class="col-3 text-right">
-                        <button class="btn btn-primary" id="menu-calculate">Berechnen das Speiseplan</button>
-                    </div>
-                </div>
+<article class="article speiseplan-anfrage" style="display: none;">
+    <div class="form article-form form--modal w-100 p-0 gridContainer">
+        <div class="form__row row mb-5">
+            <div class="col col-12">
+                <h2 class="headline headline--dotted"><span>Möchten Sie ein Speiseplan berechnen?</span></h2>
+            </div>
+        </div>
+        <div class="form__row row mb-5">
+            <div class="col col-firstname">
+                <input class="form-check-input tage radiobutton" type="radio" name="menu-tage" id="menu-drei-tage" value="3"> <label class="form-check-label" for="menu-drei-tage">für 3 Tage</label>
+            </div>
+            <div class="col col-firstname">
+                <input class="form-check-input tage radiobutton" type="radio" name="menu-tage" id="menu-fuenf-tage" value="5"> <label class="form-check-label" for="menu-fuenf-tage">für 5 Tage</label>
+            </div>
+            <div class="col col-firstname">
+                <input class="form-check-input tage radiobutton" type="radio" name="menu-tage" id="menu-siben-tage" value="7"> <label class="form-check-label" for="menu-siben-tage">für 7 Tage</label>
+            </div>
+            <div class="col col-12 text-right">
+                <button class="btn btn-primary" id="menu-calculate">Berechnen das Speiseplan</button>
             </div>
         </div>
     </div>
-</div>
+</article>
 <div class="menu-container shadow mt-5"  style="display: none;">
     <div class="row">
         <div class="col-12">

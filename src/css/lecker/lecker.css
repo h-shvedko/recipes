@@ -6764,9 +6764,10 @@ footer .seoText__h1.headline {
 
 .divider--dotted, .headline--dotted {
     background-image: url(/img/spritesheet.png);
-    background-position: 0 -34px;
+    background-position: 0 -40px;
     height: 11px;
-    width: 100%
+    width: 100%;
+    background-size: 125%;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
@@ -21084,9 +21085,10 @@ footer .seoText__h1.headline {
 
 .divider--dotted, .headline--dotted {
     background-image: url(/img/spritesheet.png);
-    background-position: 0 -34px;
+    background-position: 0 -40px;
     height: 11px;
-    width: 100%
+    width: 100%;
+    background-size: 125%;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
