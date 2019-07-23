@@ -1,20 +1,16 @@
-form label{
-    font-weight: 600;
+#wrapper{
+    max-width: 970px!important;
+    background-color: #fff;
 }
 
-h1{
-    font-size: 2rem;
+header .header-logo-icon img{
+    padding-top: 25px;
+    padding-bottom: 30px;
 }
 
-h4{
-    margin-top: 0.5rem;
-    margin-bottom: 0.75rem;
+.article .article-form{
+    min-width: 100%!important;
 }
-
-p{
-    margin-bottom: 0.5rem;
-}
-
 .w-10{
     width: 10%!important;
 }
@@ -41,6 +37,17 @@ p{
 }
 .w-90{
     width: 90%!important;
+}
+.w-100{
+    width: 100%!important;
+}
+
+.p-0{
+    padding: 0!important;
+}
+
+.ml-3{
+    margin-left: 1rem;
 }
 
 .lightbox {

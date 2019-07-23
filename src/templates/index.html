@@ -1,9 +1,19 @@
 {{> partials/head.html}}
-<div class="container mt-5 mb-5">
-    <h1 class="shadow p-3 mb-4 rounded text-center top-headline">Anwendung für die Menschen, die sich selbst fit halten müssen/wollen!</h1>
-    {{> partials/form.html}}
-    {{> partials/result-kallorii.html}}
-    {{> partials/table-menu.html}}
-    {{> partials/list-of-products.html}}
+<div class="outerWrapper">
+    <div id="wrapper">
+        {{> partials/header.mustache}}
+        <div class="gridContainer mt-2 mb-2">
+            <div class="row">
+                <div class="col col-12 main">
+                    <h1>Anwendung für die Menschen, die sich selbst fit halten müssen/wollen!</h1>
+                    {{> partials/form.html}}
+                    {{> partials/result-kallorii.html}}
+                    {{> partials/table-menu.html}}
+                    {{> partials/list-of-products.html}}
+                    {{> partials/footer.html}}
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
-{{> partials/footer.html}}

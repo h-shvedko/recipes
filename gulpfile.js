@@ -102,7 +102,7 @@ gulp.task('fonts', function () {
 //watch task
 gulp.task('watch', ['css', 'js', 'html'], function () {
     livereload.listen();
-    gulp.watch(['src/css/*.css', 'src/js/*.js', 'src/templates/**/*.*'], ['css', 'js', 'html']);
+    gulp.watch(['src/css/**/*.css', 'src/js/*.js', 'src/templates/**/*.*'], ['css', 'js', 'html']);
 });
 
 //validation of html
