@@ -159,8 +159,7 @@ header .header-logo-icon img{
 }
 .custom-control-input {
     position: absolute;
-    top: .25rem;
-    left: -0.25rem;
+    left: -1.5rem;
     display: block;
     width: 1rem;
     height: 1rem;
@@ -248,4 +247,8 @@ header .header-logo-icon img{
     border-radius: 0.25rem;
     max-width: 100%;
     height: auto;
+}
+
+.list-of-products .result-text{
+    margin-left: 1rem;
 }
