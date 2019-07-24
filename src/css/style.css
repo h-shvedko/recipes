@@ -264,3 +264,47 @@ header .header-logo-icon img{
 .list-of-products .result-text{
     margin-left: 1rem;
 }
+
+
+
+.popover-print{
+    clear: both;
+}
+
+.popover-print .popover-header,
+.popover-print img{
+    display: none;
+}
+
+.popover-print .list.list--preparation dt{
+    margin-right: 1rem;
+}
+
+.popover-print .list.list--preparation{
+    float: none!important;
+    display: inline-block;
+    max-width: 45%;
+}
+
+.result-text.print .img-fluid{
+    max-width: 40%;
+    float: left;
+    margin-right: 1rem;
+}
+
+.popover-print .ingredients{
+    float: left;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    display: inline-block;
+    max-width: 25%;
+}
+
+.popover-body > p.popover-headline{
+    padding-top: 1rem;
+}
+
+.result-text.print table td{
+    padding: 0.5rem 0;
+}
+
