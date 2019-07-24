@@ -394,3 +394,5 @@ window.getListOfProducts = function (object) {
 
     return listOfProducts;
 };
+
+};

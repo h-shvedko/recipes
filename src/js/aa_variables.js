@@ -56,7 +56,7 @@ let abendessenKalorien = 0;
 /**
  *
  */
-let recipes300, recipes500, recipes800;
+let recipes;
 
 /**
  *
