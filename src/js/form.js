@@ -316,15 +316,21 @@ generateMenu = function () {
         let menuObject = getMenuObject(nummerTage);
 
         let htmlElement = generateHtmlForMenu(menuObject);
+        let htmlElementForPrint = generateHtmlForPrintMenu(menuObject);
         let tableMenu = document.getElementsByClassName('menu-container')[0];
 
         if(tableMenu){
             tableMenu.style.display = 'block';
-            let ergebnis = tableMenu.getElementsByClassName('result-text')[0];
+            let ergebnis = tableMenu.querySelector('.result-text.display');
             if(ergebnis){
                 ergebnis.innerHTML = htmlElement.outerHTML;
                 ergebnis.scrollIntoView({block: "start", behavior: "smooth"});
                 addEventListenrsForMenus();
+            }
+
+            let ergebnisPrint = tableMenu.querySelector('.result-text.print');
+            if(ergebnisPrint){
+                ergebnisPrint.innerHTML = htmlElementForPrint.outerHTML;
             }
         }
     }

@@ -53,7 +53,7 @@ window.createText = function (text) {
  * @param object - рецепт одного блюда берется из json
  * @returns {HTMLElement}
  */
-window.createBeschreibung = function (object) {
+window.createBeschreibung = function (object, isPrint) {
     let popover = document.createElement('div');
     let popoverHeader = document.createElement('h3');
     let popoverBody = document.createElement('div');
@@ -62,8 +62,12 @@ window.createBeschreibung = function (object) {
     let ingredientsHtml = '';
     let image = createImg(object.photoId);
 
-    popover.classList.add("popover");
-    popover.classList.add("fade");
+    if(!isPrint){
+        popover.classList.add("popover");
+        popover.classList.add("fade");
+    } else {
+        popover.classList.add("popover-print");
+    }
 
     popoverHeader.classList.add('popover-header');
 
@@ -192,9 +196,9 @@ window.generateHtmlForMenu = function (menuObject) {
             let zeit2 = createText("<i class=\"fas fa-hourglass-start\"></i> " + menuObject[i].mittag.time + " min");
             let zeit3 = createText("<i class=\"fas fa-hourglass-start\"></i> " + menuObject[i].abend.time + " min");
 
-            let process1 = createBeschreibung(menuObject[i].fruestueck);
-            let process2 = createBeschreibung(menuObject[i].mittag);
-            let process3 = createBeschreibung(menuObject[i].abend);
+            let process1 = createBeschreibung(menuObject[i].fruestueck, false);
+            let process2 = createBeschreibung(menuObject[i].mittag, false);
+            let process3 = createBeschreibung(menuObject[i].abend, false);
 
             cell0.innerHTML = "Tag " + (tag);
             cell0.classList.add('w-10');
@@ -215,6 +219,96 @@ window.generateHtmlForMenu = function (menuObject) {
             cell3.classList.add('w-30');
             cell3.classList.add('menu-item');
             cell3.classList.add('abend');
+
+            tbody.appendChild(trBody);
+        }
+
+        table.appendChild(tbody);
+
+    }
+
+
+    return block;
+};
+
+/**
+ *
+ * @param menuObject
+ * @returns {HTMLElement}
+ */
+window.generateHtmlForPrintMenu = function (menuObject) {
+    let block = document.createElement('div');
+    if (menuObject.length > 0) {
+
+        let blockCol = document.createElement('div');
+        let table = document.createElement('table');
+
+        block.classList.add('row');
+        block.classList.add('table');
+
+        blockCol.classList.add('col');
+        blockCol.classList.add('col-12');
+
+        table.classList.add('table');
+        table.classList.add('w-100');
+
+        block.appendChild(blockCol);
+        blockCol.appendChild(table);
+
+        let tbody = document.createElement('tbody');
+
+        let trBody;
+        for (let i = 0; i < menuObject.length; i++) {
+            let tag = i + 1;
+
+            trBody = document.createElement('tr');
+
+            let cell0 = trBody.insertCell(0);
+
+            let innerTable = document.createElement('table');
+
+            for(let zeitName in menuObject[i]){
+                let innerTr = document.createElement('tr');
+                let innerCell0 = innerTr.insertCell(0);
+                let innerCell1 = innerTr.insertCell(1);
+
+                let innerImage = createImg(menuObject[i][zeitName].photoId);
+                let innerHeadline = createHeadline(menuObject[i][zeitName].name);
+                let innerWeight = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(menuObject[i][zeitName], zeitName) + " g");
+                let innerKallorien = createText("<i class=\"fas fa-fire-alt\"></i> " + menuObject[i][zeitName].relative_calories + " kcal pro 100 g");
+                let innerZeit = createText("<i class=\"fas fa-hourglass-start\"></i> " + menuObject[i][zeitName].time + " min");
+                let innerProcess = createBeschreibung(menuObject[i][zeitName], true);
+
+                let title = "Fruhstück";
+
+                switch (zeitName) {
+                    case "fruestueck":
+                        title = 'Fruhstück';
+                        break;
+                    case "abend":
+                        title = 'Abendessen';
+                        break;
+                    case "mittag":
+                        title = 'Mittagessen';
+                        break;
+                }
+
+                innerCell0.innerHTML = title + '<br>' + 'Tag ' + tag;
+                innerCell0.classList.add('title-print');
+                innerCell0.classList.add('font-weight-bold');
+                innerCell0.classList.add('text-center');
+
+                innerCell0.classList.add('w-20');
+                innerCell1.innerHTML = innerImage.outerHTML + innerHeadline.outerHTML + innerWeight.outerHTML + innerKallorien.outerHTML + innerZeit.outerHTML + innerProcess.outerHTML;
+                innerCell1.classList.add('w-80');
+                innerCell1.classList.add('menu-item');
+                innerCell1.classList.add('fruestuek');
+
+                innerTable.appendChild(innerTr);
+            }
+
+            cell0.innerHTML = innerTable.outerHTML;
+
 
             tbody.appendChild(trBody);
         }
