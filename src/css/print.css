@@ -1,3 +1,4 @@
+.display,
 form,
 .top-headline,
 .speiseplan-anfrage,
@@ -6,4 +7,9 @@ form,
 .print-result,
 #show-menu{
     display: none!important;
+}
+
+
+.print{
+    display: block;
 }
