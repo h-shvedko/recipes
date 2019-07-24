@@ -280,25 +280,14 @@ prepareFormData = function (formElements) {
 /**
  * Get content from recipes files
  */
-loadGerichten = function (key) {
+loadGerichten = function () {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            let recipe = JSON.parse(this.responseText);
-            switch (key) {
-                case 300:
-                    recipes300 = recipe;
-                    break;
-                case 500:
-                    recipes500 = recipe;
-                    break;
-                default:
-                    recipes800 = recipe;
-                    break;
-            }
+            recipes = JSON.parse(this.responseText);
         }
     };
-    xhttp.open("GET", "./recipes" + key + ".json", false);
+    xhttp.open("GET", "./recipes.json", false);
     xhttp.send();
 };
 
@@ -352,8 +341,7 @@ getMenuObject = function (nummerTage) {
         let tmpTag = [];
         let tmpRes = [];
         for (let j = 1; j <= 3; j++) {
-            let randomDataNummer = Math.floor(getRandomNummer(3, 8) * 100);
-            let recipeObject = getRecipeObject(randomDataNummer);
+            let recipeObject = recipes;
             let nummerVonGerichte = recipeObject.dishes.length - 1;
             let gerichteNummer = getRandomGerichtNummer(1, nummerVonGerichte);
 
@@ -371,28 +359,6 @@ getMenuObject = function (nummerTage) {
     menuObject = res;
 
     return res;
-};
-
-/**
- *
- * @param randomDataNummer
- */
-getRecipeObject = function (randomDataNummer) {
-    let recipeObject = recipes300;
-
-    switch (randomDataNummer) {
-        case MENU_300:
-            recipeObject = recipes300;
-            break;
-        case MENU_500:
-            recipeObject = recipes500;
-            break;
-        case MENU_800:
-            recipeObject = recipes800;
-            break;
-    }
-
-    return recipeObject;
 };
 
 /**
@@ -435,9 +401,7 @@ if (menuCalculate) {
         event.preventDefault();
         event.stopPropagation();
 
-        // loadGerichten(300);
-        // loadGerichten(500);
-        // loadGerichten(800);
+        loadGerichten();
 
         generateMenu();
 
