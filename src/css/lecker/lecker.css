@@ -3427,15 +3427,15 @@ html.js .fivestar-submit {
 }
 
 .fivestar-lecker div.fivestar-widget-static .star {
-    background-image: url(/img/star.png);
+    background-image: url(./../../img/star.png);
 }
 
 .fivestar-lecker div.fivestar-widget-static .star span.on {
-    background-image: url(/img/star.png);
+    background-image: url(./../../img/star.png);
 }
 
 .fivestar-lecker div.fivestar-widget-static .star span.off {
-    background-image: url(/img/star.png);
+    background-image: url(./../../img/star.png);
 }
 
 .fivestar-lecker-stars {
@@ -3466,11 +3466,11 @@ html.js .fivestar-submit {
 }
 
 .fivestar-lecker div.fivestar-widget .cancel, .fivestar-lecker div.fivestar-widget .cancel a {
-    background-image: url(/img/cancel.png);
+    background-image: url(./../../img/cancel.png);
 }
 
 .fivestar-lecker div.fivestar-widget .star, .fivestar-lecker div.fivestar-widget .star a {
-    background-image: url(/img/star.png);
+    background-image: url(./../../img/star.png);
     width: 25px;
     height: 25px;
     margin-right: 5px;
@@ -3481,7 +3481,7 @@ div.fivestar-lecker div.on a {
 }
 
 .fivestar-lecker div.fivestar-widget div.hover a, .fivestar-lecker div.rating div a:hover {
-    background-image: url(/img/star.png);
+    background-image: url(./../../img/star.png);
     background-position: 0 -49px;
 }
 
@@ -3952,7 +3952,7 @@ header nav:after, header nav:before {
 
 
     header.is_stuck .header-logo-icon {
-        background-image: url(/img/spritesheet.png);
+        background-image: url(./../../img/spritesheet.png);
         background-position: -72px -50px;
         width: 41px;
         height: 57px
@@ -3961,7 +3961,7 @@ header nav:after, header nav:before {
 
 @media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),(min-width: 768px) and (min-resolution: 192dpi) {
     header.is_stuck .header-logo-icon {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
@@ -4102,7 +4102,7 @@ header .header-dropdown, header .header-menu-icons.js-search-close, header .head
 }
 
 header .header-navbar--border-top {
-    background-image: url(/img/spritesheet.png);
+    background-image: url(./../../img/spritesheet.png);
     background-position: 0 -155px;
     height: 5px;
     width: 100%;
@@ -4113,14 +4113,14 @@ header .header-navbar--border-top {
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
     header .header-navbar--border-top {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
 
 @media (min-width: 768px) {
     header .header-navbar--border-bottom {
-        background-image: url(/img/spritesheet.png);
+        background-image: url(./../../img/spritesheet.png);
         background-position: 0 0;
         height: 34px;
         background-color: transparent;
@@ -4131,7 +4131,7 @@ header .header-navbar--border-top {
 
 @media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),(min-width: 768px) and (min-resolution: 192dpi) {
     header .header-navbar--border-bottom {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
@@ -4196,7 +4196,7 @@ header .header-logo {
 header .header-logo-icon {
     float: left;
     text-align: center;
-    background-image: url(/img/spritesheet.png);
+    background-image: url(./../../img/spritesheet.png);
     background-position: -72px -50px;
     width: 41px;
     height: 57px
@@ -4204,14 +4204,14 @@ header .header-logo-icon {
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
     header .header-logo-icon {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
 
 @media (min-width: 768px) {
     header .header-logo-icon {
-        background-image: url(/img/spritesheet.png);
+        background-image: url(./../../img/spritesheet.png);
         background-position: 0 -45px;
         width: 72px;
         height: 110px
@@ -4220,7 +4220,7 @@ header .header-logo-icon {
 
 @media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),(min-width: 768px) and (min-resolution: 192dpi) {
     header .header-logo-icon {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
@@ -4951,7 +4951,7 @@ header .header-search > span {
 .placeholder-ins-kochbuch {
     position: absolute;
     right: 10px;
-    background-image: url(/img/placeholder-ins-kochbuch-short.png);
+    background-image: url(./../../img/placeholder-ins-kochbuch-short.png);
     bottom: 46px;
     width: 77px;
     height: 42px
@@ -4963,7 +4963,7 @@ header .header-search > span {
 
 @media (min-width: 620px) {
     .placeholder-ins-kochbuch {
-        background-image: url(/img/placeholder-ins-kochbuch-wide.png);
+        background-image: url(./../../img/placeholder-ins-kochbuch-wide.png);
         bottom: 60px;
         width: 176px
     }
@@ -4971,7 +4971,7 @@ header .header-search > span {
 
 @media (min-width: 768px) {
     .placeholder-ins-kochbuch {
-        background-image: url(/img/placeholder-ins-kochbuch-short.png);
+        background-image: url(./../../img/placeholder-ins-kochbuch-short.png);
         bottom: 46px;
         width: 77px
     }
@@ -4979,7 +4979,7 @@ header .header-search > span {
 
 @media (min-width: 940px) {
     .placeholder-ins-kochbuch {
-        background-image: url(/img/placeholder-ins-kochbuch-wide.png);
+        background-image: url(./../../img/placeholder-ins-kochbuch-wide.png);
         bottom: 60px;
         width: 176px
     }
@@ -6763,7 +6763,7 @@ footer .seoText__h1.headline {
 }
 
 .divider--dotted, .headline--dotted {
-    background-image: url(/img/spritesheet.png);
+    background-image: url(./../../img/spritesheet.png);
     background-position: 0 -40px;
     height: 11px;
     width: 100%;
@@ -6772,7 +6772,7 @@ footer .seoText__h1.headline {
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
     .divider--dotted, .headline--dotted {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
@@ -9908,13 +9908,13 @@ input:-ms-input-placeholder {
     position: relative;
     width: 300px;
     height: 250px;
-    background-image: url(/img/bg-form-newsletter.jpg);
+    background-image: url(./../../img/bg-form-newsletter.jpg);
     margin-bottom: 40px
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .manageRecipe, .newsletterSubscription {
-        background-image: url(/img/bg-form-newsletter@2x.jpg);
+        background-image: url(./../../img/bg-form-newsletter@2x.jpg);
         background-size: 300px 250px
     }
 }
@@ -10047,12 +10047,12 @@ input:-ms-input-placeholder {
     margin: 0 auto;
     width: 300px;
     float: none;
-    background-image: url(/img/bg-form-footernewsletter.jpg)
+    background-image: url(./../../img/bg-form-footernewsletter.jpg)
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .newsletterSubscriptionFooter {
-        background-image: url(/img/bg-form-footernewsletter@2x.jpg);
+        background-image: url(./../../img/bg-form-footernewsletter@2x.jpg);
         background-size: 300px 250px
     }
 }
@@ -10118,13 +10118,13 @@ input:-ms-input-placeholder {
     position: relative;
     width: 300px;
     height: 250px;
-    background-image: url(/img/bg-form-community.jpg);
+    background-image: url(./../../img/bg-form-community.jpg);
     margin: 0 0 40px
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .communityLogin {
-        background-image: url(/img/bg-form-community@2x.jpg);
+        background-image: url(./../../img/bg-form-community@2x.jpg);
         background-size: 300px 250px
     }
 }
@@ -12125,7 +12125,7 @@ footer {
 }
 
 .footer-divider {
-    background-image: url(/img/spritesheet.png);
+    background-image: url(./../../img/spritesheet.png);
     background-position: -72px -45px;
     height: 5px;
     width: 300px;
@@ -12134,7 +12134,7 @@ footer {
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
     .footer-divider {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
@@ -12175,7 +12175,7 @@ footer {
     margin: 0 auto;
     height: 250px;
     line-height: 251px;
-    background-image: url(/img/placeholder-newsletter-teaser-footer.png)
+    background-image: url(./../../img/placeholder-newsletter-teaser-footer.png)
 }
 
 .placeholderBox-divider {
@@ -12198,7 +12198,7 @@ footer {
 }
 
 .ie9 .header-logo-icon {
-    background-image: url(/img/ie9-lecker-logo.png);
+    background-image: url(./../../img/ie9-lecker-logo.png);
     background-repeat: no-repeat;
     background-size: 40px auto
 }
@@ -12210,7 +12210,7 @@ footer {
 }
 
 .ie9 .header-logo-text {
-    background-image: url(/img/ie9-lecker-text.png);
+    background-image: url(./../../img/ie9-lecker-text.png);
     background-repeat: no-repeat;
     background-size: auto 15px;
     background-position: 0 50%;
@@ -12255,7 +12255,7 @@ footer {
 }
 
 .btnClose, .btnClose--small, .btnCookbook__button.btnCookbook--isIn:before, .btnCookbook__button:before, .btnCookbook__heart, .btnCookbook__heart.btnCookbook--isIn, .btnCookbook__overlayClose, .btnCookbook__overlayFooter .btn.btnCookbook--create:before, .checkbox + label:before, .checkbox:checked + label:before, .imageUploadPlaceholder, .list--check > li:before, .radiobutton + label:before, .radiobutton:checked + label:before, .remodal-close, .svg__camera, .svg__check, .svg__checkbox, .svg__checkbox_checked, .svg__close, .svg__close_circle, .svg__close_circle_small, .svg__cookbook_check, .svg__cookbook_heart, .svg__cookbook_heartvivid, .svg__cookbook_reply, .svg__create, .svg__image_placeholder, .svg__info, .svg__naehrwerte, .svg__radio, .svg__radio_checked, .svg__uhr, .svg__vegan, .svg__vegetarian, .svg__wochentag_di, .svg__wochentag_do, .svg__wochentag_fr, .svg__wochentag_mi, .svg__wochentag_mo, .svg__wochentag_sa, .svg__wochentag_so, .weekdayOverlay--friday, .weekdayOverlay--monday, .weekdayOverlay--saturday, .weekdayOverlay--sunday, .weekdayOverlay--thursday, .weekdayOverlay--tuesday, .weekdayOverlay--wednesday {
-    background: url(/img/sprite.view.svg) no-repeat
+    background: url(./../../img/sprite.view.svg) no-repeat
 }
 
 .svg__camera {
@@ -18273,7 +18273,7 @@ header nav:after, header nav:before {
     }
 
     header.is_stuck .header-logo-icon {
-        background-image: url(/img/spritesheet.png);
+        background-image: url(./../../img/spritesheet.png);
         background-position: -72px -50px;
         width: 41px;
         height: 57px
@@ -18282,7 +18282,7 @@ header nav:after, header nav:before {
 
 @media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),(min-width: 768px) and (min-resolution: 192dpi) {
     header.is_stuck .header-logo-icon {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
@@ -18423,7 +18423,7 @@ header .header-dropdown, header .header-menu-icons.js-search-close, header .head
 }
 
 header .header-navbar--border-top {
-    background-image: url(/img/spritesheet.png);
+    background-image: url(./../../img/spritesheet.png);
     background-position: 0 -155px;
     height: 5px;
     width: 100%;
@@ -18434,14 +18434,14 @@ header .header-navbar--border-top {
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
     header .header-navbar--border-top {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
 
 @media (min-width: 768px) {
     header .header-navbar--border-bottom {
-        background-image: url(/img/spritesheet.png);
+        background-image: url(./../../img/spritesheet.png);
         background-position: 0 0;
         height: 34px;
         background-color: transparent;
@@ -18452,7 +18452,7 @@ header .header-navbar--border-top {
 
 @media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),(min-width: 768px) and (min-resolution: 192dpi) {
     header .header-navbar--border-bottom {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
@@ -18517,7 +18517,7 @@ header .header-logo {
 header .header-logo-icon {
     float: left;
     text-align: center;
-    background-image: url(/img/spritesheet.png);
+    background-image: url(./../../img/spritesheet.png);
     background-position: -72px -50px;
     width: 41px;
     height: 57px
@@ -18525,14 +18525,14 @@ header .header-logo-icon {
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
     header .header-logo-icon {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
 
 @media (min-width: 768px) {
     header .header-logo-icon {
-        background-image: url(/img/spritesheet.png);
+        background-image: url(./../../img/spritesheet.png);
         background-position: 0 -45px;
         width: 72px;
         height: 110px
@@ -18541,7 +18541,7 @@ header .header-logo-icon {
 
 @media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2),(min-width: 768px) and (min-resolution: 192dpi) {
     header .header-logo-icon {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
@@ -19272,7 +19272,7 @@ header .header-search > span {
 .placeholder-ins-kochbuch {
     position: absolute;
     right: 10px;
-    background-image: url(/img/placeholder-ins-kochbuch-short.png);
+    background-image: url(./../../img/placeholder-ins-kochbuch-short.png);
     bottom: 46px;
     width: 77px;
     height: 42px
@@ -19284,7 +19284,7 @@ header .header-search > span {
 
 @media (min-width: 620px) {
     .placeholder-ins-kochbuch {
-        background-image: url(/img/placeholder-ins-kochbuch-wide.png);
+        background-image: url(./../../img/placeholder-ins-kochbuch-wide.png);
         bottom: 60px;
         width: 176px
     }
@@ -19292,7 +19292,7 @@ header .header-search > span {
 
 @media (min-width: 768px) {
     .placeholder-ins-kochbuch {
-        background-image: url(/img/placeholder-ins-kochbuch-short.png);
+        background-image: url(./../../img/placeholder-ins-kochbuch-short.png);
         bottom: 46px;
         width: 77px
     }
@@ -19300,7 +19300,7 @@ header .header-search > span {
 
 @media (min-width: 940px) {
     .placeholder-ins-kochbuch {
-        background-image: url(/img/placeholder-ins-kochbuch-wide.png);
+        background-image: url(./../../img/placeholder-ins-kochbuch-wide.png);
         bottom: 60px;
         width: 176px
     }
@@ -21084,7 +21084,7 @@ footer .seoText__h1.headline {
 }
 
 .divider--dotted, .headline--dotted {
-    background-image: url(/img/spritesheet.png);
+    background-image: url(./../../img/spritesheet.png);
     background-position: 0 -40px;
     height: 11px;
     width: 100%;
@@ -21093,7 +21093,7 @@ footer .seoText__h1.headline {
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
     .divider--dotted, .headline--dotted {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
@@ -24233,13 +24233,13 @@ input:-ms-input-placeholder {
     position: relative;
     width: 300px;
     height: 250px;
-    background-image: url(/img/bg-form-newsletter.jpg);
+    background-image: url(./../../img/bg-form-newsletter.jpg);
     margin-bottom: 40px
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .manageRecipe, .newsletterSubscription {
-        background-image: url(/img/bg-form-newsletter@2x.jpg);
+        background-image: url(./../../img/bg-form-newsletter@2x.jpg);
         background-size: 300px 250px
     }
 }
@@ -24372,12 +24372,12 @@ input:-ms-input-placeholder {
     margin: 0 auto;
     width: 300px;
     float: none;
-    background-image: url(/img/bg-form-footernewsletter.jpg)
+    background-image: url(./../../img/bg-form-footernewsletter.jpg)
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .newsletterSubscriptionFooter {
-        background-image: url(/img/bg-form-footernewsletter@2x.jpg);
+        background-image: url(./../../img/bg-form-footernewsletter@2x.jpg);
         background-size: 300px 250px
     }
 }
@@ -24443,13 +24443,13 @@ input:-ms-input-placeholder {
     position: relative;
     width: 300px;
     height: 250px;
-    background-image: url(/img/bg-form-community.jpg);
+    background-image: url(./../../img/bg-form-community.jpg);
     margin: 0 0 40px
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
     .communityLogin {
-        background-image: url(/img/bg-form-community@2x.jpg);
+        background-image: url(./../../img/bg-form-community@2x.jpg);
         background-size: 300px 250px
     }
 }
@@ -26450,7 +26450,7 @@ footer {
 }
 
 .footer-divider {
-    background-image: url(/img/spritesheet.png);
+    background-image: url(./../../img/spritesheet.png);
     background-position: -72px -45px;
     height: 5px;
     width: 300px;
@@ -26459,7 +26459,7 @@ footer {
 
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
     .footer-divider {
-        background-image: url(/img/spritesheet@2x.png);
+        background-image: url(./../../img/spritesheet@2x.png);
         background-size: 940px 160px
     }
 }
@@ -26500,7 +26500,7 @@ footer {
     margin: 0 auto;
     height: 250px;
     line-height: 251px;
-    background-image: url(/img/placeholder-newsletter-teaser-footer.png)
+    background-image: url(./../../img/placeholder-newsletter-teaser-footer.png)
 }
 
 .placeholderBox-divider {
@@ -26523,7 +26523,7 @@ footer {
 }
 
 .ie9 .header-logo-icon {
-    background-image: url(/img/ie9-lecker-logo.png);
+    background-image: url(./../../img/ie9-lecker-logo.png);
     background-repeat: no-repeat;
     background-size: 40px auto
 }
@@ -26535,7 +26535,7 @@ footer {
 }
 
 .ie9 .header-logo-text {
-    background-image: url(/img/ie9-lecker-text.png);
+    background-image: url(./../../img/ie9-lecker-text.png);
     background-repeat: no-repeat;
     background-size: auto 15px;
     background-position: 0 50%;
@@ -26580,7 +26580,7 @@ footer {
 }
 
 .btnClose, .btnClose--small, .btnCookbook__button.btnCookbook--isIn:before, .btnCookbook__button:before, .btnCookbook__heart, .btnCookbook__heart.btnCookbook--isIn, .btnCookbook__overlayClose, .btnCookbook__overlayFooter .btn.btnCookbook--create:before, .checkbox + label:before, .checkbox:checked + label:before, .imageUploadPlaceholder, .list--check > li:before, .radiobutton + label:before, .radiobutton:checked + label:before, .remodal-close, .svg__camera, .svg__check, .svg__checkbox, .svg__checkbox_checked, .svg__close, .svg__close_circle, .svg__close_circle_small, .svg__cookbook_check, .svg__cookbook_heart, .svg__cookbook_heartvivid, .svg__cookbook_reply, .svg__create, .svg__image_placeholder, .svg__info, .svg__naehrwerte, .svg__radio, .svg__radio_checked, .svg__uhr, .svg__vegan, .svg__vegetarian, .svg__wochentag_di, .svg__wochentag_do, .svg__wochentag_fr, .svg__wochentag_mi, .svg__wochentag_mo, .svg__wochentag_sa, .svg__wochentag_so, .weekdayOverlay--friday, .weekdayOverlay--monday, .weekdayOverlay--saturday, .weekdayOverlay--sunday, .weekdayOverlay--thursday, .weekdayOverlay--tuesday, .weekdayOverlay--wednesday {
-    background: url(/img/sprite.view.svg) no-repeat
+    background: url(./../../img/sprite.view.svg) no-repeat
 }
 
 .svg__camera {
