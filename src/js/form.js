@@ -343,7 +343,7 @@ generateMenu = function () {
                 ergebnisPrint.innerHTML = htmlElementForPrint.outerHTML;
             }
 
-            attachEventsToPopOverElements();
+            attachEventsToGerichtElements();
         }
     }
 };
