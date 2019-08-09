@@ -344,6 +344,7 @@ generateMenu = function () {
             }
 
             attachEventsToGerichtElements();
+            attachEventListenerToAddButton();
         }
     }
 };
