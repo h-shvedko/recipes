@@ -73,7 +73,7 @@ window.createBeschreibung = function (object, isPrint) {
     let ingredientsHtml = '';
     let image = createImg(object.photoId);
 
-    if(!isPrint){
+    if (!isPrint) {
         popover.classList.add("popover");
         popover.classList.add("fade");
     } else {
@@ -98,7 +98,7 @@ window.createBeschreibung = function (object, isPrint) {
     weight.classList.add('d-inline');
     weight.classList.add('mr-3');
 
-    let kallorien = createText("<i class=\"fas fa-fire-alt\"></i> " +object.relative_calories + " kcal pro 100 g");
+    let kallorien = createText("<i class=\"fas fa-fire-alt\"></i> " + object.relative_calories + " kcal pro 100 g");
     kallorien.classList.add('d-inline');
     kallorien.classList.add('mr-3');
 
@@ -106,7 +106,7 @@ window.createBeschreibung = function (object, isPrint) {
     zeit.classList.add('d-inline');
     zeit.classList.add('mr-3');
 
-    let infoElement = createBlock( weight.outerHTML + kallorien.outerHTML + zeit.outerHTML);
+    let infoElement = createBlock(weight.outerHTML + kallorien.outerHTML + zeit.outerHTML);
     infoElement.classList.add('mt-3');
     infoElement.classList.add('mb-3');
 
@@ -207,30 +207,65 @@ window.generateHtmlForMenu = function (menuObject) {
             let image2 = createImg(menuObject[i].mittag.photoId);
             let image3 = createImg(menuObject[i].abend.photoId);
 
-            let headline1 = createHeadline(menuObject[i].fruestueck.name);
-            let headline2 = createHeadline(menuObject[i].mittag.name);
-            let headline3 = createHeadline(menuObject[i].abend.name);
+            let headline1 = createBlock(menuObject[i].fruestueck.name);
+            headline1.classList.add('headline');
+
+            let headline2 = createBlock(menuObject[i].mittag.name);
+            headline2.classList.add('headline');
+
+            let headline3 = createBlock(menuObject[i].abend.name);
+            headline3.classList.add('headline');
 
             let process1 = createBeschreibung(menuObject[i].fruestueck, false);
             let process2 = createBeschreibung(menuObject[i].mittag, false);
             let process3 = createBeschreibung(menuObject[i].abend, false);
+
+            let weight1 = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(menuObject[i].fruestueck, FRUESTUEK_NAME) + " g");
+            let weight2 = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(menuObject[i].mittag, MITTAGESSEN_NAME) + " g");
+            let weight3 = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(menuObject[i].abend, ABENDESSEN_NAME) + " g");
+
+            let kallorien1 = createText("<i class=\"fas fa-fire-alt\"></i> " + menuObject[i].fruestueck.relative_calories + " kcal pro 100 g");
+            let kallorien2 = createText("<i class=\"fas fa-fire-alt\"></i> " + menuObject[i].mittag.relative_calories + " kcal pro 100 g");
+            let kallorien3 = createText("<i class=\"fas fa-fire-alt\"></i> " + menuObject[i].abend.relative_calories + " kcal pro 100 g");
+
+            let zeit1 = createText("<i class=\"fas fa-hourglass-start\"></i> " + menuObject[i].fruestueck.time + " min");
+            let zeit2 = createText("<i class=\"fas fa-hourglass-start\"></i> " + menuObject[i].mittag.time + " min");
+            let zeit3 = createText("<i class=\"fas fa-hourglass-start\"></i> " + menuObject[i].abend.time + " min");
+
+            let div1 = createBlock(image1.outerHTML + zeit1.outerHTML + weight1.outerHTML + kallorien1.outerHTML + headline1.outerHTML);
+            let div2 = createBlock(image2.outerHTML + zeit2.outerHTML + weight2.outerHTML + kallorien2.outerHTML + headline2.outerHTML);
+            let div3 = createBlock(image3.outerHTML + zeit3.outerHTML + weight3.outerHTML + kallorien3.outerHTML + headline3.outerHTML);
+
+            div1.classList.add('info-wrapper');
+            div2.classList.add('info-wrapper');
+            div3.classList.add('info-wrapper');
+
+            let divWrapper1 = createBlock(div1.outerHTML + process1.outerHTML);
+            divWrapper1.classList.add('gericht');
+
+            let divWrapper2 = createBlock(div2.outerHTML + process2.outerHTML);
+            divWrapper2.classList.add('gericht');
+
+            let divWrapper3 = createBlock(div3.outerHTML + process3.outerHTML);
+            divWrapper3.classList.add('gericht');
 
             cell0.innerHTML = "Tag " + (tag);
             cell0.classList.add('w-10');
             cell0.classList.add('font-weight-bold');
             cell0.classList.add('text-center');
 
-            cell1.innerHTML = image1.outerHTML + headline1.outerHTML + process1.outerHTML;
+            //TODO replace with different dishes
+            cell1.innerHTML = divWrapper1.outerHTML + divWrapper1.outerHTML + divWrapper1.outerHTML;
             cell1.classList.add('w-30');
             cell1.classList.add('menu-item');
             cell1.classList.add('fruestuek');
 
-            cell2.innerHTML = image2.outerHTML + headline2.outerHTML + process2.outerHTML;
+            cell2.innerHTML = divWrapper2.outerHTML + divWrapper2.outerHTML + divWrapper2.outerHTML;
             cell2.classList.add('w-30');
             cell2.classList.add('menu-item');
             cell2.classList.add('mittag');
 
-            cell3.innerHTML = image3.outerHTML + headline3.outerHTML + process3.outerHTML;
+            cell3.innerHTML = divWrapper3.outerHTML + divWrapper3.outerHTML + divWrapper3.outerHTML;
             cell3.classList.add('w-30');
             cell3.classList.add('menu-item');
             cell3.classList.add('abend');
@@ -282,7 +317,7 @@ window.generateHtmlForPrintMenu = function (menuObject) {
 
             let innerTable = document.createElement('table');
 
-            for(let zeitName in menuObject[i]){
+            for (let zeitName in menuObject[i]) {
                 let innerTr = document.createElement('tr');
                 let innerCell0 = innerTr.insertCell(0);
                 let innerCell1 = innerTr.insertCell(1);
@@ -341,6 +376,8 @@ window.generateHtmlForPrintMenu = function (menuObject) {
  * @param event
  */
 window.showBeschreibung = function (event) {
+
+    return false;
     let element = event.currentTarget;
 
     let popover = element.querySelector('.popover');
@@ -357,6 +394,7 @@ window.showBeschreibung = function (event) {
  * @param event
  */
 window.hideBeschreibung = function (event) {
+    return false;
     let element = event.currentTarget;
 
     let popover = element.querySelector('.popover');
@@ -457,10 +495,10 @@ if (listGenerate) {
 
                 let listErgebnis = document.querySelector('.list-of-products');
 
-                if(listErgebnis){
+                if (listErgebnis) {
                     let textContainer = listErgebnis.getElementsByClassName('result-text')[0];
 
-                    if(textContainer){
+                    if (textContainer) {
                         textContainer.innerHTML = listWrapper.outerHTML;
                         listErgebnis.style.display = 'block';
                         listErgebnis.scrollIntoView({block: "start", behavior: "smooth"});
@@ -481,19 +519,19 @@ window.getListOfProducts = function (object) {
     let listOfProducts = [];
     if (object.length > 0) {
         for (let i = 0; i < object.length; i++) {
-            if(object[i].ingredients && object[i].ingredients.length > 0){
+            if (object[i].ingredients && object[i].ingredients.length > 0) {
                 let ingredients = object[i].ingredients;
                 for (let j = 0; j < ingredients.length; j++) {
 
-                    if(ingredients[j]['name'] in listOfProducts){
+                    if (ingredients[j]['name'] in listOfProducts) {
                         listOfProducts[ingredients[j]['name']] = {
-                            'quantity' : parseInt(ingredients[j]['quantity']) + parseInt(listOfProducts[ingredients[j]['name']]['quantity']),
-                            'measure' : ingredients[j]['measure']
+                            'quantity': parseInt(ingredients[j]['quantity']) + parseInt(listOfProducts[ingredients[j]['name']]['quantity']),
+                            'measure': ingredients[j]['measure']
                         };
                     } else {
                         listOfProducts[ingredients[j]['name']] = {
-                            'quantity' :  parseInt(ingredients[j]['quantity']),
-                            'measure' : ingredients[j]['measure']
+                            'quantity': parseInt(ingredients[j]['quantity']),
+                            'measure': ingredients[j]['measure']
                         };
                     }
                 }
@@ -507,17 +545,17 @@ window.getListOfProducts = function (object) {
 /**
  *
  */
-window.attachEventsToPopOverElements = function(){
+window.attachEventsToPopOverElements = function () {
     let popoverElements = document.querySelectorAll('.popover');
 
-    if(popoverElements.length > 0){
+    if (popoverElements.length > 0) {
         popoverElements.forEach(function (element, key) {
             element.addEventListener('click', function (event) {
                 let htmlTitle = element.querySelector('.popover-header').outerHTML;
                 let htmlContent = element.querySelector('.popover-body').outerHTML;
                 let popupWindow = document.querySelector('.remodal-wrapper') || null;
                 let lightbox = document.querySelector('.remodal-overlay') || null;
-                if(popupWindow !== null && lightbox !== null){
+                if (popupWindow !== null && lightbox !== null) {
                     popupWindow.querySelector('.modal-title').innerHTML = htmlTitle;
                     popupWindow.querySelector('.content').innerHTML = htmlContent;
                     popupWindow.style.display = 'block';
@@ -537,10 +575,10 @@ window.attachEventListenerForPopUp = function (elementToAttach) {
         let element = event.target;
         let parent = element.closest('.remodal') || null;
 
-        if(parent === null || event.target.classList.contains('remodal-close')){
+        if (parent === null || event.target.classList.contains('remodal-close')) {
             let popupWindow = document.querySelector('.remodal-wrapper') || null;
             let lightbox = document.querySelector('.remodal-overlay') || null;
-            if(popupWindow !== null && lightbox !== null){
+            if (popupWindow !== null && lightbox !== null) {
                 popupWindow.style.display = 'none';
                 lightbox.style.display = 'none';
             }
@@ -552,13 +590,14 @@ window.attachEventListenerForPopUp = function (elementToAttach) {
 
 let remodalWrapper = document.querySelector('.remodal-wrapper') || null;
 
-if(remodalWrapper !== null){
+if (remodalWrapper !== null) {
     attachEventListenerForPopUp(remodalWrapper);
 }
 
 let remodalClose = document.querySelector('.remodal-close') || null;
-if(remodalClose !== null){
+if (remodalClose !== null) {
     attachEventListenerForPopUp(remodalClose);
 }
 
-};
+}
+
