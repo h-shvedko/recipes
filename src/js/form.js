@@ -355,10 +355,11 @@ generateMenu = function () {
 getMenuObject = function (nummerTage) {
     let res = [];
 
+    let usedNumbers;
     for (let i = 1; i <= nummerTage; i++) {
         let tmpTag = [];
         let tmpRes = [];
-        for (let j = 1; j <= 3; j++) {
+        for (let j = 1; j <= 9; j++) {
             let recipeObject = recipes;
             let nummerVonGerichte = recipeObject.dishes.length - 1;
             let gerichteNummer = getRandomGerichtNummer(1, nummerVonGerichte);
@@ -367,9 +368,15 @@ getMenuObject = function (nummerTage) {
         }
 
         usedNumbers = [];
-        tmpRes['fruestueck'] = tmpTag[1];
-        tmpRes['mittag'] = tmpTag[2];
-        tmpRes['abend'] = tmpTag[3];
+        tmpRes['fruestueck1'] = tmpTag[1];
+        tmpRes['fruestueck2'] = tmpTag[2];
+        tmpRes['fruestueck3'] = tmpTag[3];
+        tmpRes['mittag1'] = tmpTag[4];
+        tmpRes['mittag2'] = tmpTag[5];
+        tmpRes['mittag3'] = tmpTag[6];
+        tmpRes['abend1'] = tmpTag[7];
+        tmpRes['abend2'] = tmpTag[8];
+        tmpRes['abend3'] = tmpTag[9];
 
         res.push(tmpRes);
     }
@@ -402,11 +409,12 @@ getRandomGerichtNummer = function (min, max) {
     max = Math.floor(max);
     let nummer = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    if(usedNumbers.includes(nummer)){
-        nummer = getRandomGerichtNummer(min, max);
-    }
-
-    usedNumbers.push(nummer);
+    //TODO increase number of dishes and activate this again
+    // if(usedNumbers.includes(nummer)){
+    //     nummer = getRandomGerichtNummer(min, max);
+    // }
+    //
+    // usedNumbers.push(nummer);
 
     return nummer;
 };

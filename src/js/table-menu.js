@@ -143,6 +143,34 @@ window.createBeschreibung = function (object, isPrint) {
 
 /**
  *
+ * @param object
+ * @returns {HTMLElement}
+ */
+window.generateGerichtElement = function(object){
+    let image1 = createImg(object.photoId);
+
+    let headline1 = createBlock(object.name);
+    headline1.classList.add('headline');
+
+    let process = createBeschreibung(object, false);
+
+    let weight = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(object, FRUESTUEK_NAME) + " g");
+
+    let kallorien = createText("<i class=\"fas fa-fire-alt\"></i> " + object.relative_calories + " kcal pro 100 g");
+
+    let zeit = createText("<i class=\"fas fa-hourglass-start\"></i> " + object.time + " min");
+
+    let div = createBlock(image1.outerHTML + zeit.outerHTML + weight.outerHTML + kallorien.outerHTML + headline1.outerHTML);
+    div.classList.add('info-wrapper');
+
+    let divWrapper = createBlock(div.outerHTML + process.outerHTML);
+    divWrapper.classList.add('gericht');
+
+    return divWrapper;
+};
+
+/**
+ *
  * @param menuObject
  * @returns {HTMLElement}
  */
@@ -203,51 +231,17 @@ window.generateHtmlForMenu = function (menuObject) {
             let cell2 = trBody.insertCell(2);
             let cell3 = trBody.insertCell(3);
 
-            let image1 = createImg(menuObject[i].fruestueck.photoId);
-            let image2 = createImg(menuObject[i].mittag.photoId);
-            let image3 = createImg(menuObject[i].abend.photoId);
+            let gericht1 = generateGerichtElement(menuObject[i].fruestueck1);
+            let gericht2 = generateGerichtElement(menuObject[i].fruestueck2);
+            let gericht3 = generateGerichtElement(menuObject[i].fruestueck3);
 
-            let headline1 = createBlock(menuObject[i].fruestueck.name);
-            headline1.classList.add('headline');
+            let gericht4 = generateGerichtElement(menuObject[i].mittag1);
+            let gericht5 = generateGerichtElement(menuObject[i].mittag2);
+            let gericht6 = generateGerichtElement(menuObject[i].mittag3);
 
-            let headline2 = createBlock(menuObject[i].mittag.name);
-            headline2.classList.add('headline');
-
-            let headline3 = createBlock(menuObject[i].abend.name);
-            headline3.classList.add('headline');
-
-            let process1 = createBeschreibung(menuObject[i].fruestueck, false);
-            let process2 = createBeschreibung(menuObject[i].mittag, false);
-            let process3 = createBeschreibung(menuObject[i].abend, false);
-
-            let weight1 = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(menuObject[i].fruestueck, FRUESTUEK_NAME) + " g");
-            let weight2 = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(menuObject[i].mittag, MITTAGESSEN_NAME) + " g");
-            let weight3 = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(menuObject[i].abend, ABENDESSEN_NAME) + " g");
-
-            let kallorien1 = createText("<i class=\"fas fa-fire-alt\"></i> " + menuObject[i].fruestueck.relative_calories + " kcal pro 100 g");
-            let kallorien2 = createText("<i class=\"fas fa-fire-alt\"></i> " + menuObject[i].mittag.relative_calories + " kcal pro 100 g");
-            let kallorien3 = createText("<i class=\"fas fa-fire-alt\"></i> " + menuObject[i].abend.relative_calories + " kcal pro 100 g");
-
-            let zeit1 = createText("<i class=\"fas fa-hourglass-start\"></i> " + menuObject[i].fruestueck.time + " min");
-            let zeit2 = createText("<i class=\"fas fa-hourglass-start\"></i> " + menuObject[i].mittag.time + " min");
-            let zeit3 = createText("<i class=\"fas fa-hourglass-start\"></i> " + menuObject[i].abend.time + " min");
-
-            let div1 = createBlock(image1.outerHTML + zeit1.outerHTML + weight1.outerHTML + kallorien1.outerHTML + headline1.outerHTML);
-            let div2 = createBlock(image2.outerHTML + zeit2.outerHTML + weight2.outerHTML + kallorien2.outerHTML + headline2.outerHTML);
-            let div3 = createBlock(image3.outerHTML + zeit3.outerHTML + weight3.outerHTML + kallorien3.outerHTML + headline3.outerHTML);
-
-            div1.classList.add('info-wrapper');
-            div2.classList.add('info-wrapper');
-            div3.classList.add('info-wrapper');
-
-            let divWrapper1 = createBlock(div1.outerHTML + process1.outerHTML);
-            divWrapper1.classList.add('gericht');
-
-            let divWrapper2 = createBlock(div2.outerHTML + process2.outerHTML);
-            divWrapper2.classList.add('gericht');
-
-            let divWrapper3 = createBlock(div3.outerHTML + process3.outerHTML);
-            divWrapper3.classList.add('gericht');
+            let gericht7 = generateGerichtElement(menuObject[i].abend1);
+            let gericht8 = generateGerichtElement(menuObject[i].abend2);
+            let gericht9 = generateGerichtElement(menuObject[i].abend3);
 
             cell0.innerHTML = "Tag " + (tag);
             cell0.classList.add('w-10');
@@ -255,17 +249,17 @@ window.generateHtmlForMenu = function (menuObject) {
             cell0.classList.add('text-center');
 
             //TODO replace with different dishes
-            cell1.innerHTML = divWrapper1.outerHTML + divWrapper1.outerHTML + divWrapper1.outerHTML;
+            cell1.innerHTML = gericht1.outerHTML + gericht2.outerHTML + gericht3.outerHTML;
             cell1.classList.add('w-30');
             cell1.classList.add('menu-item');
             cell1.classList.add('fruestuek');
 
-            cell2.innerHTML = divWrapper2.outerHTML + divWrapper2.outerHTML + divWrapper2.outerHTML;
+            cell2.innerHTML = gericht4.outerHTML + gericht5.outerHTML + gericht6.outerHTML;
             cell2.classList.add('w-30');
             cell2.classList.add('menu-item');
             cell2.classList.add('mittag');
 
-            cell3.innerHTML = divWrapper3.outerHTML + divWrapper3.outerHTML + divWrapper3.outerHTML;
+            cell3.innerHTML = gericht7.outerHTML + gericht8.outerHTML + gericht9.outerHTML;
             cell3.classList.add('w-30');
             cell3.classList.add('menu-item');
             cell3.classList.add('abend');
