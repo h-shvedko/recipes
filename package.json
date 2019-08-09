@@ -10,6 +10,7 @@
     "image": "gulp img",
     "sitemap": "gulp sitemap",
     "build": "gulp build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d app"
   },
   "author": "Polina Shvedko",

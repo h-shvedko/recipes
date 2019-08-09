@@ -4681,7 +4681,7 @@ header .header-search > span {
 }
 
 .article .article-form .col-firstname {
-    width: 48%;
+    width: 50%;
     float: left
 }
 
@@ -19002,12 +19002,12 @@ header .header-search > span {
 }
 
 .article .article-form .col-firstname {
-    width: 48%;
+    width: 50%;
     float: left
 }
 
 .article .article-form .col-lastname {
-    width: 48%;
+    width: 50%;
     float: right
 }
 

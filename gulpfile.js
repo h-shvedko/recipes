@@ -104,7 +104,7 @@ gulp.task('watch', ['css', 'js', 'html'], function () {
 gulp.task('validate-html', ['validateHtml']);
 
 //validation of html
-gulp.task('build', ['css', 'js', 'html', 'img', 'fonts', 'validateHtml']);
+gulp.task('build', ['css', 'js', 'html', 'img', 'fonts']);
 
 //default task which is running simply from command line with gulp
 gulp.task('default', ['watch', 'server']);

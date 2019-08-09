@@ -27,8 +27,12 @@ header .header-logo-icon img{
     margin: 0 0 0.5rem 0;
 }
 
-.teaser--image-ho .title>*, h1, h2, h3, h4, h5, h6{
-    padding-top: 0.5rem;
+/*.teaser--image-ho .title>*, h1, h2, h3, h4, h5, h6{*/
+/*    padding-top: 0.5rem;*/
+/*}*/
+
+h4{
+    margin: 1rem 0;
 }
 
 .col-ergebnis{
