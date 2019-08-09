@@ -52,11 +52,6 @@ gulp.task('css', function () {
         .pipe(cleanCSS({compatibility: 'ie8', rebase: false}))
         .pipe(rename({suffix: '.min', prefix: ''}))
         .pipe(autoprefixer(['last 15 versions']))
-        // .pipe(purge({
-        //     trim: true,
-        //     shorten: true,
-        //     verbose: true
-        // }))
         .pipe(gulp.dest('app/css'))
         .pipe(livereload());
 });
@@ -108,6 +103,8 @@ gulp.task('watch', ['css', 'js', 'html'], function () {
 //validation of html
 gulp.task('validate-html', ['validateHtml']);
 
+//validation of html
+gulp.task('build', ['css', 'js', 'html', 'img', 'fonts', 'validateHtml']);
 
 //default task which is running simply from command line with gulp
 gulp.task('default', ['watch', 'server']);

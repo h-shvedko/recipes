@@ -8,7 +8,9 @@
     "server-start": "gulp",
     "validate-html": "gulp validate-html",
     "image": "gulp img",
-    "sitemap": "gulp sitemap"
+    "sitemap": "gulp sitemap",
+    "build": "gulp build",
+    "deploy": "gh-pages -d app"
   },
   "author": "Polina Shvedko",
   "license": "ISC",
@@ -32,5 +34,8 @@
     "gulp-uglify": "^3.0.1",
     "gulp-w3c-html-validator": "^1.4.3",
     "gulp-webserver": "^0.9.1"
+  },
+  "dependencies": {
+    "gh-pages": "^2.1.1"
   }
 }
