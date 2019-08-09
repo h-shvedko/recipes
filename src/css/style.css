@@ -340,7 +340,7 @@ h4{
 
 .gericht{
     min-height: 200px;
-    padding: 0.35rem;
+    padding: 1rem 0.35rem 0.35rem 0.35rem;
 }
 
 .gericht .headline{
