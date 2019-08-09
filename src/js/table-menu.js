@@ -489,4 +489,61 @@ window.getListOfProducts = function (object) {
     return listOfProducts;
 };
 
+/**
+ *
+ */
+window.attachEventsToPopOverElements = function(){
+    let popoverElements = document.querySelectorAll('.popover');
+
+    if(popoverElements.length > 0){
+        popoverElements.forEach(function (element, key) {
+            element.addEventListener('click', function (event) {
+                let htmlTitle = element.querySelector('.popover-header').outerHTML;
+                let htmlContent = element.querySelector('.popover-body').outerHTML;
+                let popupWindow = document.querySelector('.remodal-wrapper') || null;
+                let lightbox = document.querySelector('.remodal-overlay') || null;
+                if(popupWindow !== null && lightbox !== null){
+                    popupWindow.querySelector('.modal-title').innerHTML = htmlTitle;
+                    popupWindow.querySelector('.content').innerHTML = htmlContent;
+                    popupWindow.style.display = 'block';
+                    lightbox.style.display = 'block';
+                }
+            });
+        });
+    }
+};
+
+/**
+ *
+ * @param elementToAttach
+ */
+window.attachEventListenerForPopUp = function (elementToAttach) {
+    elementToAttach.addEventListener('click', function (event) {
+        let element = event.target;
+        let parent = element.closest('.remodal') || null;
+
+        if(parent === null || event.target.classList.contains('remodal-close')){
+            let popupWindow = document.querySelector('.remodal-wrapper') || null;
+            let lightbox = document.querySelector('.remodal-overlay') || null;
+            if(popupWindow !== null && lightbox !== null){
+                popupWindow.style.display = 'none';
+                lightbox.style.display = 'none';
+            }
+
+        }
+    });
+};
+
+
+let remodalWrapper = document.querySelector('.remodal-wrapper') || null;
+
+if(remodalWrapper !== null){
+    attachEventListenerForPopUp(remodalWrapper);
+}
+
+let remodalClose = document.querySelector('.remodal-close') || null;
+if(remodalClose !== null){
+    attachEventListenerForPopUp(remodalClose);
+}
+
 };

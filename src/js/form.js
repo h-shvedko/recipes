@@ -342,6 +342,8 @@ generateMenu = function () {
             if(ergebnisPrint){
                 ergebnisPrint.innerHTML = htmlElementForPrint.outerHTML;
             }
+
+            attachEventsToPopOverElements();
         }
     }
 };

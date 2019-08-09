@@ -308,7 +308,16 @@ h4{
     padding-top: 1rem;
 }
 
+.popover-body .img-fluid{
+    max-width: 590px;
+}
+
 .result-text.print table td{
     padding: 0.5rem 0;
 }
 
+.remodal-wrapper .remodal{
+    overflow-y: auto;
+    max-width: 34vw;
+    max-height: 75vh;
+}
