@@ -427,6 +427,8 @@ if (menuCalculate) {
         event.preventDefault();
         event.stopPropagation();
 
+        clearLocalStorage();
+
         let einkaufsList = document.querySelector('.list-of-products') || null;
         if(einkaufsList !== null){
             einkaufsList.style.display = 'none';
