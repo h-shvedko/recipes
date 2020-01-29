@@ -341,6 +341,7 @@ h4{
 .gericht{
     min-height: 200px;
     padding: 1rem 0.35rem 0.35rem 0.35rem;
+    position: relative;
 }
 
 .gericht .headline{
@@ -362,4 +363,15 @@ h4{
 
 .gericht .popover{
     z-index: 50;
+}
+
+.gericht .fa-check-square{
+    display: none;
+    position: absolute;
+    top: 1.5rem;
+    left: 1rem;
+}
+
+.gericht.selected .fa-check-square{
+    display: inline-block;
 }
