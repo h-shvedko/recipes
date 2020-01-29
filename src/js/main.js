@@ -1,3 +1,14 @@
+window.hashCode = function(s){
+    let res = s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+
+    if(res < 0){
+        res = res * (-1);
+    }
+
+    return res;
+};
+
+
 /**
  * Open modal window
  */
