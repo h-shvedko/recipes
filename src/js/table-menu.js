@@ -62,6 +62,7 @@ window.createText = function (text) {
 /**
  *
  * @param object - рецепт одного блюда берется из json
+ * @param isPrint
  * @returns {HTMLElement}
  */
 window.createBeschreibung = function (object, isPrint) {
@@ -106,7 +107,7 @@ window.createBeschreibung = function (object, isPrint) {
     zeit.classList.add('d-inline');
     zeit.classList.add('mr-3');
 
-    let buttonAdd = createText("<button class='btn btn-success wunschlist-button' data-name='" + object.name + "'>Hinfügen zu Wunschlist</button>");
+    let buttonAdd = createText("<button class='btn btn-success wunschlist-button' data-name='" + object.name + "' data-stored='0'>Hinfügen zu Wunschlist</button>");
     buttonAdd.classList.add('d-inline');
     buttonAdd.classList.add('mr-3');
 
@@ -140,7 +141,6 @@ window.createBeschreibung = function (object, isPrint) {
     let zubereitungElement = createText("Zubereitung");
     zubereitungElement.classList.add('popover-headline');
 
-    //object.process - процесс в рецепте, уже заисанный в HTML
     popoverBody.innerHTML = image.outerHTML + infoElement.outerHTML + ingredientElement.outerHTML + zubereitungElement.outerHTML + object.process;
 
     return popover;
@@ -237,17 +237,42 @@ window.generateHtmlForMenu = function (menuObject) {
             let cell2 = trBody.insertCell(2);
             let cell3 = trBody.insertCell(3);
 
-            let gericht1 = generateGerichtElement(menuObject[i].fruestueck1);
-            let gericht2 = generateGerichtElement(menuObject[i].fruestueck2);
-            let gericht3 = generateGerichtElement(menuObject[i].fruestueck3);
+            let gericht1 = generateGerichtElement(menuObject[i].fruestuek1);
+            gericht1.setAttribute('data-day', (i + 1).toString());
+            gericht1.setAttribute('data-type', FRUESTUEK_NAME);
+
+            let gericht2 = generateGerichtElement(menuObject[i].fruestuek2);
+            gericht2.setAttribute('data-day', (i + 1).toString());
+            gericht2.setAttribute('data-type', FRUESTUEK_NAME);
+
+            let gericht3 = generateGerichtElement(menuObject[i].fruestuek3);
+            gericht3.setAttribute('data-day', (i + 1).toString());
+            gericht3.setAttribute('data-type', FRUESTUEK_NAME);
 
             let gericht4 = generateGerichtElement(menuObject[i].mittag1);
+            gericht4.setAttribute('data-day', (i + 1).toString());
+            gericht4.setAttribute('data-type', MITTAGESSEN_NAME);
+
             let gericht5 = generateGerichtElement(menuObject[i].mittag2);
+            gericht5.setAttribute('data-day', (i + 1).toString());
+            gericht5.setAttribute('data-type', MITTAGESSEN_NAME);
+
             let gericht6 = generateGerichtElement(menuObject[i].mittag3);
+            gericht6.setAttribute('data-day', (i + 1).toString());
+            gericht6.setAttribute('data-type', MITTAGESSEN_NAME);
+
 
             let gericht7 = generateGerichtElement(menuObject[i].abend1);
+            gericht7.setAttribute('data-day', (i + 1).toString());
+            gericht7.setAttribute('data-type', ABENDESSEN_NAME);
+
             let gericht8 = generateGerichtElement(menuObject[i].abend2);
+            gericht8.setAttribute('data-day', (i + 1).toString());
+            gericht8.setAttribute('data-type', ABENDESSEN_NAME);
+
             let gericht9 = generateGerichtElement(menuObject[i].abend3);
+            gericht9.setAttribute('data-day', (i + 1).toString());
+            gericht9.setAttribute('data-type', ABENDESSEN_NAME);
 
             cell0.innerHTML = "Tag " + (tag);
             cell0.classList.add('w-10');
@@ -274,7 +299,6 @@ window.generateHtmlForMenu = function (menuObject) {
         }
 
         table.appendChild(tbody);
-
     }
 
 
@@ -332,13 +356,13 @@ window.generateHtmlForPrintMenu = function (menuObject) {
                 let title = "Fruhstück";
 
                 switch (zeitName) {
-                    case "fruestueck":
+                    case FRUESTUEK_NAME:
                         title = 'Fruhstück';
                         break;
-                    case "abend":
+                    case ABENDESSEN_NAME:
                         title = 'Abendessen';
                         break;
-                    case "mittag":
+                    case MITTAGESSEN_NAME:
                         title = 'Mittagessen';
                         break;
                 }
@@ -465,7 +489,7 @@ if (listGenerate) {
             let abend = [];
 
             for (let i = 0; i < menuObject.length; i++) {
-                fruestuek.push(menuObject[i].fruestueck);
+                fruestuek.push(menuObject[i].fruestuek);
                 mittag.push(menuObject[i].mittag);
                 abend.push(menuObject[i].abend);
             }
@@ -559,7 +583,11 @@ window.attachEventsToGerichtElements = function () {
                     popupWindow.querySelector('.modal-title').innerHTML = htmlTitle;
                     popupWindow.querySelector('.content').innerHTML = htmlContent;
                     popupWindow.style.display = 'block';
+                    popupWindow.setAttribute('data-name', element.getAttribute('data-name'));
+                    popupWindow.setAttribute('data-type', element.getAttribute('data-type'));
+                    popupWindow.setAttribute('data-day', element.getAttribute('data-day'));
                     lightbox.style.display = 'block';
+                    attachEventListenerToAddButton();
                 }
             });
         });
@@ -601,17 +629,62 @@ if (remodalClose !== null) {
 
 /**
  *
+ * @param name
+ * @param type
+ * @param day
+ * @returns {null}
+ */
+window.findGericht = (name, type, day) => {
+    let gerichtResult = null;
+
+    if (typeof menuObject !== 'undefined' && menuObject.length > 0) {
+        if (menuObject.hasOwnProperty(day - 1)) {
+            let menuObjectByDay = menuObject[day - 1];
+
+            for(let menuObjectType in menuObjectByDay){
+                if(menuObjectType.indexOf(type) !== -1){
+                    if (menuObjectByDay.hasOwnProperty(menuObjectType) && menuObjectByDay[menuObjectType].name === name) {
+                        gerichtResult = menuObjectByDay[menuObjectType];
+                    }
+                }
+            }
+        }
+    }
+
+    return gerichtResult;
+};
+
+/**
+ *
  */
 window.attachEventListenerToAddButton = function () {
     let addButtons = document.querySelectorAll('.wunschlist-button');
 
-    if(addButtons.length > 0){
+    if (addButtons.length > 0) {
         addButtons.forEach(function (buttonElement, key) {
             buttonElement.addEventListener('click', function (event) {
                 let element = event.currentTarget;
-                let name = element.getAttribute('data-name');
-                console.log(name);
-                console.log(window.btoa(name));
+                let isStored = element.getAttribute('data-stored');
+                let parentModal = element.closest('.remodal-wrapper');
+                let name = parentModal.getAttribute('data-name');
+                let type = parentModal.getAttribute('data-type');
+                let day = parentModal.getAttribute('data-day');
+                let gericht = findGericht(name, type, day);
+
+                //@TODO: check not only by day+name+type but by day+type
+                if(isStored === '1'){
+                    removeGerichtToLocalStorage(gericht);
+                    element.innerHTML = 'Hinfügen zu Wunschlist';
+                    element.setAttribute('data-stored', 0);
+                } else {
+                    if (gericht !== null) {
+                        gericht.day = day;
+                        gericht.type = type;
+                        addGerichtToLocalStorage(gericht);
+                        element.innerHTML = 'aus der Wunschliste entfernen';
+                        element.setAttribute('data-stored', 1);
+                    }
+                }
             });
         });
     }

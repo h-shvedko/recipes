@@ -106,13 +106,13 @@ const FRUESTUEK_NAME = 'fruestuek';
  *
  * @type {string}
  */
-const MITTAGESSEN_NAME = 'mittagessen';
+const MITTAGESSEN_NAME = 'mittag';
 
 /**
  *
  * @type {string}
  */
-const ABENDESSEN_NAME = 'abendessen';
+const ABENDESSEN_NAME = 'abend';
 
 if (formElement) {
     /**
@@ -368,9 +368,9 @@ getMenuObject = function (nummerTage) {
         }
 
         usedNumbers = [];
-        tmpRes['fruestueck1'] = tmpTag[1];
-        tmpRes['fruestueck2'] = tmpTag[2];
-        tmpRes['fruestueck3'] = tmpTag[3];
+        tmpRes['fruestuek1'] = tmpTag[1];
+        tmpRes['fruestuek2'] = tmpTag[2];
+        tmpRes['fruestuek3'] = tmpTag[3];
         tmpRes['mittag1'] = tmpTag[4];
         tmpRes['mittag2'] = tmpTag[5];
         tmpRes['mittag3'] = tmpTag[6];
@@ -437,7 +437,6 @@ if (menuCalculate) {
         loadGerichten();
 
         generateMenu();
-
         return false;
     });
 }
