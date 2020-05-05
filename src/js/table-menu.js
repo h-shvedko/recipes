@@ -166,9 +166,17 @@ window.generateGerichtElement = function (object) {
     let zeit = createText("<i class=\"fas fa-hourglass-start\"></i> " + object.time + " min");
 
     let div = createBlock(image1.outerHTML + zeit.outerHTML + weight.outerHTML + kallorien.outerHTML + headline1.outerHTML);
+
     div.classList.add('info-wrapper');
 
-    let divWrapper = createBlock(div.outerHTML + process.outerHTML);
+    let divDisabledOverlay = createBlock('');
+    divDisabledOverlay.classList.add('overlay');
+
+    let listIcon = createText('<i class="fas fa-list-ol"></i>');
+    let listIconWrapper = createBlock(listIcon.outerHTML);
+    listIconWrapper.classList.add('list-icon-wrapper');
+
+    let divWrapper = createBlock(div.outerHTML + process.outerHTML + divDisabledOverlay.outerHTML + listIconWrapper.outerHTML);
     divWrapper.classList.add('gericht');
     divWrapper.setAttribute('data-name', object.name.replace('\"', '\''));
 
@@ -231,6 +239,7 @@ window.generateHtmlForMenu = function (menuObject) {
             let tag = i + 1;
 
             trBody = document.createElement('tr');
+            trBody.classList.add('day-' + tag);
 
             let cell0 = trBody.insertCell(0);
             let cell1 = trBody.insertCell(1);
@@ -641,8 +650,8 @@ window.findGericht = (name, type, day) => {
         if (menuObject.hasOwnProperty(day - 1)) {
             let menuObjectByDay = menuObject[day - 1];
 
-            for(let menuObjectType in menuObjectByDay){
-                if(menuObjectType.indexOf(type) !== -1){
+            for (let menuObjectType in menuObjectByDay) {
+                if (menuObjectType.indexOf(type) !== -1) {
                     if (menuObjectByDay.hasOwnProperty(menuObjectType) && menuObjectByDay[menuObjectType].name === name) {
                         gerichtResult = menuObjectByDay[menuObjectType];
                     }
@@ -670,12 +679,18 @@ window.attachEventListenerToAddButton = function () {
                 let type = parentModal.getAttribute('data-type');
                 let day = parentModal.getAttribute('data-day');
                 let gericht = findGericht(name, type, day);
+                let gerichtPopoverButton = getGerichtPopoverButton(day, type, name);
 
                 //@TODO: check not only by day+name+type but by day+type
-                if(isStored === '1'){
+                if (isStored === '1') {
                     removeGerichtToLocalStorage(gericht);
                     element.innerHTML = 'Hinfügen zu Wunschlist';
                     element.setAttribute('data-stored', 0);
+
+                    if (gerichtPopoverButton !== null) {
+                        gerichtPopoverButton.innerHTML = 'Hinfügen zu Wunschlist';
+                        gerichtPopoverButton.setAttribute('data-stored', 0);
+                    }
                 } else {
                     if (gericht !== null) {
                         gericht.day = day;
@@ -683,11 +698,86 @@ window.attachEventListenerToAddButton = function () {
                         addGerichtToLocalStorage(gericht);
                         element.innerHTML = 'aus der Wunschliste entfernen';
                         element.setAttribute('data-stored', 1);
+                        if (gerichtPopoverButton !== null) {
+                            gerichtPopoverButton.innerHTML = 'aus der Wunschliste entfernen';
+                            gerichtPopoverButton.setAttribute('data-stored', 1);
+                        }
                     }
                 }
+                toggleGerichteAfterSelection(day, type, name);
             });
         });
     }
+};
+
+/**
+ *
+ * @param day
+ * @param type
+ * @param name
+ */
+window.toggleGerichteAfterSelection = function (day, type, name) {
+    let parentTRWrapper = document.querySelector('.day-' + day);
+    let gerichteColumn = null;
+    let gerichte = [];
+
+    if (parentTRWrapper !== null) {
+        gerichteColumn = parentTRWrapper.querySelector('.' + type);
+
+        if (gerichteColumn !== null) {
+            gerichte = gerichteColumn.querySelectorAll('div.gericht:not([data-name="' + name + '"])');
+
+            if (gerichte.length > 0) {
+                for (let i = 0; i < gerichte.length; i++) {
+                    if (gerichte[i].classList.contains('disabled')) {
+                        gerichte[i].classList.remove('disabled');
+                    } else {
+                        gerichte[i].classList.add('disabled');
+                        gerichte[i].classList.remove('active');
+                    }
+                }
+            }
+
+            let gerichtContain = gerichteColumn.querySelector('div.gericht[data-name="' + name + '"]');
+
+            if (gerichtContain !== null) {
+                if (gerichtContain.classList.contains('active')) {
+                    gerichtContain.classList.remove('active');
+                } else {
+                    gerichtContain.classList.add('active');
+                    gerichtContain.classList.remove('disabled');
+                }
+            }
+        }
+    }
+};
+
+/**
+ *
+ * @param day
+ * @param type
+ * @param name
+ * @returns {null}
+ */
+window.getGerichtPopoverButton = function (day, type, name) {
+    let parentTRWrapper = document.querySelector('.day-' + day);
+    let gerichteColumn = null;
+    let gerichtePopover = null;
+    let gerichtePopoverButton = null;
+
+    if (parentTRWrapper !== null) {
+        gerichteColumn = parentTRWrapper.querySelector('.' + type);
+
+        if (gerichteColumn !== null) {
+            gerichtePopover = gerichteColumn.querySelector('div.gericht[data-name="' + name + '"]');
+
+            if(gerichtePopover !== null){
+                gerichtePopoverButton = gerichtePopover.querySelector('.wunschlist-button');
+            }
+        }
+    }
+
+    return gerichtePopoverButton;
 };
 
 }
