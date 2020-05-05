@@ -173,6 +173,7 @@ window.generateGerichtElement = function (object) {
     divDisabledOverlay.classList.add('overlay');
 
     let listIcon = createText('<i class="fas fa-list-ol"></i>');
+    listIcon.setAttribute('title', 'Schon im Menu');
     let listIconWrapper = createBlock(listIcon.outerHTML);
     listIconWrapper.classList.add('list-icon-wrapper');
 
@@ -769,7 +770,11 @@ window.getGerichtPopoverButton = function (day, type, name) {
         gerichteColumn = parentTRWrapper.querySelector('.' + type);
 
         if (gerichteColumn !== null) {
-            gerichtePopover = gerichteColumn.querySelector('div.gericht[data-name="' + name + '"]');
+            try {
+                gerichtePopover = gerichteColumn.querySelector('div.gericht[data-name="' + name + '"]');
+            } catch (e) {
+                alert('Leider dieses Gericht ist fehlgeschlagen (((');
+            }
 
             if(gerichtePopover !== null){
                 gerichtePopoverButton = gerichtePopover.querySelector('.wunschlist-button');
