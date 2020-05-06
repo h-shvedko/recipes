@@ -152,36 +152,42 @@ window.createBeschreibung = function (object, isPrint) {
  * @returns {HTMLElement}
  */
 window.generateGerichtElement = function (object) {
-    let image1 = createImg(object.photoId);
 
-    let headline1 = createBlock(object.name);
-    headline1.classList.add('headline');
+    if(typeof object !== 'undefined'){
+        let image1 = createImg(object.photoId);
 
-    let process = createBeschreibung(object, false);
+        let headline1 = createBlock(object.name);
+        headline1.classList.add('headline');
 
-    let weight = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(object, FRUESTUEK_NAME) + " g");
+        let process = createBeschreibung(object, false);
 
-    let kallorien = createText("<i class=\"fas fa-fire-alt\"></i> " + object.relative_calories + " kcal pro 100 g");
+        let weight = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(object, FRUESTUEK_NAME) + " g");
 
-    let zeit = createText("<i class=\"fas fa-hourglass-start\"></i> " + object.time + " min");
+        let kallorien = createText("<i class=\"fas fa-fire-alt\"></i> " + object.relative_calories + " kcal pro 100 g");
 
-    let div = createBlock(image1.outerHTML + zeit.outerHTML + weight.outerHTML + kallorien.outerHTML + headline1.outerHTML);
+        let zeit = createText("<i class=\"fas fa-hourglass-start\"></i> " + object.time + " min");
 
-    div.classList.add('info-wrapper');
+        let div = createBlock(image1.outerHTML + zeit.outerHTML + weight.outerHTML + kallorien.outerHTML + headline1.outerHTML);
 
-    let divDisabledOverlay = createBlock('');
-    divDisabledOverlay.classList.add('overlay');
+        div.classList.add('info-wrapper');
 
-    let listIcon = createText('<i class="fas fa-list-ol"></i>');
-    listIcon.setAttribute('title', 'Schon im Menu');
-    let listIconWrapper = createBlock(listIcon.outerHTML);
-    listIconWrapper.classList.add('list-icon-wrapper');
+        let divDisabledOverlay = createBlock('');
+        divDisabledOverlay.classList.add('overlay');
 
-    let divWrapper = createBlock(div.outerHTML + process.outerHTML + divDisabledOverlay.outerHTML + listIconWrapper.outerHTML);
-    divWrapper.classList.add('gericht');
-    divWrapper.setAttribute('data-name', object.name.replace('\"', '\''));
+        let listIcon = createText('<i class="fas fa-list-ol"></i>');
+        listIcon.setAttribute('title', 'Schon im Menu');
+        let listIconWrapper = createBlock(listIcon.outerHTML);
+        listIconWrapper.classList.add('list-icon-wrapper');
 
-    return divWrapper;
+        let divWrapper = createBlock(div.outerHTML + process.outerHTML + divDisabledOverlay.outerHTML + listIconWrapper.outerHTML);
+        divWrapper.classList.add('gericht');
+        divWrapper.setAttribute('data-name', object.name.replace('\"', '\''));
+
+        return divWrapper;
+    } else {
+        return createBlock('');
+    }
+
 };
 
 /**
@@ -498,10 +504,11 @@ if (menuPrint) {
             for (let i = 0; i < disabledGerichte.length; i++) {
                 disabledGerichte[i].style.display = 'none';
             }
+
+            window.print();
+        } else {
+            showWarningPopup('Sie haben keine Gerichte gewählen!');
         }
-
-        window.print();
-
         return false;
     });
 
@@ -515,6 +522,21 @@ if (menuPrint) {
         }
 
     };
+}
+
+if (menuSave) {
+    menuSave.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        let gerichte = getAllFromLocalStorage();
+
+        if (gerichte.length > 0) {
+            addStoreIntoLocalStorage();
+        } else {
+            showWarningPopup('Sie haben keine Gerichte gewählen!');
+        }
+        return false;
+    });
 }
 
 if (listePrint) {
@@ -546,17 +568,9 @@ if (listGenerate) {
     listGenerate.addEventListener('click', function (event) {
         event.preventDefault();
 
-        if (menuObject && menuObject.length > 0) {
-            let fruestuek = [];
-            let mittag = [];
-            let abend = [];
+        let storedMenuObject = getAllFromLocalStorage();
 
-            for (let i = 0; i < menuObject.length; i++) {
-                fruestuek.push(menuObject[i].fruestuek);
-                mittag.push(menuObject[i].mittag);
-                abend.push(menuObject[i].abend);
-            }
-
+        if (storedMenuObject && storedMenuObject.length > 0) {
             let listWrapper = document.createElement('div');
             let listWrapperCol = document.createElement('div');
 
@@ -565,12 +579,8 @@ if (listGenerate) {
 
             listWrapper.appendChild(listWrapperCol);
 
-            let tmpList;
-            tmpList = fruestuek.concat(mittag);
-            tmpList = tmpList.concat(abend);
-
             let listOfProducts;
-            listOfProducts = getListOfProducts(tmpList);
+            listOfProducts = getListOfProducts(storedMenuObject);
 
             if (listOfProducts) {
                 for (let name in listOfProducts) {
@@ -592,6 +602,8 @@ if (listGenerate) {
                     }
                 }
             }
+        } else {
+            showWarningPopup('Sie haben keine Gerichte gewählen!');
         }
         return false;
     });
@@ -814,11 +826,10 @@ window.toggleGerichteAfterSelection = function (day, type, name) {
  */
 window.toggleGerichtePrintVersionAfterSelection = function (day, type, name) {
     let parentTRWrapper = document.querySelectorAll('.result-text.print .gericht[data-day="' + day + '"][data-type="' + type + '"]');
-
     if (parentTRWrapper.length > 0) {
         for (let i = 0; i < parentTRWrapper.length; i++) {
             if (parentTRWrapper.hasOwnProperty(i) && parentTRWrapper[i].getAttribute('data-name').indexOf(name) === -1) {
-                if(parentTRWrapper[i].classList.contains('disabled')){
+                if (parentTRWrapper[i].classList.contains('disabled')) {
                     parentTRWrapper[i].classList.remove('disabled');
                 } else {
                     parentTRWrapper[i].classList.add('disabled');
@@ -861,4 +872,3 @@ window.getGerichtPopoverButton = function (day, type, name) {
 };
 
 }
-

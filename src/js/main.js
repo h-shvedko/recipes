@@ -65,3 +65,19 @@ if (closeModalButton !== null) {
         hideLightbox();
     });
 }
+
+/**
+ *
+ * @param text
+ */
+window.showWarningPopup = (text) => {
+    alert(text);
+};
+
+/**
+ *
+ * @param text
+ */
+window.showinteractivePopup = (text) => {
+    return confirm(text);
+};

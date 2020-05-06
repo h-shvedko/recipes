@@ -6,6 +6,12 @@ const STORAGE_NAME = 'gerichte';
 
 /**
  *
+ * @type {string}
+ */
+const STORAGE_NAME_STORE = 'store';
+
+/**
+ *
  * @param gerichtValue
  */
 window.addGerichtToLocalStorage = function (gerichtValue) {
@@ -23,6 +29,22 @@ window.addGerichtToLocalStorage = function (gerichtValue) {
     }
 
     localStorage.setItem(STORAGE_NAME, JSON.stringify(currentStorage));
+};
+
+
+/**
+ *
+ */
+window.addStoreIntoLocalStorage = function () {
+    localStorage.setItem(STORAGE_NAME_STORE, JSON.stringify(1));
+};
+
+/**
+ *
+ * @returns {string}
+ */
+window.getStoredIntoLocalStorage = function () {
+    return localStorage.getItem(STORAGE_NAME_STORE);
 };
 
 /**
@@ -90,4 +112,19 @@ window.findItemInLocalStorage = function (gerichtValue) {
     }
 
     return null;
+};
+
+/**
+ *
+ * @returns {[]}
+ */
+window.getAllFromLocalStorage = function () {
+    let lengthOfLocalStorage = localStorage.length;
+    let result = [];
+    if (lengthOfLocalStorage > 0) {
+        result = JSON.parse(localStorage.getItem(STORAGE_NAME));
+
+    }
+
+    return result;
 };

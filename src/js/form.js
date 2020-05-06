@@ -138,6 +138,7 @@ if (formElement) {
     formElement.addEventListener('submit', function (event) {
         event.preventDefault();
         event.stopPropagation();
+
         let formValid = validateForm(formElement);
         let formData = prepareFormData(event.target.elements);
 
@@ -151,7 +152,7 @@ if (formElement) {
         if (ergebnissKalorien !== null) {
             let name = formData['vorname'];
 
-            if(name.length > 0){
+            if (name.length > 0) {
                 name = name + ', ';
             }
 
@@ -165,12 +166,12 @@ if (formElement) {
             speiseplanAnfrage.style.display = 'block';
 
             let menuErgebniss = document.querySelector('.menu-container') || null;
-            if(menuErgebniss !== null){
+            if (menuErgebniss !== null) {
                 menuErgebniss.style.display = 'none';
             }
 
             let einkaufsList = document.querySelector('.list-of-products') || null;
-            if(einkaufsList !== null){
+            if (einkaufsList !== null) {
                 einkaufsList.style.display = 'none';
             }
         }
@@ -308,7 +309,7 @@ loadGerichten = function () {
 /**
  * Generates menu table
  */
-generateMenu = function () {
+generateMenu = function (isSaved) {
     fruestuckKalorien = Math.floor(kalories * FRUESTUEK_PROZENT / 100);
     mittagessenKalorien = Math.floor(kalories * MITTAGESSEN_PROZENT / 100);
     abendessenKalorien = Math.floor(kalories * ABENDESSEN_PROZENT / 100);
@@ -327,23 +328,29 @@ generateMenu = function () {
                 }
             });
         }
-        let menuObject = getMenuObject(nummerTage);
+        let menuObject = [];
+
+        if (!isSaved) {
+            menuObject = getMenuObject(nummerTage);
+        } else {
+            menuObject = getMenuObjectNotRandom(nummerTage);
+        }
 
         let htmlElement = generateHtmlForMenu(menuObject);
         let htmlElementForPrint = generateHtmlForPrintMenu(menuObject);
         let tableMenu = document.getElementsByClassName('menu-container')[0];
 
-        if(tableMenu){
+        if (tableMenu) {
             tableMenu.style.display = 'block';
             let ergebnis = tableMenu.querySelector('.result-text.display');
-            if(ergebnis){
+            if (ergebnis) {
                 ergebnis.innerHTML = htmlElement.outerHTML;
                 ergebnis.scrollIntoView({block: "start", behavior: "smooth"});
                 addEventListenrsForMenus();
             }
 
             let ergebnisPrint = tableMenu.querySelector('.result-text.print');
-            if(ergebnisPrint){
+            if (ergebnisPrint) {
                 ergebnisPrint.innerHTML = htmlElementForPrint.outerHTML;
             }
 
@@ -392,6 +399,35 @@ getMenuObject = function (nummerTage) {
 
 /**
  *
+ * @param nummerTage
+ */
+getMenuObjectNotRandom = function (nummerTage) {
+    let tmpRes = [];
+    let tmpTag = [];
+    let recipeObject = recipes;
+
+    for (let dish of recipeObject.dishes) {
+        tmpRes[dish.type + dish.day] = dish;
+    }
+
+    for (let i = 1; i <= nummerTage; i++) {
+        tmpTag[i] = [];
+        for (let tmpResIndex in tmpRes) {
+            if (tmpResIndex.indexOf(i.toString()) !== -1) {
+                tmpTag[i][tmpResIndex] = tmpRes[tmpResIndex];
+            }
+        }
+    }
+
+    tmpTag = tmpTag.filter(function(){return true;});
+
+    menuObject = tmpTag;
+
+    return tmpTag;
+};
+
+/**
+ *
  * @param min
  * @param max
  * @returns {*}
@@ -431,16 +467,35 @@ if (menuCalculate) {
         event.preventDefault();
         event.stopPropagation();
 
-        clearLocalStorage();
+        let ifWeHaveStoredMenu = getStoredIntoLocalStorage();
+        let savedMenu = getAllFromLocalStorage();
 
-        let einkaufsList = document.querySelector('.list-of-products') || null;
-        if(einkaufsList !== null){
-            einkaufsList.style.display = 'none';
+        if (ifWeHaveStoredMenu && ifWeHaveStoredMenu === '1' && savedMenu && savedMenu.length > 0) {
+            let einkaufsList = document.querySelector('.list-of-products') || null;
+            if (einkaufsList !== null) {
+                einkaufsList.style.display = 'none';
+            }
+
+            if (showinteractivePopup('Sie haben schon ein Speiseplan gespeichern. Möchten Sie das aufladen?')) {
+                recipes = {dishes: savedMenu};
+                generateMenu(true);
+            } else {
+                clearLocalStorage();
+                loadGerichten();
+                generateMenu(false);
+            }
+
+        } else {
+            let einkaufsList = document.querySelector('.list-of-products') || null;
+            if (einkaufsList !== null) {
+                einkaufsList.style.display = 'none';
+            }
+            clearLocalStorage();
+
+            loadGerichten();
+
+            generateMenu(false);
         }
-
-        loadGerichten();
-
-        generateMenu();
         return false;
     });
 }
