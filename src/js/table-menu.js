@@ -590,7 +590,6 @@ if (listGenerate) {
                     let quantity = listOfProducts[name]['quantity'] ? listOfProducts[name]['quantity'] : '';
                     let element = createText("<span class='mr-3 custom-control-input'></span>" + name + ": " + quantity + " " + listOfProducts[name]['measure']);
                     element.classList.add('custom-control');
-                    element.classList.add('col-ergebnis');
                     listWrapperCol.appendChild(element);
                 }
 

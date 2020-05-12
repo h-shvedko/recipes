@@ -364,9 +364,9 @@ generateMenu = function (isSaved) {
  * @param recipeObject
  * @returns {*}
  */
-getGerichteNumber = function(recipeObject) {
+getGerichteNumber = function (recipeObject) {
     let nummerVonGerichte = recipeObject.dishes.length - 1;
-    return  getRandomGerichtNummer(1, nummerVonGerichte);
+    return getRandomGerichtNummer(1, nummerVonGerichte);
 }
 
 /**
@@ -380,14 +380,14 @@ getGerichtItem = function () {
         let gerichteNummer = getGerichteNumber(recipeObject);
 
         let type = FRUESTUEK_NAME;
-        if(j > 3 && j <= 6){
+        if (j > 3 && j <= 6) {
             type = MITTAGESSEN_NAME;
-        } else if(j > 6){
+        } else if (j > 6) {
             type = ABENDESSEN_NAME;
         }
 
-        while(getGerichteWeight(recipeObject.dishes[gerichteNummer], type) > MAX_GERICVHT_WEIGHT
-        || getGerichteWeight(recipeObject.dishes[gerichteNummer], type) < MIN_GERICHT_WEIGHT){
+        while (getGerichteWeight(recipeObject.dishes[gerichteNummer], type) > MAX_GERICVHT_WEIGHT
+        || getGerichteWeight(recipeObject.dishes[gerichteNummer], type) < MIN_GERICHT_WEIGHT) {
             gerichteNummer = getGerichteNumber(recipeObject);
         }
 
@@ -482,11 +482,14 @@ getRandomGerichtNummer = function (min, max) {
     let nummer = Math.floor(Math.random() * (max - min + 1)) + min;
 
     //TODO increase number of dishes and activate this again
-    // if(usedNumbers.includes(nummer)){
-    //     nummer = getRandomGerichtNummer(min, max);
-    // }
-    //
-    // usedNumbers.push(nummer);
+    if (usedNumbers.includes(nummer)) {
+        try{
+            nummer = getRandomGerichtNummer(min, max);
+            usedNumbers.push(nummer);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     return nummer;
 };
