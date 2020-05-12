@@ -371,7 +371,6 @@ getGerichteNumber = function(recipeObject) {
 
 /**
  *
- * @param g
  * @returns {[]}
  */
 getGerichtItem = function () {

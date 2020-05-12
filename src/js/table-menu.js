@@ -532,7 +532,9 @@ if (menuSave) {
         let gerichte = getAllFromLocalStorage();
 
         if (gerichte.length > 0) {
-            addStoreIntoLocalStorage();
+            addStoreIntoLocalStorage().then(() => {
+                showWarningPopup('Das Speiseplan wurde gespeichert.');
+            }).catch((err) =>  showWarningPopup('Sie haben keine Gerichte gewählen.'));
         } else {
             showWarningPopup('Sie haben keine Gerichte gewählen!');
         }
@@ -576,7 +578,7 @@ if (listGenerate) {
             let listWrapperCol = document.createElement('div');
 
             listWrapper.classList.add('row');
-            listWrapperCol.classList.add('col-12');
+            listWrapperCol.classList.add('col-6');
 
             listWrapper.appendChild(listWrapperCol);
 
@@ -588,6 +590,7 @@ if (listGenerate) {
                     let quantity = listOfProducts[name]['quantity'] ? listOfProducts[name]['quantity'] : '';
                     let element = createText("<span class='mr-3 custom-control-input'></span>" + name + ": " + quantity + " " + listOfProducts[name]['measure']);
                     element.classList.add('custom-control');
+                    element.classList.add('col-ergebnis');
                     listWrapperCol.appendChild(element);
                 }
 

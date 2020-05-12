@@ -36,7 +36,10 @@ window.addGerichtToLocalStorage = function (gerichtValue) {
  *
  */
 window.addStoreIntoLocalStorage = function () {
-    localStorage.setItem(STORAGE_NAME_STORE, JSON.stringify(1));
+    return new Promise((resolve) => {
+        localStorage.setItem(STORAGE_NAME_STORE, JSON.stringify(1));
+        resolve();
+    });
 };
 
 /**
