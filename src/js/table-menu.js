@@ -149,11 +149,12 @@ window.createBeschreibung = function (object, isPrint) {
 /**
  *
  * @param object
+ * @param type
  * @returns {HTMLElement}
  */
-window.generateGerichtElement = function (object) {
+window.generateGerichtElement = function (object, type) {
 
-    if(typeof object !== 'undefined'){
+    if (typeof object !== 'undefined') {
         let image1 = createImg(object.photoId);
 
         let headline1 = createBlock(object.name);
@@ -161,7 +162,7 @@ window.generateGerichtElement = function (object) {
 
         let process = createBeschreibung(object, false);
 
-        let weight = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(object, FRUESTUEK_NAME) + " g");
+        let weight = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(object, type) + " g");
 
         let kallorien = createText("<i class=\"fas fa-fire-alt\"></i> " + object.relative_calories + " kcal pro 100 g");
 
@@ -253,40 +254,40 @@ window.generateHtmlForMenu = function (menuObject) {
             let cell2 = trBody.insertCell(2);
             let cell3 = trBody.insertCell(3);
 
-            let gericht1 = generateGerichtElement(menuObject[i].fruestuek1);
+            let gericht1 = generateGerichtElement(menuObject[i].fruestuek1, FRUESTUEK_NAME);
             gericht1.setAttribute('data-day', (i + 1).toString());
             gericht1.setAttribute('data-type', FRUESTUEK_NAME);
 
-            let gericht2 = generateGerichtElement(menuObject[i].fruestuek2);
+            let gericht2 = generateGerichtElement(menuObject[i].fruestuek2, FRUESTUEK_NAME);
             gericht2.setAttribute('data-day', (i + 1).toString());
             gericht2.setAttribute('data-type', FRUESTUEK_NAME);
 
-            let gericht3 = generateGerichtElement(menuObject[i].fruestuek3);
+            let gericht3 = generateGerichtElement(menuObject[i].fruestuek3, FRUESTUEK_NAME);
             gericht3.setAttribute('data-day', (i + 1).toString());
             gericht3.setAttribute('data-type', FRUESTUEK_NAME);
 
-            let gericht4 = generateGerichtElement(menuObject[i].mittag1);
+            let gericht4 = generateGerichtElement(menuObject[i].mittag1, MITTAGESSEN_NAME);
             gericht4.setAttribute('data-day', (i + 1).toString());
             gericht4.setAttribute('data-type', MITTAGESSEN_NAME);
 
-            let gericht5 = generateGerichtElement(menuObject[i].mittag2);
+            let gericht5 = generateGerichtElement(menuObject[i].mittag2, MITTAGESSEN_NAME);
             gericht5.setAttribute('data-day', (i + 1).toString());
             gericht5.setAttribute('data-type', MITTAGESSEN_NAME);
 
-            let gericht6 = generateGerichtElement(menuObject[i].mittag3);
+            let gericht6 = generateGerichtElement(menuObject[i].mittag3, MITTAGESSEN_NAME);
             gericht6.setAttribute('data-day', (i + 1).toString());
             gericht6.setAttribute('data-type', MITTAGESSEN_NAME);
 
 
-            let gericht7 = generateGerichtElement(menuObject[i].abend1);
+            let gericht7 = generateGerichtElement(menuObject[i].abend1, ABENDESSEN_NAME);
             gericht7.setAttribute('data-day', (i + 1).toString());
             gericht7.setAttribute('data-type', ABENDESSEN_NAME);
 
-            let gericht8 = generateGerichtElement(menuObject[i].abend2);
+            let gericht8 = generateGerichtElement(menuObject[i].abend2, ABENDESSEN_NAME);
             gericht8.setAttribute('data-day', (i + 1).toString());
             gericht8.setAttribute('data-type', ABENDESSEN_NAME);
 
-            let gericht9 = generateGerichtElement(menuObject[i].abend3);
+            let gericht9 = generateGerichtElement(menuObject[i].abend3, ABENDESSEN_NAME);
             gericht9.setAttribute('data-day', (i + 1).toString());
             gericht9.setAttribute('data-type', ABENDESSEN_NAME);
 

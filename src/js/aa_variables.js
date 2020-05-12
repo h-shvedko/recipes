@@ -1,100 +1,112 @@
 window.onload = function () {
-/**
- *
- * @type {HTMLElement}
- */
-let formElement = document.getElementById('form');
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    let formElement = document.getElementById('form');
 
-/**
- *
- * @type {HTMLElement}
- */
-let menuCalculate = document.getElementById('menu-calculate');
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    let menuCalculate = document.getElementById('menu-calculate');
 
-/**
- *
- * @type {Element}
- */
-let modal = document.querySelector('.modal');
+    /**
+     *
+     * @type {Element}
+     */
+    let modal = document.querySelector('.modal');
 
-/**
- *
- * @type {Element}
- */
-let lightbox = document.querySelector('.lightbox');
+    /**
+     *
+     * @type {Element}
+     */
+    let lightbox = document.querySelector('.lightbox');
 
-/**
- *
- * @type {Element}
- */
-let closeModalButton = document.querySelector('.hide-modal');
+    /**
+     *
+     * @type {Element}
+     */
+    let closeModalButton = document.querySelector('.hide-modal');
 
-/**
- *
- * @type {number}
- */
-let kalories = 0;
+    /**
+     *
+     * @type {number}
+     */
+    let kalories = 0;
 
-/**
- *
- * @type {number}
- */
-let fruestuckKalorien = 0;
+    /**
+     *
+     * @type {number}
+     */
+    let fruestuckKalorien = 0;
 
-/**
- *
- * @type {number}
- */
-let mittagessenKalorien = 0;
+    /**
+     *
+     * @type {number}
+     */
+    let mittagessenKalorien = 0;
 
-/**
- *
- * @type {number}
- */
-let abendessenKalorien = 0;
+    /**
+     *
+     * @type {number}
+     */
+    let abendessenKalorien = 0;
 
-/**
- *
- */
-let recipes;
+    /**
+     *
+     */
+    let recipes;
 
-/**
- *
- * @type {Array}
- */
-let usedNumbers = [];
+    /**
+     *
+     * @type {Array}
+     */
+    let usedNumbers = [];
 
-/**
- *
- */
-let menuItems;
+    /**
+     *
+     */
+    let menuItems;
 
-/**
- *
- * @type {HTMLElement}
- */
-let listGenerate = document.getElementById('list-generation');
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    let listGenerate = document.getElementById('list-generation');
 
-/**
- *
- * @type {HTMLElement}
- */
-let menuPrint = document.getElementById('menu-print');
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    let menuPrint = document.getElementById('menu-print');
 
-/**
- *
- * @type {HTMLElement}
- */
-let menuSave = document.getElementById('menu-save');
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    let menuSave = document.getElementById('menu-save');
 
-/**
- *
- * @type {HTMLElement}
- */
-let listePrint = document.getElementById('liste-print');
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    let listePrint = document.getElementById('liste-print');
 
-/**
- *
- * @type {Array}
- */
-let menuObject = [];
+    /**
+     *
+     * @type {Array}
+     */
+    let menuObject = [];
+
+    /**
+     *
+     * @type {number}
+     */
+    const MIN_GERICHT_WEIGHT = 200;
+
+    /**
+     *
+     * @type {number}
+     */
+    const MAX_GERICVHT_WEIGHT = 1500;

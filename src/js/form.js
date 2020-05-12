@@ -361,6 +361,44 @@ generateMenu = function (isSaved) {
 
 /**
  *
+ * @param recipeObject
+ * @returns {*}
+ */
+getGerichteNumber = function(recipeObject) {
+    let nummerVonGerichte = recipeObject.dishes.length - 1;
+    return  getRandomGerichtNummer(1, nummerVonGerichte);
+}
+
+/**
+ *
+ * @param g
+ * @returns {[]}
+ */
+getGerichtItem = function () {
+    let tmpTag = [];
+    for (let j = 1; j <= 9; j++) {
+        let recipeObject = recipes;
+        let gerichteNummer = getGerichteNumber(recipeObject);
+
+        let type = FRUESTUEK_NAME;
+        if(j > 3 && j <= 6){
+            type = MITTAGESSEN_NAME;
+        } else if(j > 6){
+            type = ABENDESSEN_NAME;
+        }
+
+        while(getGerichteWeight(recipeObject.dishes[gerichteNummer], type) > MAX_GERICVHT_WEIGHT
+        || getGerichteWeight(recipeObject.dishes[gerichteNummer], type) < MIN_GERICHT_WEIGHT){
+            gerichteNummer = getGerichteNumber(recipeObject);
+        }
+
+        tmpTag[j] = recipeObject.dishes[gerichteNummer];
+    }
+    return tmpTag;
+}
+
+/**
+ *
  * @param nummerTage
  */
 getMenuObject = function (nummerTage) {
@@ -368,15 +406,8 @@ getMenuObject = function (nummerTage) {
 
     let usedNumbers;
     for (let i = 1; i <= nummerTage; i++) {
-        let tmpTag = [];
         let tmpRes = [];
-        for (let j = 1; j <= 9; j++) {
-            let recipeObject = recipes;
-            let nummerVonGerichte = recipeObject.dishes.length - 1;
-            let gerichteNummer = getRandomGerichtNummer(1, nummerVonGerichte);
-
-            tmpTag[j] = recipeObject.dishes[gerichteNummer];
-        }
+        let tmpTag = getGerichtItem();
 
         usedNumbers = [];
         tmpRes['fruestuek1'] = tmpTag[1];
@@ -419,7 +450,9 @@ getMenuObjectNotRandom = function (nummerTage) {
         }
     }
 
-    tmpTag = tmpTag.filter(function(){return true;});
+    tmpTag = tmpTag.filter(function () {
+        return true;
+    });
 
     menuObject = tmpTag;
 
@@ -509,23 +542,16 @@ if (menuCalculate) {
 window.getGerichteWeight = function (gerichtObject, type) {
     let weight = 0;
 
-    /**
-     * подсчет коефициента на каждый прием пищи
-     * кол-во каллорий на завтрак = дневная норма каллорий умноженная на процент необходимый для завтрака (30%)
-     */
     let frueschtuek = kalories * FRUESTUEK_PROZENT / 100;
     let mittag = kalories * MITTAGESSEN_PROZENT / 100;
     let abend = kalories * ABENDESSEN_PROZENT / 100;
 
-    //Кол-во каллорий на одну порцию
     let kaloriesProPorzionGramm = gerichtObject.calories;
 
-    //рассчитываем коэфициент для каждого приема пищи, для корректировки веса одной порции блюда
     let koefficientFruestuek = frueschtuek / kaloriesProPorzionGramm;
     let koefficientMittag = mittag / kaloriesProPorzionGramm;
     let koefficientAbend = abend / kaloriesProPorzionGramm;
 
-    //расчитывем вес одной порции блюда в зависимости от коэфициента веса и время приема пищи
     switch (type) {
         case FRUESTUEK_NAME:
             weight = Math.round(gerichtObject.weight * koefficientFruestuek);
