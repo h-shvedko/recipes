@@ -517,7 +517,9 @@ if (menuCalculate) {
             if (showinteractivePopup('Sie haben schon ein Speiseplan gespeichern. Möchten Sie das aufladen?')) {
                 recipes = {dishes: savedMenu};
                 generateMenu(true);
+                isMenuLoadedFromLocalStorage = true;
             } else {
+                isMenuLoadedFromLocalStorage = false;
                 clearLocalStorage();
                 loadGerichten();
                 generateMenu(false);

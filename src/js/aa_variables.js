@@ -110,3 +110,9 @@ window.onload = function () {
      * @type {number}
      */
     const MAX_GERICVHT_WEIGHT = 1500;
+
+    /**
+     *
+     * @type {boolean}
+     */
+    let isMenuLoadedFromLocalStorage = false;

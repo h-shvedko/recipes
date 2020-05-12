@@ -501,7 +501,7 @@ if (menuPrint) {
 
         let disabledGerichte = document.querySelectorAll('.gericht.disabled');
 
-        if (disabledGerichte.length > 0) {
+        if (disabledGerichte.length > 0 || isMenuLoadedFromLocalStorage) {
             for (let i = 0; i < disabledGerichte.length; i++) {
                 disabledGerichte[i].style.display = 'none';
             }
