@@ -300,6 +300,18 @@ loadGerichten = function () {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             recipes = JSON.parse(this.responseText);
+            recipes = filterWithType(recipes);
+            if(window.allergieJa){
+                recipes = filterWithAllergie(recipes);
+            }
+
+            if(recipes.dishes.length < 3){
+                alert('Wir haben so wenig Rezepten mit Ihren Wühcnen. Bitte wählen andere Filter Optionen.');
+                recipes = [];
+                window.hasRecipes = false;
+            } else {
+                window.hasRecipes = true;
+            }
         }
     };
     xhttp.open("GET", "./recipes.json", false);
@@ -366,7 +378,7 @@ generateMenu = function (isSaved) {
  */
 getGerichteNumber = function (recipeObject) {
     let nummerVonGerichte = recipeObject.dishes.length - 1;
-    return getRandomGerichtNummer(1, nummerVonGerichte);
+    return getRandomGerichtNummer(0, nummerVonGerichte);
 }
 
 /**
@@ -376,19 +388,22 @@ getGerichteNumber = function (recipeObject) {
  */
 filterWithType = function (recipeObjectToCheck) {
     let newRecipeObject = [];
+    let recipeObjectResult = [];
     let recipeObject = recipeObjectToCheck.dishes;
 
-    if(typeof recipeObject !== 'undefined' && recipeObject.length > 0){
-        for(let i = 0; i < recipeObject.length; i++){
-            if(inTypeArray(recipeObject[i].type)){
+    if (typeof recipeObject !== 'undefined' && recipeObject.length > 0) {
+        for (let i = 0; i < recipeObject.length; i++) {
+            if (inTypeArray(recipeObject[i].type)) {
                 newRecipeObject.push(recipeObject[i]);
             }
         }
 
-        recipeObject.dishes = newRecipeObject;
+        recipeObjectResult.dishes = newRecipeObject;
+    } else {
+        recipeObjectResult.dishes = [];
     }
 
-    return recipeObject;
+    return recipeObjectResult;
 };
 
 /**
@@ -416,19 +431,22 @@ inTypeArray = function(element){
  */
 filterWithAllergie = function (recipeObjectToCheck) {
     let newRecipeObject = [];
+    let recipeObjectResult = [];
     let recipeObject = recipeObjectToCheck.dishes;
 
-    if(typeof recipeObject !== 'undefined' && recipeObject.length > 0){
-        for(let i = 0; i < recipeObject.length; i++){
-            if(!inAllergieArray(recipeObject[i].allergic)){
+    if (typeof recipeObject !== 'undefined' && recipeObject.length > 0) {
+        for (let i = 0; i < recipeObject.length; i++) {
+            if (!inAllergieArray(recipeObject[i].allergic)) {
                 newRecipeObject.push(recipeObject[i]);
             }
         }
 
-        recipeObject.dishes = newRecipeObject;
+        recipeObjectResult.dishes = newRecipeObject;
+    } else {
+        recipeObjectResult.dishes = [];
     }
 
-    return recipeObject;
+    return recipeObjectResult;
 };
 
 /**
@@ -440,20 +458,20 @@ inAllergieArray = function(elements){
     let allergieResults = allergieResultsWrapper.querySelectorAll('input:checked');
     if(allergieResults.length > 0){
         let selectedValues = [];
-        for (let i = 0; i < selectedValues.length; i++) {
-            selectedValues.push(selectedValues[i].value);
+        for (let i = 0; i < allergieResults.length; i++) {
+            selectedValues.push(allergieResults[i].value);
         }
 
         if(elements.length > 0){
             for (let j = 0; j < elements.length; j++) {
                 if(selectedValues.indexOf(elements[j]) !== -1){
-                    return false;
+                    return true;
                 }
             }
         }
     }
 
-    return true;
+    return false;
 };
 
 /**
@@ -464,23 +482,31 @@ getGerichtItem = function () {
     let tmpTag = [];
     for (let j = 1; j <= 9; j++) {
         let recipeObject = recipes;
-        recipeObject = filterWithType(recipeObject);
-        recipeObject = filterWithAllergie(recipeObject);
-        let gerichteNummer = getGerichteNumber(recipeObject);
 
-        let type = FRUESTUEK_NAME;
-        if (j > 3 && j <= 6) {
-            type = MITTAGESSEN_NAME;
-        } else if (j > 6) {
-            type = ABENDESSEN_NAME;
+        if(recipeObject.dishes.length > 0){
+            let gerichteNummer = getGerichteNumber(recipeObject);
+
+            let type = FRUESTUEK_NAME;
+            if (j > 3 && j <= 6) {
+                type = MITTAGESSEN_NAME;
+            } else if (j > 6) {
+                type = ABENDESSEN_NAME;
+            }
+
+            let count = 0;
+
+            while (getGerichteWeight(recipeObject.dishes[gerichteNummer], type) > MAX_GERICHT_WEIGHT
+            || getGerichteWeight(recipeObject.dishes[gerichteNummer], type) < MIN_GERICHT_WEIGHT) {
+                gerichteNummer = getGerichteNumber(recipeObject);
+                count++;
+
+                if(count > 10){
+                    break;
+                }
+            }
+
+            tmpTag[j] = recipeObject.dishes[gerichteNummer];
         }
-
-        while (getGerichteWeight(recipeObject.dishes[gerichteNummer], type) > MAX_GERICVHT_WEIGHT
-        || getGerichteWeight(recipeObject.dishes[gerichteNummer], type) < MIN_GERICHT_WEIGHT) {
-            gerichteNummer = getGerichteNumber(recipeObject);
-        }
-
-        tmpTag[j] = recipeObject.dishes[gerichteNummer];
     }
     return tmpTag;
 }
@@ -611,7 +637,10 @@ if (menuCalculate) {
                 isMenuLoadedFromLocalStorage = false;
                 clearLocalStorage();
                 loadGerichten();
-                generateMenu(false);
+
+                if(window.hasRecipes){
+                    generateMenu(false);
+                }
             }
 
         } else {
@@ -665,6 +694,8 @@ window.getGerichteWeight = function (gerichtObject, type) {
 
 if (allergieJa) {
     allergieJa.addEventListener('click', function (event) {
+        window.allergieJa = true;
+        window.allergieNein = false;
         let allergieWrapper = document.querySelector('.filters-wrapper.allergie');
         if (allergieWrapper) {
             allergieWrapper.classList.remove('d-none');
@@ -674,6 +705,8 @@ if (allergieJa) {
 
 if (allergieNein) {
     allergieNein.addEventListener('click', function (event) {
+        window.allergieJa = false;
+        window.allergieNein = true;
         let allergieWrapper = document.querySelector('.filters-wrapper.allergie');
         if (allergieWrapper) {
             allergieWrapper.classList.add('d-none');

@@ -51,7 +51,7 @@ window.onload = function () {
      *
      * @type {HTMLElement}
      */
-    let allergieResultsWrapper = document.querySelectorAll('allergie-results');
+    let allergieResultsWrapper = document.getElementById('allergie-results');
 
     /**
      *
@@ -133,7 +133,7 @@ window.onload = function () {
      *
      * @type {number}
      */
-    const MAX_GERICVHT_WEIGHT = 1500;
+    const MAX_GERICHT_WEIGHT = 1500;
 
     /**
      *
@@ -162,3 +162,15 @@ window.onload = function () {
         'vegitarien': 2,
         'vegan': 3
     };
+
+    /**
+     *
+     * @type {boolean}
+     */
+    window.allergieJa = false;
+
+    /**
+     *
+     * @type {boolean}
+     */
+    window.allergieNein = true;

@@ -24,6 +24,78 @@
                 <input class="form-check-input tage radiobutton" type="radio" name="menu-tage" id="menu-siben-tage" value="7"> <label class="form-check-label" for="menu-siben-tage">für 7 Tage</label>
             </div>
         </div>
+        <div class="row form-group">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 form-group">
+                        <h3>Filters</h3>
+                    </div>
+                    <div class="col-12 filters-wrapper type">
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                Welche Art vom Essen möchten Sie gern?
+                            </div>
+                            <div class="col-12">
+                                <div class="row" id="type-results">
+                                    <div class="form-check col-auto">
+                                        <input class="checkbox" type="checkbox" name="normal" id="normal" value="1"> <label class="form-check-label" for="normal">Normal</label>
+                                    </div>
+                                    <div class="form-check col-auto">
+                                        <input class="checkbox" type="checkbox" name="vegitarien" id="vegitarien" value="2"> <label class="form-check-label" for="vegitarien">Vegitarien</label>
+                                    </div>
+                                    <div class="form-check col-auto">
+                                        <input class="checkbox" type="checkbox" name="vegan" id="vegan" value="3"> <label class="form-check-label" for="vegan">Vegan</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 filters-wrapper mt-3">
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                Haben Sie eine Essallergie?
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <input class="radiobutton" type="radio" name="allergie" id="allergie-ja" value="1"> <label class="form-check-label" for="allergie-ja">Ja</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input class="radiobutton" type="radio" name="allergie" id="allergie-nein" value="1"> <label class="form-check-label" for="allergie-nein">Nein</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 filters-wrapper allergie mt-3 d-none">
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                Welche Allergie haben Sie?
+                            </div>
+                            <div class="col-12">
+                                <div class="row" id="allergie-results">
+                                    <div class="form-check col-auto">
+                                        <input class="checkbox" type="checkbox" name="gluten" id="gluten" value="1"> <label class="form-check-label" for="gluten">Gluten</label>
+                                    </div>
+                                    <div class="form-check col-auto">
+                                        <input class="checkbox" type="checkbox" name="laktose" id="laktose" value="2"> <label class="form-check-label" for="laktose">Laktose</label>
+                                    </div>
+                                    <div class="form-check col-auto">
+                                        <input class="checkbox" type="checkbox" name="nuesse" id="nuesse" value="3"> <label class="form-check-label" for="nuesse">Nüsse</label>
+                                    </div>
+                                    <div class="form-check col-auto">
+                                        <input class="checkbox" type="checkbox" name="pilze" id="pilze" value="4"> <label class="form-check-label" for="pilze">Pilze</label>
+                                    </div>
+                                    <div class="form-check col-auto">
+                                        <input class="checkbox" type="checkbox" name="zitrus" id="zitrus" value="5"> <label class="form-check-label" for="zitrus">Zitrusfrüchte</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row mb-5">
             <div class="col-12 text-right">
                 <button class="btn btn-primary" id="menu-calculate">Berechnen das Speiseplan</button>
