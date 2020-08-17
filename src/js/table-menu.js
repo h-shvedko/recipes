@@ -234,7 +234,7 @@ window.generateHtmlForMenu = function (menuObject) {
         theadCell3.classList.add('text-center');
 
         let theadCell4 = tr.insertCell(3);
-        theadCell4.innerHTML = "Abensessen";
+        theadCell4.innerHTML = "Abendessen";
         theadCell4.classList.add('font-weight-bold');
         theadCell4.classList.add('text-center');
 
@@ -428,6 +428,12 @@ window.generateHtmlForPrintMenu = function (menuObject) {
                     innerCell1.classList.add('menu-item');
                     innerCell1.classList.add('fruestuek');
 
+                    //@TODO: insert page break after each menu item
+                    // let pageBreakTr = document.createElement('tr')
+                    // pageBreakTr.classList.add('pagebreak');
+                    // pageBreakTr.insertCell(0);
+                    // innerTable.appendChild(pageBreakTr);
+
                     innerTable.appendChild(innerTr);
                 }
             }
@@ -578,7 +584,7 @@ if (listGenerate) {
             let listWrapperCol = document.createElement('div');
 
             listWrapper.classList.add('row');
-            listWrapperCol.classList.add('col-6');
+            listWrapperCol.classList.add('col-12');
 
             listWrapper.appendChild(listWrapperCol);
 
@@ -588,7 +594,7 @@ if (listGenerate) {
             if (listOfProducts) {
                 for (let name in listOfProducts) {
                     let quantity = listOfProducts[name]['quantity'] ? listOfProducts[name]['quantity'] : '';
-                    let element = createText("<span class='mr-3 custom-control-input'></span>" + name + ": " + quantity + " " + listOfProducts[name]['measure']);
+                    let element = createText("<span class='custom-control-input'></span>" + name + ": " + quantity + " " + listOfProducts[name]['measure']);
                     element.classList.add('custom-control');
                     listWrapperCol.appendChild(element);
                 }

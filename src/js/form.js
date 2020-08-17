@@ -371,12 +371,101 @@ getGerichteNumber = function (recipeObject) {
 
 /**
  *
+ * @returns {*}
+ * @param recipeObjectToCheck
+ */
+filterWithType = function (recipeObjectToCheck) {
+    let newRecipeObject = [];
+    let recipeObject = recipeObjectToCheck.dishes;
+
+    if(typeof recipeObject !== 'undefined' && recipeObject.length > 0){
+        for(let i = 0; i < recipeObject.length; i++){
+            if(inTypeArray(recipeObject[i].type)){
+                newRecipeObject.push(recipeObject[i]);
+            }
+        }
+
+        recipeObject.dishes = newRecipeObject;
+    }
+
+    return recipeObject;
+};
+
+/**
+ *
+ * @param element
+ * @returns {boolean}
+ */
+inTypeArray = function(element){
+    let typeResults = typeResultsWrapper.querySelectorAll('input:checked');
+    if(typeResults.length > 0){
+        let selectedValues = [];
+        for (let i = 0; i < typeResults.length; i++) {
+            selectedValues.push(typeResults[i].value);
+        }
+        return selectedValues.indexOf(element) !== -1;
+    }
+
+    return false;
+};
+
+/**
+ *
+ * @returns {*}
+ * @param recipeObjectToCheck
+ */
+filterWithAllergie = function (recipeObjectToCheck) {
+    let newRecipeObject = [];
+    let recipeObject = recipeObjectToCheck.dishes;
+
+    if(typeof recipeObject !== 'undefined' && recipeObject.length > 0){
+        for(let i = 0; i < recipeObject.length; i++){
+            if(!inAllergieArray(recipeObject[i].allergic)){
+                newRecipeObject.push(recipeObject[i]);
+            }
+        }
+
+        recipeObject.dishes = newRecipeObject;
+    }
+
+    return recipeObject;
+};
+
+/**
+ *
+ * @returns {boolean}
+ * @param elements
+ */
+inAllergieArray = function(elements){
+    let allergieResults = allergieResultsWrapper.querySelectorAll('input:checked');
+    if(allergieResults.length > 0){
+        let selectedValues = [];
+        for (let i = 0; i < selectedValues.length; i++) {
+            selectedValues.push(selectedValues[i].value);
+        }
+
+        if(elements.length > 0){
+            for (let j = 0; j < elements.length; j++) {
+                if(selectedValues.indexOf(elements[j]) !== -1){
+                    return false;
+                }
+            }
+        }
+    }
+
+    return true;
+};
+
+/**
+ *
  * @returns {[]}
  */
 getGerichtItem = function () {
     let tmpTag = [];
     for (let j = 1; j <= 9; j++) {
         let recipeObject = recipes;
+        recipeObject = filterWithType(recipeObject);
+        recipeObject = filterWithAllergie(recipeObject);
         let gerichteNummer = getGerichteNumber(recipeObject);
 
         let type = FRUESTUEK_NAME;
@@ -574,3 +663,20 @@ window.getGerichteWeight = function (gerichtObject, type) {
     return weight;
 };
 
+if (allergieJa) {
+    allergieJa.addEventListener('click', function (event) {
+        let allergieWrapper = document.querySelector('.filters-wrapper.allergie');
+        if (allergieWrapper) {
+            allergieWrapper.classList.remove('d-none');
+        }
+    });
+}
+
+if (allergieNein) {
+    allergieNein.addEventListener('click', function (event) {
+        let allergieWrapper = document.querySelector('.filters-wrapper.allergie');
+        if (allergieWrapper) {
+            allergieWrapper.classList.add('d-none');
+        }
+    });
+}

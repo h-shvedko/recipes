@@ -31,6 +31,30 @@ window.onload = function () {
 
     /**
      *
+     * @type {HTMLElement}
+     */
+    let allergieJa = document.getElementById('allergie-ja');
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    let allergieNein = document.getElementById('allergie-nein');
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    let typeResultsWrapper = document.getElementById('type-results');
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    let allergieResultsWrapper = document.querySelectorAll('allergie-results');
+
+    /**
+     *
      * @type {number}
      */
     let kalories = 0;
@@ -116,3 +140,25 @@ window.onload = function () {
      * @type {boolean}
      */
     let isMenuLoadedFromLocalStorage = false;
+
+    /**
+     *
+     * @type {{}}
+     */
+    let allergieValues = {
+        'gluten': 1,
+        'laktose': 2,
+        'nuesse': 3,
+        'pilze': 4,
+        'zitrusfruechte': 5
+    }
+
+    /**
+     *
+     * @type {{normal: number, vegitarien: number, vegan: number}}
+     */
+    let gerichteType = {
+        'normal': 1,
+        'vegitarien': 2,
+        'vegan': 3
+    };

@@ -57,3 +57,17 @@ form,
 }
 
 
+@media print {
+    .pagebreak {
+        page-break-before: always;
+        display: block;
+    }
+
+    .wunschlist-button{
+        display: none;
+    }
+
+    .gericht.disabled{
+        display: none!important;
+    }
+}
