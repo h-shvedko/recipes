@@ -723,6 +723,36 @@ window.attachEventsToGerichtElements = function () {
     }
 };
 
+
+/**
+ *
+ */
+window.attachEventsToGerichtElementsByParent = function (parent) {
+    let gerichtElements = parent.querySelectorAll('.gericht');
+
+    if (gerichtElements.length > 0) {
+        gerichtElements.forEach(function (element, key) {
+            element.addEventListener('click', function (event) {
+                let htmlTitle = element.querySelector('.popover-header').outerHTML;
+                let htmlContent = element.querySelector('.popover-body').outerHTML;
+                let popupWindow = document.querySelector('.remodal-wrapper') || null;
+                let lightbox = document.querySelector('.remodal-overlay') || null;
+                if (popupWindow !== null && lightbox !== null) {
+                    popupWindow.querySelector('.modal-title').innerHTML = htmlTitle;
+                    popupWindow.querySelector('.content').innerHTML = htmlContent;
+                    popupWindow.style.display = 'block';
+                    popupWindow.setAttribute('data-name', element.getAttribute('data-name'));
+                    popupWindow.setAttribute('data-type', element.getAttribute('data-type'));
+                    popupWindow.setAttribute('data-day', element.getAttribute('data-day'));
+                    lightbox.style.display = 'block';
+                    attachEventListenerToAddButton();
+                }
+            });
+        });
+        attachEventListenerToAddIcons();
+    }
+};
+
 /**
  *
  * @param elementToAttach
@@ -1117,6 +1147,7 @@ window.reloadGerichtEventHandler = function (event) {
         attachEventListenerToReloadGerichtIconByParent(parentGerichtWrapper);
         attachEventListenerToAddIconsByParent(parentGerichtWrapper);
         attachEventListenerToAddButtonByParent(parentGerichtWrapper);
+        attachEventsToGerichtElementsByParent(parentGerichtWrapper);
     }
 };
 
