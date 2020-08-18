@@ -25,6 +25,17 @@ window.createHeadline = function (text) {
 /**
  *
  * @returns {HTMLElement}
+ * @param text
+ */
+window.createHeadlineH3 = function (text) {
+    let headline = document.createElement('h3');
+    headline.innerHTML = text;
+    return headline;
+};
+
+/**
+ *
+ * @returns {HTMLElement}
  * @param hmtl
  */
 window.createBlock = function (hmtl) {
@@ -192,56 +203,115 @@ window.generateGerichtElement = function (object, type) {
 /**
  *
  * @param menuObject
+ * @param index
+ * @param type
+ * @returns {HTMLElement[]}
+ */
+window.getGerictenByType = function (menuObject, index, type) {
+
+    let gerichtTmpA, gerichtTmpB, gerichtTmpC;
+
+    switch (type) {
+        case FRUESTUEK_NAME:
+            gerichtTmpA = generateGerichtElement(menuObject[index].fruestuek1, type);
+            gerichtTmpA.setAttribute('data-day', (index + 1).toString());
+            gerichtTmpA.setAttribute('data-type', type);
+
+            gerichtTmpB = generateGerichtElement(menuObject[index].fruestuek2, type);
+            gerichtTmpB.setAttribute('data-day', (index + 1).toString());
+            gerichtTmpB.setAttribute('data-type', type);
+
+            gerichtTmpC = generateGerichtElement(menuObject[index].fruestuek3, type);
+            gerichtTmpC.setAttribute('data-day', (index + 1).toString());
+            gerichtTmpC.setAttribute('data-type', type);
+            break;
+        case MITTAGESSEN_NAME:
+            gerichtTmpA = generateGerichtElement(menuObject[index].mittag1, type);
+            gerichtTmpA.setAttribute('data-day', (index + 1).toString());
+            gerichtTmpA.setAttribute('data-type', type);
+
+            gerichtTmpB = generateGerichtElement(menuObject[index].mittag2, type);
+            gerichtTmpB.setAttribute('data-day', (index + 1).toString());
+            gerichtTmpB.setAttribute('data-type', type);
+
+            gerichtTmpC = generateGerichtElement(menuObject[index].mittag3, type);
+            gerichtTmpC.setAttribute('data-day', (index + 1).toString());
+            gerichtTmpC.setAttribute('data-type', type);
+            break;
+        case ABENDESSEN_NAME:
+            gerichtTmpA = generateGerichtElement(menuObject[index].abend1, type);
+            gerichtTmpA.setAttribute('data-day', (index + 1).toString());
+            gerichtTmpA.setAttribute('data-type', type);
+
+            gerichtTmpB = generateGerichtElement(menuObject[index].abend2, type);
+            gerichtTmpB.setAttribute('data-day', (index + 1).toString());
+            gerichtTmpB.setAttribute('data-type', type);
+
+            gerichtTmpC = generateGerichtElement(menuObject[index].abend3, type);
+            gerichtTmpC.setAttribute('data-day', (index + 1).toString());
+            gerichtTmpC.setAttribute('data-type', type);
+            break;
+    }
+
+    return [gerichtTmpA, gerichtTmpB, gerichtTmpC];
+}
+
+/**
+ *
+ * @param menuObject
  * @returns {HTMLElement}
  */
 window.generateHtmlForMenu = function (menuObject) {
     let block = document.createElement('div');
     if (menuObject.length > 0) {
-
-        let blockCol = document.createElement('div');
-        let table = document.createElement('table');
-
-        block.classList.add('row');
-        block.classList.add('table');
-
-        blockCol.classList.add('col');
-        blockCol.classList.add('col-12');
-
-        table.classList.add('table');
-        table.classList.add('w-100');
-
-        block.appendChild(blockCol);
-        blockCol.appendChild(table);
-
-        let thead = document.createElement('thead');
-        let tr = document.createElement('tr');
-
-        thead.appendChild(tr);
-
-        let theadCell1 = tr.insertCell(0);
-        theadCell1.innerHTML = "";
-
-        let theadCell2 = tr.insertCell(1);
-        theadCell2.innerHTML = "Fruhstück";
-        theadCell2.classList.add('font-weight-bold');
-        theadCell2.classList.add('text-center');
-
-        let theadCell3 = tr.insertCell(2);
-        theadCell3.innerHTML = "Mittagessen";
-        theadCell3.classList.add('font-weight-bold');
-        theadCell3.classList.add('text-center');
-
-        let theadCell4 = tr.insertCell(3);
-        theadCell4.innerHTML = "Abendessen";
-        theadCell4.classList.add('font-weight-bold');
-        theadCell4.classList.add('text-center');
-
-        table.appendChild(thead);
-
-        let tbody = document.createElement('tbody');
-
-        let trBody;
         for (let i = 0; i < menuObject.length; i++) {
+
+            let blockCol = document.createElement('div');
+            let table = document.createElement('table');
+
+            block.classList.add('row');
+            block.classList.add('table');
+
+            blockCol.classList.add('col');
+            blockCol.classList.add('col-12');
+
+            table.classList.add('table');
+            table.classList.add('w-100');
+
+            block.appendChild(blockCol);
+            blockCol.appendChild(table);
+
+            let thead = document.createElement('thead');
+            let tr = document.createElement('tr');
+
+            thead.appendChild(tr);
+
+            let theadCell1 = tr.insertCell(0);
+            theadCell1.innerHTML = "";
+
+            let theadCell2 = tr.insertCell(1);
+            theadCell2.innerHTML = "Fruhstück";
+            theadCell2.classList.add('font-weight-bold');
+            theadCell2.classList.add('text-center');
+            theadCell2.classList.add('table-head');
+
+            let theadCell3 = tr.insertCell(2);
+            theadCell3.innerHTML = "Mittagessen";
+            theadCell3.classList.add('font-weight-bold');
+            theadCell3.classList.add('text-center');
+            theadCell3.classList.add('table-head');
+
+            let theadCell4 = tr.insertCell(3);
+            theadCell4.innerHTML = "Abendessen";
+            theadCell4.classList.add('font-weight-bold');
+            theadCell4.classList.add('text-center');
+            theadCell4.classList.add('table-head');
+
+            table.appendChild(thead);
+
+            let tbody = document.createElement('tbody');
+
+            let trBody;
             let tag = i + 1;
 
             trBody = document.createElement('tr');
@@ -252,44 +322,22 @@ window.generateHtmlForMenu = function (menuObject) {
             let cell2 = trBody.insertCell(2);
             let cell3 = trBody.insertCell(3);
 
-            let gericht1 = generateGerichtElement(menuObject[i].fruestuek1, FRUESTUEK_NAME);
-            gericht1.setAttribute('data-day', (i + 1).toString());
-            gericht1.setAttribute('data-type', FRUESTUEK_NAME);
+            let gerichts = getGerictenByType(menuObject, i, FRUESTUEK_NAME);
+            let gericht1 = gerichts[0];
+            let gericht2 = gerichts[1];
+            let gericht3 = gerichts[2];
 
-            let gericht2 = generateGerichtElement(menuObject[i].fruestuek2, FRUESTUEK_NAME);
-            gericht2.setAttribute('data-day', (i + 1).toString());
-            gericht2.setAttribute('data-type', FRUESTUEK_NAME);
+            gerichts = getGerictenByType(menuObject, i, MITTAGESSEN_NAME);
+            let gericht4 = gerichts[0];
+            let gericht5 = gerichts[1];
+            let gericht6 = gerichts[2];
 
-            let gericht3 = generateGerichtElement(menuObject[i].fruestuek3, FRUESTUEK_NAME);
-            gericht3.setAttribute('data-day', (i + 1).toString());
-            gericht3.setAttribute('data-type', FRUESTUEK_NAME);
+            gerichts = getGerictenByType(menuObject, i, ABENDESSEN_NAME);
+            let gericht7 = gerichts[0];
+            let gericht8 = gerichts[1];
+            let gericht9 = gerichts[2];
 
-            let gericht4 = generateGerichtElement(menuObject[i].mittag1, MITTAGESSEN_NAME);
-            gericht4.setAttribute('data-day', (i + 1).toString());
-            gericht4.setAttribute('data-type', MITTAGESSEN_NAME);
-
-            let gericht5 = generateGerichtElement(menuObject[i].mittag2, MITTAGESSEN_NAME);
-            gericht5.setAttribute('data-day', (i + 1).toString());
-            gericht5.setAttribute('data-type', MITTAGESSEN_NAME);
-
-            let gericht6 = generateGerichtElement(menuObject[i].mittag3, MITTAGESSEN_NAME);
-            gericht6.setAttribute('data-day', (i + 1).toString());
-            gericht6.setAttribute('data-type', MITTAGESSEN_NAME);
-
-
-            let gericht7 = generateGerichtElement(menuObject[i].abend1, ABENDESSEN_NAME);
-            gericht7.setAttribute('data-day', (i + 1).toString());
-            gericht7.setAttribute('data-type', ABENDESSEN_NAME);
-
-            let gericht8 = generateGerichtElement(menuObject[i].abend2, ABENDESSEN_NAME);
-            gericht8.setAttribute('data-day', (i + 1).toString());
-            gericht8.setAttribute('data-type', ABENDESSEN_NAME);
-
-            let gericht9 = generateGerichtElement(menuObject[i].abend3, ABENDESSEN_NAME);
-            gericht9.setAttribute('data-day', (i + 1).toString());
-            gericht9.setAttribute('data-type', ABENDESSEN_NAME);
-
-            cell0.innerHTML = "Tag " + (tag);
+            cell0.innerHTML = createHeadlineH3("Tag " + (tag)).outerHTML;
             cell0.classList.add('w-10');
             cell0.classList.add('font-weight-bold');
             cell0.classList.add('text-center');
@@ -311,11 +359,9 @@ window.generateHtmlForMenu = function (menuObject) {
             cell3.classList.add('abend');
 
             tbody.appendChild(trBody);
+            table.appendChild(tbody);
         }
-
-        table.appendChild(tbody);
     }
-
 
     return block;
 };
@@ -745,7 +791,7 @@ window.findGericht = (name, type, day) => {
  * @param isIconAction
  * @param element
  */
-removeGerichtFromMenu = function (name, day, type, isIconAction, element) {
+window.removeGerichtFromMenu = function (name, day, type, isIconAction, element) {
     let gericht = findGericht(name, type, day);
     let gerichtPopoverIcon = getGerichtPopoverIcon(day, type, name);
     let gerichtPopoverButton = getGerichtPopoverButton(day, type, name);
@@ -778,7 +824,7 @@ removeGerichtFromMenu = function (name, day, type, isIconAction, element) {
  * @param isIconAction
  * @param element
  */
-addGerichtToMenu = function (name, day, type, isIconAction, element) {
+window.addGerichtToMenu = function (name, day, type, isIconAction, element) {
     let gericht = findGericht(name, type, day);
     let gerichtPopoverIcon = getGerichtPopoverIcon(day, type, name);
     let gerichtPopoverButton = getGerichtPopoverButton(day, type, name);
@@ -826,6 +872,24 @@ window.attachEventListenerToAddButton = function () {
     }
 };
 
+/**
+ *
+ */
+window.attachEventListenerToAddButtonByParent = function (parent) {
+    let addButtons = parent.querySelectorAll('.wunschlist-button');
+
+    if (addButtons.length > 0) {
+        addButtons.forEach(function (buttonElement, key) {
+            buttonElement.addEventListener('click', function (event) {
+                event.stopPropagation();
+                eventHandlerForAddElements(event);
+
+                return false;
+            });
+        });
+    }
+};
+
 
 /**
  *
@@ -847,11 +911,30 @@ window.attachEventListenerToAddIcons = function () {
     }
 };
 
+
+/**
+ *
+ */
+window.attachEventListenerToAddIconsByParent = function (parent) {
+    let addButtons = parent.querySelectorAll('.wunschlist-icon');
+
+    if (addButtons.length > 0) {
+        addButtons.forEach(function (buttonElement, key) {
+            buttonElement.addEventListener('click', function (event) {
+                event.stopPropagation()
+                eventHandlerForAddElements(event);
+
+                return false;
+            });
+        });
+    }
+};
+
 /**
  *
  * @param event
  */
-eventHandlerForAddElements = function (event) {
+window.eventHandlerForAddElements = function (event) {
     let type, day, name, isIconAction = false;
     let element = event.currentTarget;
     let isStored = element.getAttribute('data-stored');
@@ -1007,4 +1090,70 @@ window.getGerichtPopoverButton = function (day, type, name) {
     return gerichtePopoverButton;
 };
 
+/**
+ *
+ * @param event
+ */
+window.reloadGerichtEventHandler = function (event) {
+    let day, type;
+    let reloadIcon = event.currentTarget;
+    let parentGerichtWrapper = reloadIcon.closest('.menu-item');
+
+    if (parentGerichtWrapper !== null) {
+        let gerichten = parentGerichtWrapper.querySelectorAll('.gericht');
+        if (gerichten.length > 0) {
+            for (let i = 0; i < gerichten.length; i++) {
+                day = gerichten[i].getAttribute('data-day');
+                type = gerichten[i].getAttribute('data-type');
+                gerichten[i].remove();
+            }
+        }
+
+        let menuObject = getMenuObjectByTagAndType(day, type);
+        let menuObjectHtml = getGerictenByType(menuObject, day - 1, type);
+
+        parentGerichtWrapper.innerHTML = menuObjectHtml[0].outerHTML + menuObjectHtml[1].outerHTML + menuObjectHtml[2].outerHTML;
+
+        attachEventListenerToReloadGerichtIconByParent(parentGerichtWrapper);
+        attachEventListenerToAddIconsByParent(parentGerichtWrapper);
+        attachEventListenerToAddButtonByParent(parentGerichtWrapper);
+    }
+};
+
+
+/**
+ *
+ */
+window.attachEventListenerToReloadGerichtIcon = function () {
+    let reloadIcons = document.querySelectorAll('.reload-gericht');
+
+    if (reloadIcons.length > 0 && !window.reloadIconsEventAttached) {
+        reloadIcons.forEach(function (reloadElement, key) {
+            reloadElement.addEventListener('click', function (event) {
+                event.stopPropagation()
+                reloadGerichtEventHandler(event);
+                return false;
+            });
+        });
+
+        window.reloadIconsEventAttached = true;
+    }
+};
+
+/**
+ *
+ */
+window.attachEventListenerToReloadGerichtIconByParent = function (parent) {
+    let reloadIcons = parent.querySelectorAll('.reload-gericht');
+
+    if (reloadIcons.length > 0) {
+        reloadIcons.forEach(function (reloadElement, key) {
+            reloadElement.addEventListener('click', function (event) {
+                event.stopPropagation()
+                reloadGerichtEventHandler(event);
+                return false;
+            });
+        });
+    }
+};
 }

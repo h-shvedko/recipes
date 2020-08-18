@@ -58,6 +58,11 @@ form,
 
 
 @media print {
+    .table td, .table th{
+        border: none;
+        background-color: none;
+        color: #4a5c69;
+    }
     .pagebreak {
         page-break-before: always;
         display: block;

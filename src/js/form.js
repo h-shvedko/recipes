@@ -367,6 +367,7 @@ generateMenu = function (isSaved) {
             }
 
             attachEventsToGerichtElements();
+            attachEventListenerToReloadGerichtIcon();
         }
     }
 };
@@ -554,6 +555,30 @@ getMenuObject = function (nummerTage) {
 /**
  *
  * @param nummerTage
+ * @param type
+ */
+window.getMenuObjectByTagAndType = function (nummerTage, type) {
+    let res = [];
+
+    let usedNumbers;
+    for (let i = 1; i <= nummerTage; i++) {
+        let tmpRes = [];
+        let tmpTag = getGerichtItem();
+
+        usedNumbers = [];
+        tmpRes[type + '1'] = tmpTag[1];
+        tmpRes[type + '2'] = tmpTag[2];
+        tmpRes[type + '3'] = tmpTag[3];
+
+        res.push(tmpRes);
+    }
+
+    return res;
+};
+
+/**
+ *
+ * @returns {*[]}
  */
 getMenuObjectNotRandom = function () {
     let tmpRes = [];

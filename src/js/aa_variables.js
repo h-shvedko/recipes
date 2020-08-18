@@ -194,3 +194,9 @@ window.onload = function () {
      * @type {boolean}
      */
     window.addIconsEventAttached = false;
+
+    /**
+     *
+     * @type {boolean}
+     */
+    window.reloadIconsEventAttached = false;

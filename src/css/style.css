@@ -28,10 +28,6 @@ header .header-logo-icon img {
     margin: 0 0 0.5rem 0;
 }
 
-/*.teaser--image-ho .title>*, h1, h2, h3, h4, h5, h6{*/
-/*    padding-top: 0.5rem;*/
-/*}*/
-
 h4 {
     margin: 1rem 0;
 }
@@ -106,6 +102,8 @@ h4 {
     position: relative;
     width: 50%;
     float: left;
+    line-height: 1;
+    margin: 0.5rem 0;
 }
 
 .custom-control-input {
@@ -350,4 +348,9 @@ tr.pagebreak td{
 .wunschlist-icon-wrapper:hover{
     transform: scale(1.2);
     transition: all .1s ease-in;
+}
+
+.table-head{
+    background-color: #66cdd3;
+    color: white;
 }
