@@ -162,25 +162,23 @@ window.generateGerichtElement = function (object, type) {
 
         let process = createBeschreibung(object, false);
 
-        let weight = createText("<i class=\"fas fa-balance-scale\"></i> " + getGerichteWeight(object, type) + " g");
+        let reloadIcon = createText('<i class="fas fa-sync fa-2x"></i>');
+        reloadIcon.setAttribute('title', 'Neues Gericht laden');
+        reloadIcon.classList.add('reload-gericht');
 
-        let kallorien = createText("<i class=\"fas fa-fire-alt\"></i> " + object.relative_calories + " kcal pro 100 g");
+        let addToMenuIcon = createText("<i class=\"far fa-check-circle fa-2x wunschlist-icon\" data-name='" + object.name + "' data-stored='0'></i>");
+        addToMenuIcon.setAttribute('title', ADD_TO_MENU_LABEL);
+        addToMenuIcon.classList.add('wunschlist-icon-wrapper');
 
-        let zeit = createText("<i class=\"fas fa-hourglass-start\"></i> " + object.time + " min");
-
-        let div = createBlock(image1.outerHTML + zeit.outerHTML + weight.outerHTML + kallorien.outerHTML + headline1.outerHTML);
+        let div = createBlock(image1.outerHTML + reloadIcon.outerHTML + addToMenuIcon.outerHTML + headline1.outerHTML);
 
         div.classList.add('info-wrapper');
+        div.classList.add('text-center');
 
         let divDisabledOverlay = createBlock('');
         divDisabledOverlay.classList.add('overlay');
 
-        let listIcon = createText('<i class="fas fa-list-ol"></i>');
-        listIcon.setAttribute('title', 'Schon im Menu');
-        let listIconWrapper = createBlock(listIcon.outerHTML);
-        listIconWrapper.classList.add('list-icon-wrapper');
-
-        let divWrapper = createBlock(div.outerHTML + process.outerHTML + divDisabledOverlay.outerHTML + listIconWrapper.outerHTML);
+        let divWrapper = createBlock(div.outerHTML + process.outerHTML + divDisabledOverlay.outerHTML);
         divWrapper.classList.add('gericht');
         divWrapper.setAttribute('data-name', object.name.replace('\"', '\''));
 
@@ -675,6 +673,7 @@ window.attachEventsToGerichtElements = function () {
                 }
             });
         });
+        attachEventListenerToAddIcons();
     }
 };
 
@@ -740,6 +739,75 @@ window.findGericht = (name, type, day) => {
 
 /**
  *
+ * @param name
+ * @param type
+ * @param day
+ * @param isIconAction
+ * @param element
+ */
+removeGerichtFromMenu = function (name, day, type, isIconAction, element) {
+    let gericht = findGericht(name, type, day);
+    let gerichtPopoverIcon = getGerichtPopoverIcon(day, type, name);
+    let gerichtPopoverButton = getGerichtPopoverButton(day, type, name);
+
+    removeGerichtToLocalStorage(gericht);
+    if (isIconAction) {
+        element.setAttribute('title', ADD_TO_MENU_LABEL);
+        element.closest('.gericht').querySelector('.popover-body').querySelector('.wunschlist-button').innerHTML = ADD_TO_MENU_LABEL;
+    } else {
+        element.innerHTML = ADD_TO_MENU_LABEL;
+    }
+    element.setAttribute('data-stored', 0);
+
+    if (gerichtPopoverIcon !== null) {
+        gerichtPopoverIcon.setAttribute('title', ADD_TO_MENU_LABEL);
+        gerichtPopoverIcon.setAttribute('data-stored', 0);
+    }
+
+    if (gerichtPopoverButton !== null) {
+        gerichtPopoverButton.innerHTML = ADD_TO_MENU_LABEL;
+        gerichtPopoverButton.setAttribute('data-stored', 0);
+    }
+}
+
+/**
+ *
+ * @param name
+ * @param day
+ * @param type
+ * @param isIconAction
+ * @param element
+ */
+addGerichtToMenu = function (name, day, type, isIconAction, element) {
+    let gericht = findGericht(name, type, day);
+    let gerichtPopoverIcon = getGerichtPopoverIcon(day, type, name);
+    let gerichtPopoverButton = getGerichtPopoverButton(day, type, name);
+
+    if (gericht !== null) {
+        gericht.day = day;
+        gericht.type = type;
+        addGerichtToLocalStorage(gericht);
+
+        if (isIconAction) {
+            element.setAttribute('title', REMOVE_FROM_MENU_LABEL);
+            element.closest('.gericht').querySelector('.popover-body').querySelector('.wunschlist-button').innerHTML = REMOVE_FROM_MENU_LABEL;
+        } else {
+            element.innerHTML = REMOVE_FROM_MENU_LABEL;
+        }
+        element.setAttribute('data-stored', 1);
+        if (gerichtPopoverIcon !== null) {
+            gerichtPopoverIcon.setAttribute('title', REMOVE_FROM_MENU_LABEL);
+            gerichtPopoverIcon.setAttribute('data-stored', 1);
+        }
+        if (gerichtPopoverButton !== null) {
+            gerichtPopoverButton.innerHTML = REMOVE_FROM_MENU_LABEL;
+            gerichtPopoverButton.setAttribute('data-stored', 1);
+        }
+    }
+}
+
+/**
+ *
  */
 window.attachEventListenerToAddButton = function () {
     let addButtons = document.querySelectorAll('.wunschlist-button');
@@ -747,44 +815,71 @@ window.attachEventListenerToAddButton = function () {
     if (addButtons.length > 0) {
         addButtons.forEach(function (buttonElement, key) {
             buttonElement.addEventListener('click', function (event) {
-                let element = event.currentTarget;
-                let isStored = element.getAttribute('data-stored');
-                let parentModal = element.closest('.remodal-wrapper');
-                let name = parentModal.getAttribute('data-name');
-                let type = parentModal.getAttribute('data-type');
-                let day = parentModal.getAttribute('data-day');
-                let gericht = findGericht(name, type, day);
-                let gerichtPopoverButton = getGerichtPopoverButton(day, type, name);
+                event.stopPropagation();
+                eventHandlerForAddElements(event);
 
-                //@TODO: check not only by day+name+type but by day+type
-                if (isStored === '1') {
-                    removeGerichtToLocalStorage(gericht);
-                    element.innerHTML = 'Hinfügen zu Wunschlist';
-                    element.setAttribute('data-stored', 0);
-
-                    if (gerichtPopoverButton !== null) {
-                        gerichtPopoverButton.innerHTML = 'Hinfügen zu Wunschlist';
-                        gerichtPopoverButton.setAttribute('data-stored', 0);
-                    }
-                } else {
-                    if (gericht !== null) {
-                        gericht.day = day;
-                        gericht.type = type;
-                        addGerichtToLocalStorage(gericht);
-                        element.innerHTML = 'aus der Wunschliste entfernen';
-                        element.setAttribute('data-stored', 1);
-                        if (gerichtPopoverButton !== null) {
-                            gerichtPopoverButton.innerHTML = 'aus der Wunschliste entfernen';
-                            gerichtPopoverButton.setAttribute('data-stored', 1);
-                        }
-                    }
-                }
-                toggleGerichteAfterSelection(day, type, name);
-                toggleGerichtePrintVersionAfterSelection(day, type, name);
+                return false;
             });
         });
+
+        window.addButtonsEventAttached = true;
     }
 };
+
+
+/**
+ *
+ */
+window.attachEventListenerToAddIcons = function () {
+    let addButtons = document.querySelectorAll('.wunschlist-icon');
+
+    if (addButtons.length > 0 && !window.addIconsEventAttached) {
+        addButtons.forEach(function (buttonElement, key) {
+            buttonElement.addEventListener('click', function (event) {
+                event.stopPropagation()
+                eventHandlerForAddElements(event);
+
+                return false;
+            });
+        });
+
+        window.addIconsEventAttached = true;
+    }
+};
+
+/**
+ *
+ * @param event
+ */
+eventHandlerForAddElements = function (event) {
+    let type, day, name, isIconAction = false;
+    let element = event.currentTarget;
+    let isStored = element.getAttribute('data-stored');
+    let parentModal = element.closest('.remodal-wrapper');
+
+    if (parentModal === null) {
+        let parentGericht = element.closest('.gericht');
+        isIconAction = true;
+        name = parentGericht.getAttribute('data-name');
+        type = parentGericht.getAttribute('data-type');
+        day = parentGericht.getAttribute('data-day');
+    } else {
+        name = parentModal.getAttribute('data-name');
+        type = parentModal.getAttribute('data-type');
+        day = parentModal.getAttribute('data-day');
+    }
+
+
+    //@TODO: check not only by day+name+type but by day+type
+    if (isStored === '1') {
+        removeGerichtFromMenu(name, day, type, isIconAction, element);
+    } else {
+        addGerichtToMenu(name, day, type, isIconAction, element);
+    }
+    toggleGerichteAfterSelection(day, type, name);
+    toggleGerichtePrintVersionAfterSelection(day, type, name);
+}
+
 
 /**
  *
@@ -846,6 +941,38 @@ window.toggleGerichtePrintVersionAfterSelection = function (day, type, name) {
             }
         }
     }
+};
+
+/**
+ *
+ * @param day
+ * @param type
+ * @param name
+ * @returns {null}
+ */
+window.getGerichtPopoverIcon = function (day, type, name) {
+    let parentTRWrapper = document.querySelector('.day-' + day);
+    let gerichteColumn = null;
+    let gerichtePopover = null;
+    let gerichtePopoverButton = null;
+
+    if (parentTRWrapper !== null) {
+        gerichteColumn = parentTRWrapper.querySelector('.' + type);
+
+        if (gerichteColumn !== null) {
+            try {
+                gerichtePopover = gerichteColumn.querySelector('div.gericht[data-name="' + name + '"]');
+            } catch (e) {
+                alert('Leider dieses Gericht ist fehlgeschlagen (((');
+            }
+
+            if (gerichtePopover !== null) {
+                gerichtePopoverButton = gerichtePopover.querySelector('.wunschlist-icon');
+            }
+        }
+    }
+
+    return gerichtePopoverButton;
 };
 
 /**

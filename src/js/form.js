@@ -418,10 +418,15 @@ inTypeArray = function(element){
         for (let i = 0; i < typeResults.length; i++) {
             selectedValues.push(typeResults[i].value);
         }
+
+        if(selectedValues.length === 0){
+            return true;
+        }
+
         return selectedValues.indexOf(element) !== -1;
     }
 
-    return false;
+    return true;
 };
 
 /**
@@ -460,6 +465,10 @@ inAllergieArray = function(elements){
         let selectedValues = [];
         for (let i = 0; i < allergieResults.length; i++) {
             selectedValues.push(allergieResults[i].value);
+        }
+
+        if(selectedValues.length === 0){
+            return false;
         }
 
         if(elements.length > 0){

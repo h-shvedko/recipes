@@ -137,6 +137,14 @@ window.onload = function () {
 
     /**
      *
+     * @type {string}
+     */
+    const ADD_TO_MENU_LABEL = 'Hinfügen zu Wunschlist';
+
+    const REMOVE_FROM_MENU_LABEL = 'aus der Wunschliste entfernen';
+
+    /**
+     *
      * @type {boolean}
      */
     let isMenuLoadedFromLocalStorage = false;
@@ -174,3 +182,15 @@ window.onload = function () {
      * @type {boolean}
      */
     window.allergieNein = true;
+
+    /**
+     *
+     * @type {boolean}
+     */
+    window.addButtonsEventAttached = false;
+
+    /**
+     *
+     * @type {boolean}
+     */
+    window.addIconsEventAttached = false;

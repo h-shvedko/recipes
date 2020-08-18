@@ -134,6 +134,7 @@ h4 {
     padding: 0.25rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
 }
 
 .table thead th {
@@ -253,14 +254,13 @@ h4 {
 }
 
 .gericht .img-fluid {
-    max-width: 130px;
-    float: left;
-    margin-right: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: .5rem;
+    height: auto;
+    width: 240px;
 }
 
 .gericht {
-    min-height: 150px;
+    min-height: 273px;
     padding: 1rem 0.35rem 0.35rem 0.35rem;
     position: relative;
 }
@@ -294,6 +294,11 @@ h4 {
     border-radius: 0.25rem;
 }
 
+.gericht:not(.disabled):hover .reload-gericht,
+.gericht:not(.disabled):hover .wunschlist-icon-wrapper{
+    display: block;
+}
+
 .gericht .info-wrapper {
     z-index: 100;
 }
@@ -302,16 +307,9 @@ h4 {
     z-index: 50;
 }
 
-.gericht:not(.active) .list-icon-wrapper i {
-    display: none;
-}
-
-.gericht.active .list-icon-wrapper i {
-    display: inline-block;
-    position: absolute;
-    bottom: 2.5rem;
-    left: 0.35rem;
-    color: darkseagreen;
+.gericht.active .wunschlist-icon-wrapper{
+    background-color: #66cdd3;
+    color: white;
 }
 
 tr.pagebreak,
@@ -319,11 +317,37 @@ tr.pagebreak td{
     border: none!important;
 }
 
-#wrapper .checkbox+label:before {
+#wrapper .checkbox + label:before {
     top: -3px;
 }
 
-.menu-container p{
+.menu-container p {
     line-height: 1;
     margin: 0 0 0.5rem 0;
+}
+
+.reload-gericht {
+    display: none;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0.5rem;
+}
+
+.wunschlist-icon-wrapper {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0.5rem;
+}
+
+.gericht:not(.active) .wunschlist-icon-wrapper{
+    display: none;
+}
+.reload-gericht:hover,
+.wunschlist-icon-wrapper:hover{
+    transform: scale(1.2);
+    transition: all .1s ease-in;
 }
