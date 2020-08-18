@@ -34,7 +34,8 @@
     "gulp-sitemap": "^7.1.0",
     "gulp-uglify": "^3.0.1",
     "gulp-w3c-html-validator": "^1.4.3",
-    "gulp-webserver": "^0.9.1"
+    "gulp-webserver": "^0.9.1",
+    "open": ">=6.0.0"
   },
   "dependencies": {
     "gh-pages": "^2.1.1"
