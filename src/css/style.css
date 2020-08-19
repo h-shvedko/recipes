@@ -89,7 +89,8 @@ h4 {
 }
 
 .list--preparation dd {
-    margin-left: 1.25rem;
+    margin-left: 3rem;
+    width: 90%;
 }
 
 .popover-headline {
@@ -241,14 +242,26 @@ h4 {
     max-width: 590px;
 }
 
-.result-text.print table td {
-    padding: 0.5rem 0;
+
+@media (min-width: 577px) {
+    .remodal-wrapper .remodal {
+        overflow-y: auto;
+        max-width: 625px;
+        max-height: 75vh;
+    }
 }
 
-.remodal-wrapper .remodal {
-    overflow-y: auto;
-    max-width: 34vw;
-    max-height: 75vh;
+@media (max-width: 576px) {
+    .remodal-wrapper .remodal {
+        overflow-y: auto;
+        max-height: 75vh;
+        max-width: 96vw;
+    }
+
+}
+
+.result-text.print table td {
+    padding: 0.5rem 0;
 }
 
 .gericht .img-fluid {
@@ -354,3 +367,4 @@ tr.pagebreak td{
     background-color: #66cdd3;
     color: white;
 }
+
