@@ -388,3 +388,12 @@ tr.pagebreak td{
 .custom-control i:hover{
     cursor: pointer;
 }
+
+.table-head {
+    height: 24px;
+    padding-top: 5px;
+}
+
+.table.row .col-auto h3{
+    margin-top: 0.25rem;
+}
