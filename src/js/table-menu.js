@@ -638,7 +638,7 @@ if (listGenerate) {
             if (listOfProducts) {
                 for (let name in listOfProducts) {
                     let quantity = listOfProducts[name]['quantity'] ? listOfProducts[name]['quantity'] : '';
-                    let element = createText("<span class='custom-control-input'></span>" + name + ": " + quantity + " " + listOfProducts[name]['measure']);
+                    let element = createText("<span class='custom-control-input'></span>" + name + ": " + quantity + " " + listOfProducts[name]['measure'] + "&nbsp;<i class=\"fas fa-times-circle d-print-none einkaufliste-remove\" title='aus der Einkaufliste entfernen'></i>");
                     element.classList.add('custom-control');
                     listWrapperCol.appendChild(element);
                 }
@@ -653,6 +653,8 @@ if (listGenerate) {
                         listErgebnis.style.display = 'block';
                         listErgebnis.scrollIntoView({block: "start", behavior: "smooth"});
                     }
+
+                    attachEventsToEinkaufliste();
                 }
             }
         } else {
@@ -675,13 +677,14 @@ window.getListOfProducts = function (object) {
                 let ingredients = object[i].ingredients;
                 for (let j = 0; j < ingredients.length; j++) {
 
-                    if (ingredients[j]['name'] in listOfProducts) {
-                        listOfProducts[ingredients[j]['name']] = {
-                            'quantity': parseInt(ingredients[j]['quantity']) + parseInt(listOfProducts[ingredients[j]['name']]['quantity']),
+                    let nameOfIngredient = ingredients[j]['name'].trim();
+                    if (nameOfIngredient in listOfProducts) {
+                        listOfProducts[nameOfIngredient] = {
+                            'quantity': parseInt(ingredients[j]['quantity']) + parseInt(listOfProducts[nameOfIngredient]['quantity']),
                             'measure': ingredients[j]['measure']
                         };
                     } else {
-                        listOfProducts[ingredients[j]['name']] = {
+                        listOfProducts[nameOfIngredient] = {
                             'quantity': parseInt(ingredients[j]['quantity']),
                             'measure': ingredients[j]['measure']
                         };
@@ -1187,4 +1190,25 @@ window.attachEventListenerToReloadGerichtIconByParent = function (parent) {
         });
     }
 };
+
+/**
+ *
+ */
+window.attachEventsToEinkaufliste = function () {
+    let removeIcon = document.querySelectorAll('.einkaufliste-remove');
+
+    if (removeIcon.length > 0) {
+
+        for (let i = 0; i < removeIcon.length; i++) {
+            removeIcon[i].addEventListener('click', function (event) {
+                let parentWrapper = event.currentTarget.closest('.custom-control');
+
+                if (parentWrapper) {
+                    parentWrapper.remove();
+                }
+            });
+        }
+    }
+};
+
 }
