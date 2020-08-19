@@ -342,21 +342,37 @@ window.getTableContent = function(tbody, i, menuObject, day) {
     cell1Row.classList.add('row');
     cell1.append(cell1Row);
 
-    let cell1HTML = gericht1.outerHTML + gericht2.outerHTML + gericht3.outerHTML;
+    let theadCell2RowCell1 = createBlock('Fruhstück');
+    theadCell2RowCell1.classList.add('font-weight-bold');
+    theadCell2RowCell1.classList.add('text-center');
+    theadCell2RowCell1.classList.add('table-head');
+
+    let cell1HTML = theadCell2RowCell1.outerHTML + gericht1.outerHTML + gericht2.outerHTML + gericht3.outerHTML;
     let cell1RowCell1 = createBlock(cell1HTML);
     cell1RowCell1.classList.add('menu-item');
     cell1RowCell1.classList.add('fruestuek');
     cell1RowCell1.classList.add('col-12');
     cell1RowCell1.classList.add('col-md-4');
 
-    let cell2HTML = gericht4.outerHTML + gericht5.outerHTML + gericht6.outerHTML;
+    let theadCell2RowCell2 = createBlock('Mittagessen');
+    theadCell2RowCell2.classList.add('font-weight-bold');
+    theadCell2RowCell2.classList.add('text-center');
+    theadCell2RowCell2.classList.add('table-head');
+
+    let cell2HTML = theadCell2RowCell2.outerHTML + gericht4.outerHTML + gericht5.outerHTML + gericht6.outerHTML;
     let cell1RowCell2 = createBlock(cell2HTML);
     cell1RowCell2.classList.add('col-12');
     cell1RowCell2.classList.add('col-md-4');
     cell1RowCell2.classList.add('menu-item');
     cell1RowCell2.classList.add('mittag');
 
-    let cell3HTML = gericht7.outerHTML + gericht8.outerHTML + gericht9.outerHTML;
+    let theadCell2RowCell3 = createBlock('Abendessen');
+    theadCell2RowCell3.innerHTML = "Abendessen";
+    theadCell2RowCell3.classList.add('font-weight-bold');
+    theadCell2RowCell3.classList.add('text-center');
+    theadCell2RowCell3.classList.add('table-head');
+
+    let cell3HTML = theadCell2RowCell3.outerHTML + gericht7.outerHTML + gericht8.outerHTML + gericht9.outerHTML;
     let cell1RowCell3 = createBlock(cell3HTML);
     cell1RowCell3.classList.add('col-12');
     cell1RowCell3.classList.add('col-md-4');
@@ -389,16 +405,9 @@ window.generateHtmlForMenu = function (menuObject) {
             let blockCol = createBlock('');
             blockCol.classList.add('col-12');
 
-            let thead = createBlock('');
-            thead.classList.add('table');
-            thead.classList.add('row');
-
             let tbody = createBlock('');
             tbody.classList.add('table');
             tbody.classList.add('row');
-
-            thead = getTableHeader(thead);
-            blockCol.appendChild(thead);
 
             let tag = i + 1;
             tbody = getTableContent(tbody, i, menuObject, tag);
@@ -1191,8 +1200,8 @@ window.reloadGerichtEventHandler = function (event) {
 
         let menuObject = getMenuObjectByTagAndType(day, type);
         let menuObjectHtml = getGerictenByType(menuObject, day - 1, type);
-
-        parentGerichtWrapper.innerHTML = menuObjectHtml[0].outerHTML + menuObjectHtml[1].outerHTML + menuObjectHtml[2].outerHTML;
+        let tableHeader = parentGerichtWrapper.querySelector('.table-head');
+        parentGerichtWrapper.innerHTML = tableHeader.outerHTML + menuObjectHtml[0].outerHTML + menuObjectHtml[1].outerHTML + menuObjectHtml[2].outerHTML;
 
         attachEventListenerToReloadGerichtIconByParent(parentGerichtWrapper);
         attachEventListenerToAddIconsByParent(parentGerichtWrapper);

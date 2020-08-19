@@ -102,7 +102,6 @@ h4 {
 .custom-control {
     position: relative;
     width: 50%;
-    float: left;
     line-height: 1;
     margin: 0.5rem 0;
 }
@@ -354,9 +353,23 @@ tr.pagebreak td{
     padding: 0.5rem;
 }
 
-.gericht:not(.active) .wunschlist-icon-wrapper{
-    display: none;
+@media (max-width: 767px) {
+    .custom-control{
+        line-height: 1.5;
+        width: 100%;
+    }
 }
+
+@media (min-width: 768px) {
+    .gericht:not(.active) .wunschlist-icon-wrapper{
+        display: none;
+    }
+
+    .custom-control{
+        float: left;
+    }
+}
+
 .reload-gericht:hover,
 .wunschlist-icon-wrapper:hover{
     transform: scale(1.2);
