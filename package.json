@@ -11,7 +11,8 @@
     "sitemap": "gulp sitemap",
     "build": "gulp build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d app"
+    "deploy": "gh-pages -d app",
+    "gh-clean": "gh-pages-clean"
   },
   "author": "Polina Shvedko",
   "license": "ISC",
