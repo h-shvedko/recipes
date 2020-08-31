@@ -1,0 +1,119 @@
+<article class="article">
+    <form class="form w-100 p-0" novalidate id="form">
+        <div class="row mb-0 mb-sm-3">
+            <div class="col-12 col-sm-6 mb-3 mb-sm-0 mb-3 mb-sm-0">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="vorname">Vorname</label>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control" id="vorname" name="vorname" placeholder="Vorname">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 mb-3 mb-sm-0">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="nachname">Nachname</label>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control" id="nachname" name="nachname" placeholder="Nachname">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-0 mb-sm-3">
+            <div class="col-12 col-sm-6 mb-3 mb-sm-0">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="gewicht">Gewicht</label>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control" id="gewicht" name="gewicht" placeholder="Gewicht">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 mb-3 mb-sm-0">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="grosse">Größe</label>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control" id="grosse" name="grosse" placeholder="Größe">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-0 mb-sm-3">
+            <div class="col-12 col-sm-6 mb-3 mb-sm-0">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="alter">Alter</label>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control" id="alter" name="alter" placeholder="Alter">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 mb-3 mb-sm-0">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="geschlecht">Geschlecht</label>
+                    </div>
+                    <div class="col-12">
+                        <select class="form-control" id="geschlecht" name="geschlecht">
+                            <option value="weiblich" selected>Weiblich</option>
+                            <option value="maennlich">Männlich</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-0 mb-sm-3">
+            <div class="col-12 col-sm-6 mb-3 mb-sm-0">
+                <div class="row">
+                    <h3 class="col-12">Aktivität</h3>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="radiobutton" type="radio" name="aktivitaet" id="mangel" value="1" checked="checked"> <label class="form-check-label" for="mangel"> Bewegungsmangel </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="radiobutton" type="radio" name="aktivitaet" id="massige" value="2"> <label class="form-check-label" for="massige"> Mäßige Aktivität </label>
+                        </div>
+                        <div class="form-check disabled">
+                            <input class="radiobutton" type="radio" name="aktivitaet" id="mittlere" value="3"> <label class="form-check-label" for="mittlere"> Mittlere Aktivität </label>
+                        </div>
+                        <div class="form-check disabled">
+                            <input class="radiobutton" type="radio" name="aktivitaet" id="sehrAktive" value="4"> <label class="form-check-label" for="sehrAktive"> sehr aktive </label>
+                        </div>
+                        <div class="form-check disabled">
+                            <input class="radiobutton" type="radio" name="aktivitaet" id="sportler" value="5"> <label class="form-check-label" for="sportler"> Sportler </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 mb-3 mb-sm-0">
+                <div class="row">
+                    <h3 class="col-12">Gewünschtes Ergebnis</h3>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="radiobutton" type="radio" name="ergebnis" id="zunehmen" value="1"> <label class="form-check-label" for="zunehmen"> zunehmen </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="radiobutton" type="radio" name="ergebnis" id="abnehmen" value="2"> <label class="form-check-label" for="abnehmen"> abnehmen </label>
+                        </div>
+                        <div class="form-check disabled">
+                            <input class="radiobutton" type="radio" name="ergebnis" id="bleiben" value="3"> <label class="form-check-label" for="bleiben">Gewicht lassen</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-0 mb-sm-3">
+            <div class="col-12 text-right">
+                <button class="btn btn-danger" type="reset">Zurücksetzen</button>
+                <button class="btn btn-success" type="submit">Kalorien berechnen</button>
+            </div>
+        </div>
+    </form>
+</article>
