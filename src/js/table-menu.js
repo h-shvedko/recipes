@@ -177,7 +177,17 @@ window.generateGerichtElement = function (object, type) {
         reloadIcon.setAttribute('title', 'Neues Gericht laden');
         reloadIcon.classList.add('reload-gericht');
 
-        let addToMenuIcon = createText("<i class=\"far fa-check-circle fa-2x wunschlist-icon\" data-name='" + object.name + "' data-stored='0'></i>");
+        let addToMenuIcon;
+        if (object.hasOwnProperty('selected')) {
+            if (parseInt(object.selected) === 1) {
+                addToMenuIcon = createText("<i class=\"far fa-check-circle fa-2x wunschlist-icon\" data-name='" + object.name + "' data-stored='1'></i>");
+            } else {
+                addToMenuIcon = createText("<i class=\"far fa-check-circle fa-2x wunschlist-icon\" data-name='" + object.name + "' data-stored='0'></i>");
+            }
+        } else {
+            addToMenuIcon = createText("<i class=\"far fa-check-circle fa-2x wunschlist-icon\" data-name='" + object.name + "' data-stored='0'></i>");
+        }
+
         addToMenuIcon.setAttribute('title', ADD_TO_MENU_LABEL);
         addToMenuIcon.classList.add('wunschlist-icon-wrapper');
 
@@ -191,6 +201,15 @@ window.generateGerichtElement = function (object, type) {
 
         let divWrapper = createBlock(div.outerHTML + process.outerHTML + divDisabledOverlay.outerHTML);
         divWrapper.classList.add('gericht');
+
+        if (object.hasOwnProperty('selected')) {
+            if (parseInt(object.selected) === 1) {
+                divWrapper.classList.add('active');
+            } else {
+                divWrapper.classList.add('disabled');
+            }
+        }
+
         divWrapper.setAttribute('data-name', object.name.replace('\"', '\''));
 
         return divWrapper;
@@ -1265,6 +1284,150 @@ window.attachEventsToEinkaufliste = function () {
             });
         }
     }
+};
+
+/**
+ *
+ * @param savedData
+ * @returns {*}
+ */
+window.extendWithDishes = function (savedData) {
+    savedData = markAsSelected(savedData);
+    loadGerichten();
+    let numberOfDishesPeyDay = [];
+
+    if (savedData.length > 0) {
+        for (let i = 0; i < savedData.length; i++) {
+            for (let j = 1; j <= window.nummerTage; j++) {
+                if (!numberOfDishesPeyDay.hasOwnProperty(j)) {
+                    numberOfDishesPeyDay[j] = [];
+                }
+                let dish = savedData[i];
+                if (parseInt(dish.day) === j) {
+                    switch (dish.type) {
+                        case FRUESTUEK_NAME:
+                            if (!numberOfDishesPeyDay[j].hasOwnProperty(FRUESTUEK_NAME)) {
+                                numberOfDishesPeyDay[j][FRUESTUEK_NAME] = 1;
+                            } else {
+                                numberOfDishesPeyDay[j][FRUESTUEK_NAME]++;
+                            }
+                            break;
+                        case ABENDESSEN_NAME:
+                            if (!numberOfDishesPeyDay[j].hasOwnProperty(ABENDESSEN_NAME)) {
+                                numberOfDishesPeyDay[j][ABENDESSEN_NAME] = 1;
+                            } else {
+                                numberOfDishesPeyDay[j][ABENDESSEN_NAME]++;
+                            }
+                            break;
+                        case MITTAGESSEN_NAME:
+                            if (!numberOfDishesPeyDay[j].hasOwnProperty(MITTAGESSEN_NAME)) {
+                                numberOfDishesPeyDay[j][MITTAGESSEN_NAME] = 1;
+                            } else {
+                                numberOfDishesPeyDay[j][MITTAGESSEN_NAME]++;
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+
+        if (numberOfDishesPeyDay.length > 0) {
+            for (let k = 1; k <= window.nummerTage; k++) {
+                let dayDishes = numberOfDishesPeyDay[k];
+                savedData = addDishesToSavedData(dayDishes, savedData, FRUESTUEK_NAME, k);
+                savedData = addDishesToSavedData(dayDishes, savedData, ABENDESSEN_NAME, k);
+                savedData = addDishesToSavedData(dayDishes, savedData, MITTAGESSEN_NAME, k);
+            }
+        }
+    }
+
+    return savedData;
+};
+
+/**
+ *
+ * @param savedData
+ * @returns {*}
+ */
+window.markAsSelected = function (savedData) {
+
+    if (savedData.length > 0) {
+        for (let i = 0; i < savedData.length; i++) {
+            savedData[i].selected = 1;
+        }
+    }
+
+    return savedData;
+};
+
+/**
+ *
+ */
+window.fireClickEventStoredDishes = function () {
+    let addToMenuIcons = document.querySelectorAll('.wunschlist-icon[data-stored="1"]');
+
+    if (addToMenuIcons.length > 0) {
+        for (let i = 0; i < addToMenuIcons.length; i++) {
+            const parentWrapper = addToMenuIcons[i].closest('.menu-item');
+            const name = addToMenuIcons[i].closest('.gericht').getAttribute('data-name');
+            addToMenuIcons[i].setAttribute('title', REMOVE_FROM_MENU_LABEL);
+            addToMenuIcons[i].classList.add('active');
+
+            if (typeof parentWrapper !== 'undefined') {
+                const gerichts = parentWrapper.querySelectorAll('.gericht');
+
+                if (gerichts.length > 0) {
+                    for (let j = 0; j < gerichts.length; j++) {
+                        const gericht = gerichts[j];
+                        const currentName = gericht.getAttribute('data-name');
+
+                        if (currentName !== name) {
+                            gericht.classList.add('disabled');
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+};
+
+/**
+ *
+ * @param dayDishes
+ * @param savedData
+ * @param type
+ * @param day
+ * @returns {*}
+ */
+window.addDishesToSavedData = function (dayDishes, savedData, type, day) {
+    let numberOfDishes = 0;
+    if (dayDishes.hasOwnProperty(type)) {
+        switch (type) {
+            case FRUESTUEK_NAME:
+                numberOfDishes = dayDishes.fruestuek;
+                break;
+            case ABENDESSEN_NAME:
+                numberOfDishes = dayDishes.abend;
+                break;
+            case MITTAGESSEN_NAME:
+                numberOfDishes = dayDishes.mittag;
+                break;
+        }
+    }
+
+    if (numberOfDishes < 3) {
+        for (let n = 0; n < 3 - numberOfDishes; n++) {
+            const newDishNumber = getRandomGerichtNummer(0, recipes.dishes.length - 1);
+            const newDish = recipes.dishes[newDishNumber];
+            newDish.day = day;
+            newDish.selcted = 0;
+            newDish.type = type;
+            savedData.push(newDish);
+        }
+    }
+
+    return savedData;
 };
 
 }

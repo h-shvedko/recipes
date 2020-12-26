@@ -200,3 +200,9 @@ window.onload = function () {
      * @type {boolean}
      */
     window.reloadIconsEventAttached = false;
+
+    /**
+     *
+     * @type {number}
+     */
+    window.nummerTage = 3;

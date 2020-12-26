@@ -406,7 +406,7 @@
       "allergic": "1,2,3,4,5",
       "ingredients": [
         {
-          "name": "Hokkaidokürbis (à ca. 500 g)",
+          "name": "Hokkaidokürbis",
           "quantity": 62,
           "measure": "g"
         },
@@ -1447,7 +1447,7 @@
       ]
     },
     {
-      "name": "Wokgemüse 'Shiitake-Sprint",
+      "name": "Wokgemüse Shiitake-Sprint",
       "calories": 360,
       "weight": 120,
       "relative_calories": 300,
@@ -1981,6 +1981,240 @@
         {
           "name": "Salz, Pfeffer, Muskat ",
           "quantity": "n/a",
+          "measure": ""
+        }
+      ]
+    },
+    {
+      "name": "Süßsaure Tofuhäppchen",
+      "calories": 120,
+      "weight": 190,
+      "relative_calories": 63,
+      "process": "<dl class=\"list list--preparation\">\n                                    <dt>1.</dt>\n              <dd>\n                1 Stück (ca. 10 g) Ingwer schälen, fein hacken. 1 rote Chilischote und 1&nbsp;kleine Lauchzwiebel putzen und waschen, beides in feine Ringe schneiden. Vorbereitete Zutaten mit 1&nbsp;EL Sesam, 3&nbsp;EL Limettensaft, 1&nbsp;EL Agavendicksaft, 3&nbsp;EL&nbsp;Soja&shy;soße und 1&nbsp;EL Sesamöl verrühren. 300&nbsp;g Tofu in mundgerechte Würfel schneiden und mit dem süßsauren Sößchen mischen.              </dd>\n                                                      </dl>",
+      "photoId": 112,
+      "time": 15,
+      "type": "2",
+      "allergic": "2,3",
+      "ingredients": [
+        {
+          "name": "Ingwer ",
+          "quantity": 0.33,
+          "measure": "St"
+        },
+        {
+          "name": "rote Chilischote",
+          "quantity": 0.33,
+          "measure": "St"
+        },
+        {
+          "name": "kleine Lauchzwiebel ",
+          "quantity": 0.33,
+          "measure": "St"
+        },
+        {
+          "name": "Sesam",
+          "quantity": 0.33,
+          "measure": "EL"
+        },
+        {
+          "name": "Limettensaft",
+          "quantity": 1,
+          "measure": "EL"
+        },
+        {
+          "name": "Agavendicksaft ",
+          "quantity": 0.33,
+          "measure": "EL"
+        },
+        {
+          "name": "Sojasoße ",
+          "quantity": 1,
+          "measure": "EL"
+        },
+        {
+          "name": "Sesamöl",
+          "quantity": 0.33,
+          "measure": "EL"
+        },
+        {
+          "name": "Tofu",
+          "quantity": 100,
+          "measure": "g"
+        }
+      ]
+    },
+    {
+      "name": "Pizzawaffeln",
+      "calories": 380,
+      "weight": 225,
+      "relative_calories": 169,
+      "process": "<dl class=\"list list--preparation\">\n                                    <dt>1.</dt>\n              <dd>\n                Für den Salat Tomaten waschen und halbieren. Rucola putzen, waschen und trocken schütteln. Zwiebel schälen, halbieren und in feine Spalten schneiden. Mit Tomaten und Rucola mischen. Pesto und Essig verrühren. Mit Salz, Pfeffer und Zucker abschmecken.              </dd>\n                                        <dt>2.</dt>\n              <dd>\n                Für die Waffeln Pizzateig entrollen, vom Papier lösen. Mit Tomatenmark bestreichen. Käse raspeln oder fein hacken und darüberstreuen. Den Teig von der langen Seite aufrollen und in ca. 2&nbsp;cm breite Schnecken schneiden.              </dd>\n                                        <dt>3.</dt>\n              <dd>\n                Ein Herzwaffeleisen erhitzen und gründlich mit Öl einpinseln. Insgesamt 6 große Waffeln backen, dafür jeweils 3 Pizzaschnecken im Waffeleisen verteilen. Waffeleisen verschließen und Pizzawaffeln darin ca. 3 Minuten goldbraun backen. Im heißen Backofen (E-Herd: 80&thinsp;°C/Umluft: 60&thinsp;°C/Gas: s. Hersteller) warm halten, bis alle Schnecken gebacken sind. Mit Salat und Pestodressing anrichten.              </dd>\n                                                      </dl>",
+      "photoId": 113,
+      "time": 30,
+      "type": "2",
+      "allergic": "2,3",
+      "ingredients": [
+        {
+          "name": "Kirschtomaten",
+          "quantity": 67,
+          "measure": "g"
+        },
+        {
+          "name": "Rucola",
+          "quantity": 17,
+          "measure": "g"
+        },
+        {
+          "name": "rote Zwiebel",
+          "quantity": 0.12,
+          "measure": "St"
+        },
+        {
+          "name": "grünes Pesto",
+          "quantity": 0.33,
+          "measure": "EL"
+        },
+        {
+          "name": "Weißweinessig",
+          "quantity": 0.66,
+          "measure": "EL"
+        },
+        {
+          "name": "Pizzateig",
+          "quantity": 130,
+          "measure": "g"
+        },
+        {
+          "name": "Tomatenmark",
+          "quantity": 0.66,
+          "measure": "EL"
+        },
+        {
+          "name": "Mozzarella",
+          "quantity": 21,
+          "measure": "g"
+        },
+        {
+          "name": "Öl",
+          "quantity": "",
+          "measure": ""
+        },
+        {
+          "name": "Salz",
+          "quantity": "",
+          "measure": ""
+        },
+        {
+          "name": "Pfeffer",
+          "quantity": "",
+          "measure": ""
+        },
+        {
+          "name": "Zucker",
+          "quantity": "",
+          "measure": ""
+        }
+      ]
+    },
+    {
+      "name": "Dreimal Pintxos nach Art der Basken",
+      "calories": 560,
+      "weight": 230,
+      "relative_calories": 244,
+      "process": "<dl class=\"list list--preparation\">\n                                    <dt>1.</dt>\n              <dd>\n                Walnüsse fein hacken. Frisch&shy;käse mit kühlen Händen zu 4&nbsp;Bällchen formen und in den Walnüssen wälzen. Kalt stellen.              </dd>\n                                        <dt>2.</dt>\n              <dd>\n                Für die Aioli Knoblauch schälen, fein hacken. Mayonnaise und Knoblauch verrühren, mit Salz und Pfeffer würzen.              </dd>\n                                        <dt>3.</dt>\n              <dd>\n                Zwiebel schälen, halbieren und in Streifen schneiden. 1 EL Öl in einer Pfanne erhitzen. Zwiebel darin goldbraun braten. Zucker darüberstreuen und leicht karamellisieren. Zwiebel herausnehmen und etwas abkühlen lassen. 1 EL Öl in der Pfanne erhitzen. Ei hineinschlagen, mit Salz würzen. Von jeder Seite ca.&nbsp;2&nbsp;Minuten braten, herausnehmen, in 4&nbsp;Stücke schneiden.              </dd>\n                                        <dt>4.</dt>\n              <dd>\n                Chorizo in Scheiben schneiden. Pimientos waschen und gut &shy;trocken tupfen. 1&nbsp;EL&nbsp;Öl in der Pfanne erhitzen. Chorizo und &shy;Pimientos darin unter Wenden 4–5 Minuten braten. Vom Herd ziehen, Pimientos mit Meersalz bestreuen.              </dd>\n                                        <dt>5.</dt>\n              <dd>\n                Petersilie waschen und trocken schütteln, die Blättchen hacken. Baguette in 12&nbsp;Scheiben schneiden. 4 Scheiben Baguette mit Serranoschinken, Zwiebel und je 1&nbsp;Stück Ei belegen. Je 1&nbsp;Frischkäsebällchen und 1&nbsp;TL&nbsp;Konfitüre auf 4&nbsp;weitere Scheiben verteilen, mit Petersilie bestreuen. Die übrigen 4&nbsp;Brotscheiben mit Chorizo und Pimientos belegen. Mit &shy;etwas Aioli beträufeln. Belag jeweils mit Holzspießchen feststecken. Dazu schmecken Oliven und Salzmandeln.              </dd>\n                                                      </dl>",
+      "photoId": 114,
+      "time": 40,
+      "type": "1",
+      "allergic": "2,3",
+      "ingredients": [
+        {
+          "name": "Walnusskerne",
+          "quantity": 13,
+          "measure": "g"
+        },
+        {
+          "name": "Ziegenfrischkäse",
+          "quantity": 30,
+          "measure": "g"
+        },
+        {
+          "name": "kleine Knoblauchzehe",
+          "quantity": 0.25,
+          "measure": "St"
+        },
+        {
+          "name": "Mayonnaise",
+          "quantity": 0.5,
+          "measure": "EL"
+        },
+        {
+          "name": "Zwiebel",
+          "quantity": 0.25,
+          "measure": "St"
+        },
+        {
+          "name": "Olivenöl",
+          "quantity": 0.75,
+          "measure": "EL"
+        },
+        {
+          "name": "brauner Zucker",
+          "quantity": 0.5,
+          "measure": "TL"
+        },
+        {
+          "name": "Ei (Gr. M)",
+          "quantity": 0.25,
+          "measure": "St"
+        },
+        {
+          "name": "Chorizobratwurst",
+          "quantity": 15,
+          "measure": "g"
+        },
+        {
+          "name": "Pimientos de Padrón (Bratpaprika)",
+          "quantity": 1,
+          "measure": "St"
+        },
+        {
+          "name": "Petersilie",
+          "quantity": 0.25,
+          "measure": "Stiel"
+        },
+        {
+          "name": "Baguette",
+          "quantity": 0.25,
+          "measure": "St"
+        },
+        {
+          "name": "Serranoschinken",
+          "quantity": 1,
+          "measure": "Scheibe"
+        },
+        {
+          "name": "Himbeerkonfitüre",
+          "quantity": 1,
+          "measure": "TL"
+        },
+        {
+          "name": "Holzspießchen ",
+          "quantity": "",
+          "measure": ""
+        },
+        {
+          "name": "Salz",
+          "quantity": "",
+          "measure": ""
+        },
+        {
+          "name": "Pfeffer",
+          "quantity": "",
+          "measure": ""
+        },
+        {
+          "name": "grobes Meersalz",
+          "quantity": "",
           "measure": ""
         }
       ]

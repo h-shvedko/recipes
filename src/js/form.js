@@ -331,21 +331,20 @@ generateMenu = function (isSaved) {
 
     if (ergebnisContainer) {
         let tage = menuAnfrage.querySelectorAll('.tage');
-        let nummerTage = 3;
 
         if (tage) {
             tage.forEach(function (elem) {
                 if (elem.checked) {
-                    nummerTage = elem.value
+                    window.nummerTage = elem.value
                 }
             });
         }
         let menuObject = [];
 
         if (!isSaved) {
-            menuObject = getMenuObject(nummerTage);
+            menuObject = getMenuObject(window.nummerTage);
         } else {
-            menuObject = getMenuObjectNotRandom(nummerTage);
+            menuObject = getMenuObjectNotRandom();
         }
 
         let htmlElement = generateHtmlForMenu(menuObject);
@@ -368,6 +367,7 @@ generateMenu = function (isSaved) {
 
             attachEventsToGerichtElements();
             attachEventListenerToReloadGerichtIcon();
+            fireClickEventStoredDishes();
         }
     }
 };
@@ -583,31 +583,48 @@ window.getMenuObjectByTagAndType = function (nummerTage, type) {
 getMenuObjectNotRandom = function () {
     let tmpRes = [];
     let tmpTag = [];
-    let recipeObject = recipes;
-    let nummerTage = 7; //use max number of days
+    let recipeObject = recipes.dishes;
+    let nummerTage = window.nummerTage;
 
-    for (let dish of recipeObject.dishes) {
-        tmpRes[dish.type + dish.day] = dish;
-    }
+    for (let k = 0; k < nummerTage; k++) {
+        let day = k;
+        let fIndex = 1;
+        let mIndex = 1;
+        let aIndex = 1;
+        let index = 1;
 
-    for (let i = 1; i <= nummerTage; i++) {
-        tmpTag[i] = [];
-        for (let tmpResIndex in tmpRes) {
-            if(tmpRes.hasOwnProperty(tmpResIndex)){
-                if (tmpResIndex.indexOf(i.toString()) !== -1) {
-                    tmpTag[i][tmpRes[tmpResIndex].type + '1'] = tmpRes[tmpResIndex];
+        for (let n = 0; n < recipeObject.length; n++) {
+            let dish = recipeObject[n];
+            if(parseInt(dish.day) === day + 1){
+                switch (dish.type) {
+                    case FRUESTUEK_NAME:
+                        index = fIndex;
+                        fIndex++;
+                        break;
+                    case MITTAGESSEN_NAME:
+                        index = mIndex;
+                        mIndex++;
+                        break;
+                    case ABENDESSEN_NAME:
+                        index = aIndex;
+                        aIndex++;
+                        break;
+
+                }
+
+                if (tmpRes.hasOwnProperty(day)) {
+                    tmpRes[day][dish.type + index] = dish;
+                } else {
+                    tmpRes[day] = [];
+                    tmpRes[day][dish.type + index] = dish;
                 }
             }
         }
     }
 
-    tmpTag = tmpTag.filter(function () {
-        return true;
-    });
+    menuObject = tmpRes;
 
-    menuObject = tmpTag;
-
-    return tmpTag;
+    return tmpRes;
 };
 
 /**
@@ -654,10 +671,9 @@ if (menuCalculate) {
         event.preventDefault();
         event.stopPropagation();
 
-        //TODO: deactivate after resolving ticket#31
-        // let ifWeHaveStoredMenu = getStoredIntoLocalStorage();
-        let ifWeHaveStoredMenu = '0';
+        let ifWeHaveStoredMenu = getStoredIntoLocalStorage();
         let savedMenu = getAllFromLocalStorage();
+        savedMenu = extendWithDishes(savedMenu);
 
         if (ifWeHaveStoredMenu && ifWeHaveStoredMenu === '1' && savedMenu && savedMenu.length > 0) {
             let einkaufsList = document.querySelector('.list-of-products') || null;
