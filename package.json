@@ -39,7 +39,7 @@
     "open": ">=6.0.0",
     "lodash.template": ">=4.5.0",
     "kind-of": ">=6.0.3",
-    "minimist": ">=1.2.3"
+    "minimist": ">=1.2.6"
   },
   "dependencies": {
     "gh-pages": "^2.1.1"
